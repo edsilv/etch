@@ -16,5 +16,6 @@ export class GreenSquare extends DisplayObject {
 
         this.Ctx.fillStyle = "#00FF00";
         this.Ctx.fillRect(125, 125, 50, 50);
+        console.log("green square");
     }
 }

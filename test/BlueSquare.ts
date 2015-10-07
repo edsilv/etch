@@ -8,7 +8,9 @@ export class BlueSquare extends DisplayObject {
 
     Init(canvas: IDisplayContext): void {
         super.Init(canvas);
+    }
 
+    Setup() {
         this.GreenSquare = new GreenSquare();
         this.GreenSquare.Init(this);
         this.DisplayList.Add(this.GreenSquare);
@@ -22,6 +24,7 @@ export class BlueSquare extends DisplayObject {
         super.Draw();
 
         this.Ctx.fillStyle = "#0000FF";
-        this.Ctx.fillRect(200, 200, 150, 150);
+        this.Ctx.fillRect(150, 150, 150, 150);
+        console.log("blue square");
     }
 }

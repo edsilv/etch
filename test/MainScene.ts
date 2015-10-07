@@ -1,15 +1,12 @@
 import {DisplayObject} from '../src/Drawing/DisplayObject';
 import {RedSquare} from './RedSquare';
 import {BlueSquare} from './BlueSquare';
+import {Stage} from '../src/Drawing/Stage';
 
-export class MainScene extends DisplayObject{
+export class MainScene extends Stage{
 
     public RedSquare: RedSquare;
     public BlueSquare: BlueSquare;
-
-    constructor() {
-        super();
-    }
 
     Setup() {
         super.Setup();

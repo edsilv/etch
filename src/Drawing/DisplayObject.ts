@@ -1,5 +1,4 @@
 import {ClockTimer} from '../Engine/ClockTimer';
-import {DisplayList} from './DisplayList';
 import {DisplayObjectCollection} from './DisplayObjectCollection';
 import {IDisplayObject} from './IDisplayObject';
 import {IDisplayContext} from './IDisplayContext';
@@ -10,59 +9,32 @@ var MAX_MSPF: number = 1000 / MAX_FPS;
 
 export class DisplayObject implements IDisplayObject {
 
-    private _DisplayList: DisplayList;
-    public FrameCount: number = 0;
+    private _DisplayList: DisplayObjectCollection<IDisplayObject>;
     public Height: number;
     public Initialised: boolean = false;
     public IsPaused: boolean = false;
     public IsVisible: boolean = true;
-    public LastVisualTick: number = new Date(0).getTime();
     public Position: Point;
     public Sketch: any;
-    public Timer: ClockTimer;
     public Width: number;
     public ZIndex: number;
 
     Init(sketch: IDisplayContext): void {
         this.Sketch = sketch;
-        this.DisplayList = new DisplayList();
-        this.Setup();
-        this.DisplayList.Setup();
-
-        this.Timer = new ClockTimer();
-        this.Timer.RegisterTimer(this);
-
+        this.DisplayList = new DisplayObjectCollection();
         this.Initialised = true;
-    }
-
-    OnTicked(lastTime: number, nowTime: number) {
-        var now = new Date().getTime();
-        if (now - this.LastVisualTick < MAX_MSPF) return;
-
-        this.LastVisualTick = now;
-
-        //TWEEN.update(nowTime);
-
-        if (!this.IsPaused){
-            this.Update();
-            this.DisplayList.Update();
-        }
-
-        if (!this.IsPaused && this.IsVisible){
-            this.Draw();
-            this.DisplayList.Draw();
-        }
+        this.Setup();
     }
 
     get Ctx(): CanvasRenderingContext2D{
         return this.Sketch.Ctx;
     }
 
-    get DisplayList(): DisplayList {
+    get DisplayList(): DisplayObjectCollection<IDisplayObject> {
         return this._DisplayList;
     }
 
-    set DisplayList(value: DisplayList) {
+    set DisplayList(value: DisplayObjectCollection<IDisplayObject>) {
         this._DisplayList = value;
     }
 
@@ -70,13 +42,12 @@ export class DisplayObject implements IDisplayObject {
 
     }
 
-    Update(): void {
+    public Update(): void {
 
     }
 
     public Draw(): void {
-        this.FrameCount++;
-        console.log("draw ", this);
+
     }
 
     public Dispose(): void {

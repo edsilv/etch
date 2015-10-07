@@ -15,12 +15,10 @@ export default class Test{
         this.Canvas.Height = 600;
         this.MainScene = new MainScene();
         this.MainScene.Init(this.Canvas);
-        this.Timer = new ClockTimer();
-        this.Timer.RegisterTimer(this);
     }
 
     OnTicked() {
-        this.Canvas.Ctx.clearRect(0, 0, this.Canvas.Width, this.Canvas.Height);
-        console.log("clear");
+        //this.Canvas.Ctx.clearRect(0, 0, this.Canvas.Width, this.Canvas.Height);
+        //console.log("clear");
     }
 }

@@ -16,5 +16,6 @@ export class RedSquare extends DisplayObject {
 
         this.Ctx.fillStyle = "#FF0000";
         this.Ctx.fillRect(0, 0, 150, 150);
+        console.log("red square");
     }
 }
