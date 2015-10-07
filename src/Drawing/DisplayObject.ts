@@ -4,9 +4,6 @@ import {IDisplayObject} from './IDisplayObject';
 import {IDisplayContext} from './IDisplayContext';
 import {Point} from './../Primitives/Point';
 
-var MAX_FPS: number = 100;
-var MAX_MSPF: number = 1000 / MAX_FPS;
-
 export class DisplayObject implements IDisplayObject {
 
     private _DisplayList: DisplayObjectCollection<IDisplayObject>;
@@ -15,7 +12,7 @@ export class DisplayObject implements IDisplayObject {
     public IsPaused: boolean = false;
     public IsVisible: boolean = true;
     public Position: Point;
-    public Sketch: any;
+    public Sketch: IDisplayContext;
     public Width: number;
     public ZIndex: number;
 

@@ -32,19 +32,16 @@ export class Stage extends DisplayObject implements ITimerListener {
 
         this.Ctx.clearRect(0, 0, this.Ctx.canvas.width, this.Ctx.canvas.height);
 
-        if (!this.IsPaused){
-            this.UpdateDisplayList(this.DisplayList);
-        }
-
-        if (this.IsVisible){
-            this.DrawDisplayList(this.DisplayList);
-        }
+        this.UpdateDisplayList(this.DisplayList);
+        this.DrawDisplayList(this.DisplayList);
     }
 
     UpdateDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void {
         for (var i = 0; i < displayList.Count; i++){
             var displayObject: IDisplayObject = displayList.GetValueAt(i);
-            displayObject.Update();
+            if (!displayObject.IsPaused) {
+                displayObject.Update();
+            }
             this.UpdateDisplayList(displayObject.DisplayList);
         }
     }
@@ -52,7 +49,9 @@ export class Stage extends DisplayObject implements ITimerListener {
     DrawDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void {
         for (var i = 0; i < displayList.Count; i++){
             var displayObject: IDisplayObject = displayList.GetValueAt(i);
-            displayObject.Draw();
+            if (displayObject.IsVisible) {
+                displayObject.Draw();
+            }
             this.DrawDisplayList(displayObject.DisplayList);
         }
     }

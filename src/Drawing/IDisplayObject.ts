@@ -17,6 +17,7 @@ export interface IDisplayObject extends IDisplayContext{
     Position: Point;
     Setup(): void;
     Show(): void;
+    Sketch: IDisplayContext;
     Update(): void;
     Width: number;
     ZIndex: number;

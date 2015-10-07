@@ -7,8 +7,13 @@ export class RedSquare extends DisplayObject {
         super.Init(canvas);
     }
 
+    Setup() {
+        console.log('setup red');
+    }
+
     Update() {
         super.Update();
+        console.log('update red');
     }
 
     Draw() {
@@ -16,6 +21,6 @@ export class RedSquare extends DisplayObject {
 
         this.Ctx.fillStyle = "#FF0000";
         this.Ctx.fillRect(0, 0, 150, 150);
-        console.log("red square");
+        console.log("draw red");
     }
 }

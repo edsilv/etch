@@ -16,7 +16,7 @@ export class DisplayObjectCollection<T extends IDisplayObject> extends Observabl
         }, this)
     }
 
-    SwapIndex(obj1: T, obj2: T){
+    Swap(obj1: T, obj2: T){
         var obj1Index = this.IndexOf(obj1);
         var obj2Index = this.IndexOf(obj2);
 
@@ -43,6 +43,10 @@ export class DisplayObjectCollection<T extends IDisplayObject> extends Observabl
 
         this.Remove(obj);
         this.Insert(index, obj);
+    }
+
+    get Bottom(): T{
+        return this.GetValueAt(0);
     }
 
     get Top(): T{
