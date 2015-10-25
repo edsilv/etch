@@ -1,8 +1,10 @@
 require.config({
     baseUrl: "./",
     paths: {
+        "core": ".build/core",
         "Test": "Test",
-        "jquery": "lib/jquery/dist/jquery"
+        "jquery": "lib/jquery/dist/jquery",
+        "extensions": "lib/extensions/dist/extensions"
     },
     shim: {
 
@@ -10,9 +12,11 @@ require.config({
 });
 
 require([
+    "core",
     "Test",
-    "jquery"
-], function (Test, jquery) {
+    "jquery",
+    "extensions"
+], function (core, Test, jquery) {
     window.$ = jquery;
 
     $(document).ready(function() {

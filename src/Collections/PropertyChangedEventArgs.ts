@@ -14,3 +14,4 @@ export var INotifyPropertyChanged_ = new nullstone.Interface<INotifyPropertyChan
 INotifyPropertyChanged_.is = (o: any): boolean => {
     return o && o.PropertyChanged instanceof nullstone.Event;
 };
+

@@ -4,7 +4,6 @@ import {DisplayObject} from './DisplayObject';
 import {IDisplayContext} from './IDisplayContext';
 import {IDisplayObject} from './IDisplayObject';
 import {ITimerListener} from '../Engine/ITimerListener';
-import {Point} from './../Primitives/Point';
 
 var MAX_FPS: number = 100;
 var MAX_MSPF: number = 1000 / MAX_FPS;
@@ -14,6 +13,8 @@ export class Stage extends DisplayObject implements ITimerListener {
     public FrameCount: number = 0;
     public LastVisualTick: number = new Date(0).getTime();
     public Timer: ClockTimer;
+    //Updated = new nullstone.Event<nullstone.IEventArgs>();
+    //Drawn = new nullstone.Event<nullstone.IEventArgs>();
 
     Init(sketch: IDisplayContext): void {
         super.Init(sketch);
@@ -33,7 +34,12 @@ export class Stage extends DisplayObject implements ITimerListener {
         this.Ctx.clearRect(0, 0, this.Ctx.canvas.width, this.Ctx.canvas.height);
 
         this.UpdateDisplayList(this.DisplayList);
+
+        //this.Updated.raise(this, new nullstone.EventArgs());
+
         this.DrawDisplayList(this.DisplayList);
+
+        //this.Drawn.raise(this, new nullstone.EventArgs());
     }
 
     UpdateDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void {

@@ -1,17 +1,20 @@
+import {Canvas} from './Canvas';
 import {ClockTimer} from '../Engine/ClockTimer';
 import {DisplayObjectCollection} from './DisplayObjectCollection';
 import {IDisplayObject} from './IDisplayObject';
 import {IDisplayContext} from './IDisplayContext';
-import {Point} from './../Primitives/Point';
+import {Vector} from './../Primitives/Vector';
 
 export class DisplayObject implements IDisplayObject {
 
     private _DisplayList: DisplayObjectCollection<IDisplayObject>;
+    public Cache: Canvas;
+    public FrameCount: number = -1;
     public Height: number;
     public Initialised: boolean = false;
     public IsPaused: boolean = false;
     public IsVisible: boolean = true;
-    public Position: Point;
+    public Position: Vector;
     public Sketch: IDisplayContext;
     public Width: number;
     public ZIndex: number;
@@ -44,7 +47,11 @@ export class DisplayObject implements IDisplayObject {
     }
 
     public Draw(): void {
+        this.FrameCount++;
+    }
 
+    public IsFirstFrame(): boolean {
+        return this.FrameCount === 0;
     }
 
     public Dispose(): void {
@@ -68,6 +75,6 @@ export class DisplayObject implements IDisplayObject {
     }
 
     //HitRect(x, y, w, h, mx, my): boolean {
-        //return Utils.Measurements.Dimensions.HitRect(x, y, w, h, mx, my);
+    //return Utils.Measurements.Dimensions.HitRect(x, y, w, h, mx, my);
     //}
 }

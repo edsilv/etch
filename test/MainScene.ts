@@ -2,6 +2,7 @@ import {DisplayObject} from '../src/Drawing/DisplayObject';
 import {RedSquare} from './RedSquare';
 import {BlueSquare} from './BlueSquare';
 import {Stage} from '../src/Drawing/Stage';
+import {Mover} from './Mover';
 
 export class MainScene extends Stage{
 
@@ -15,6 +16,12 @@ export class MainScene extends Stage{
         this.RedSquare.Init(this);
         this.BlueSquare = new BlueSquare();
         this.BlueSquare.Init(this);
+
+        for (var i = 0; i < 1000; i++){
+            var mover = new Mover();
+            mover.Init(this);
+            this.DisplayList.Add(mover);
+        }
 
         this.DisplayList.Add(this.RedSquare);
         this.DisplayList.Add(this.BlueSquare);

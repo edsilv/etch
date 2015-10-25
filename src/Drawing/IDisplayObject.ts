@@ -1,6 +1,6 @@
 import {DisplayObjectCollection} from './DisplayObjectCollection';
 import {IDisplayContext} from './IDisplayContext';
-import Point = minerva.Point;
+import {Vector} from '../Primitives/Vector';
 
 export interface IDisplayObject extends IDisplayContext{
     Ctx: CanvasRenderingContext2D;
@@ -14,7 +14,7 @@ export interface IDisplayObject extends IDisplayContext{
     IsVisible: boolean;
     Pause(): void;
     Play(): void;
-    Position: Point;
+    Position: Vector;
     Setup(): void;
     Show(): void;
     Sketch: IDisplayContext;

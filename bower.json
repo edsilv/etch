@@ -5,6 +5,7 @@
   "devDependencies": {
     "r.js": "~2.1.20",
     "fayde": "~0.17.1",
-    "jquery": "~2.1.4"
+    "jquery": "~2.1.4",
+    "extensions": "edsilv/extensions"
   }
 }

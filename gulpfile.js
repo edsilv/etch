@@ -5,31 +5,80 @@ var connect = require('gulp-connect');
 var gulp = require('gulp');
 var merge = require('merge2');
 var path = require('path');
+var runSequence = require('run-sequence');
 var sourcemaps = require('gulp-sourcemaps');
 var ts = require('gulp-typescript');
 
 gulp.task('build:dev', function() {
 
-    var tsResult = gulp.src([
+    var result = gulp.src([
+        './src/*.ts',
+        './src/**/*.ts',
+        '!./lib/**/*.ts',
+        './typings/*.ts'
+    ])
+        .pipe(sourcemaps.init())
+        .pipe(ts({
+            //sortOutput: true,
+            module: 'amd',
+            target: 'es5',
+            declaration: true,
+            noExternalResolve: true,
+            noLib: false
+        }));
+
+    return merge([
+        result.dts
+            .pipe(concat(config.dtsOut))
+            .pipe(gulp.dest(config.build)),
+        result.js
+            .pipe(concat(config.jsOut))
+            .pipe(sourcemaps.write())
+            .pipe(gulp.dest(config.build))
+    ]);
+});
+
+gulp.task('build:test', function() {
+
+    var result = gulp.src([
+        './test/*.ts',
+        './.build/core.d.ts',
+        './typings/*.ts'
+    ])
+        //.pipe(sourcemaps.init())
+        .pipe(ts({
+            sortOutput: true,
+            module: 'amd',
+            target: 'es5'
+        }));
+
+    return result.js
+            //.pipe(sourcemaps.write())
+            .pipe(gulp.dest('./test'));
+});
+
+gulp.task('build:dist', function() {
+
+    var result = gulp.src([
             './src/*.ts',
             './src/**/*.ts',
-            './test/*.ts',
             '!./lib/**/*.ts',
             './typings/*.ts'
         ])
-        //.pipe(sourcemaps.init())
         .pipe(ts({
+            sortOutput: true,
             module: 'amd',
             target: 'es5',
-            out: config.out
+            declaration: true
         }));
 
-    //return tsResult.js.pipe(concat(config.out)).pipe(sourcemaps.write('./')).pipe(gulp.dest(config.dist));
-    //return tsResult.js.pipe(gulp.dest(config.dist));
-
     return merge([
-        tsResult.dts.pipe(gulp.dest(config.dist)),
-        tsResult.js.pipe(gulp.dest(config.dist))
+        result.dts
+            .pipe(concat(config.dtsOut))
+            .pipe(gulp.dest(config.dist)),
+        result.js
+            .pipe(concat(config.jsOut))
+            .pipe(gulp.dest(config.dist))
     ]);
 });
 
@@ -47,4 +96,8 @@ gulp.task('test', function() {
             ]
         }
     });
+});
+
+gulp.task('default', function(cb) {
+    runSequence('build:dev', 'build:test', cb);
 });
