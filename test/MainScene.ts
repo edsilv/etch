@@ -18,6 +18,7 @@ export class MainScene extends Stage{
 
         for (var i = 0; i < 1000; i++){
             var mover = new Mover();
+            mover.IsCached = true;
             mover.Init(this);
             this.DisplayList.Add(mover);
         }

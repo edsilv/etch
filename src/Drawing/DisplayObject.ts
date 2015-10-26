@@ -2,11 +2,12 @@ module core.drawing {
 
     export class DisplayObject implements IDisplayObject {
 
-        private _DisplayList: DisplayObjectCollection<IDisplayObject>;
+        private _DisplayList:DisplayObjectCollection<IDisplayObject>;
         public Cache:Canvas;
         public FrameCount:number = -1;
         public Height:number;
-        public Initialised:boolean = false;
+        public IsInitialised:boolean = false;
+        public IsCached:boolean = false;
         public IsPaused:boolean = false;
         public IsVisible:boolean = true;
         public Position:Vector;
@@ -14,15 +15,23 @@ module core.drawing {
         public Width:number;
         public ZIndex:number;
 
-        Init(sketch:IDisplayContext):void {
+        Init(sketch: IDisplayContext):void {
             this.Sketch = sketch;
             this.DisplayList = new DisplayObjectCollection();
-            this.Initialised = true;
+            this.IsInitialised = true;
             this.Setup();
         }
 
         get Ctx():CanvasRenderingContext2D {
             return this.Sketch.Ctx;
+        }
+
+        get CanvasWidth(): number {
+            return this.Ctx.canvas.width;
+        }
+
+        get CanvasHeight(): number {
+            return this.Ctx.canvas.height;
         }
 
         get DisplayList():DisplayObjectCollection<IDisplayObject> {

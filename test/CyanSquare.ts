@@ -9,12 +9,12 @@ export class CyanSquare extends DisplayObject {
     }
 
     Setup() {
-        console.log('setup cyan');
+        //console.log('setup cyan');
     }
 
     Update() {
         super.Update();
-        console.log('update cyan');
+        //console.log('update cyan');
     }
 
     Draw() {
@@ -22,6 +22,6 @@ export class CyanSquare extends DisplayObject {
 
         this.Ctx.fillStyle = "#00FFFF";
         this.Ctx.fillRect(145, 145, 50, 50);
-        console.log("draw cyan");
+        //console.log("draw cyan");
     }
 }

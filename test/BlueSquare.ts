@@ -13,7 +13,7 @@ export class BlueSquare extends DisplayObject {
     }
 
     Setup() {
-        console.log('setup blue');
+        //console.log('setup blue');
         this.GreenSquare = new GreenSquare();
         this.GreenSquare.Init(this);
         //this.GreenSquare.Hide();
@@ -31,7 +31,7 @@ export class BlueSquare extends DisplayObject {
 
     Update() {
         super.Update();
-        console.log('update blue');
+        //console.log('update blue');
     }
 
     Draw() {
@@ -39,6 +39,6 @@ export class BlueSquare extends DisplayObject {
 
         this.Ctx.fillStyle = "#0000FF";
         this.Ctx.fillRect(150, 150, 150, 150);
-        console.log("draw blue");
+        //console.log("draw blue");
     }
 }

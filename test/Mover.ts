@@ -12,10 +12,7 @@ export class Mover extends DisplayObject {
         this.Width = 30;
         this.Height = 30;
 
-        var width = this.Ctx.canvas.width;
-        var height = this.Ctx.canvas.height;
-
-        this.Position = new Vector(Math.randomBetween(width), Math.randomBetween(height));
+        this.Position = new Vector(Math.randomBetween(this.CanvasWidth), Math.randomBetween(this.CanvasHeight));
         this.Velocity = new Vector(Math.randomBetween(-10, 10), Math.randomBetween(-10, 10));
     }
 
@@ -24,40 +21,50 @@ export class Mover extends DisplayObject {
 
         this.Position.Add(this.Velocity);
 
-        var width = this.Ctx.canvas.width;
-        var height = this.Ctx.canvas.height;
-
-        if (this.Position.x > width) {
+        if (this.Position.x > this.CanvasWidth) {
             this.Position.x = 0;
         } else if (this.Position.x < 0) {
-            this.Position.x = width;
+            this.Position.x = this.CanvasWidth;
         }
 
-        if (this.Position.y > height) {
+        if (this.Position.y > this.CanvasHeight) {
             this.Position.y = 0;
         } else if (this.Position.y < 0) {
-            this.Position.y = height;
+            this.Position.y = this.CanvasHeight;
         }
     }
 
     Draw() {
         super.Draw();
 
-        console.log("draw " + this.FrameCount);
-
-        if (this.IsFirstFrame()){
-            console.log("cache");
-
+        if (this.IsFirstFrame() && this.IsCached){
             this.Cache = new Canvas();
             this.Cache.Width = this.Width;
             this.Cache.Height = this.Height;
-            this.Cache.Ctx.fillStyle = "#000000";
-            this.Cache.Ctx.beginPath();
-            this.Cache.Ctx.arc(this.Width / 2, this.Height / 2, this.Width / 2, 0, Math.TAU);
-            this.Cache.Ctx.closePath();
-            this.Cache.Ctx.fill();
+            this.DrawTo(this.Cache.Ctx);
         }
 
-        this.Ctx.drawImage(this.Cache.HTMLElement, this.Position.x, this.Position.y);
+        if (this.IsCached){
+            console.log("draw from cache");
+            this.Ctx.drawImage(this.Cache.HTMLElement, this.Position.x, this.Position.y);
+        } else {
+            console.log("draw fresh");
+            this.DrawTo(this.Ctx);
+        }
+    }
+
+    DrawTo(ctx: CanvasRenderingContext2D) {
+        ctx.moveTo(this.Position.x, this.Position.y);
+        ctx.fillStyle = "#000000";
+        ctx.beginPath();
+        
+        if (this.IsCached){
+            ctx.arc(this.Width / 2, this.Height / 2, this.Width / 2, 0, Math.TAU);
+        } else {
+            ctx.arc(this.Position.x, this.Position.y, this.Width / 2, 0, Math.TAU);
+        }
+
+        ctx.closePath();
+        ctx.fill();
     }
 }

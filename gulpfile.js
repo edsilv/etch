@@ -41,10 +41,10 @@ gulp.task('build:test', function() {
 
     var result = gulp.src([
         './test/*.ts',
-        './.build/core.d.ts',
+        './.build/*.d.ts',
         './typings/*.ts'
     ])
-        //.pipe(sourcemaps.init())
+        .pipe(sourcemaps.init())
         .pipe(ts({
             sortOutput: true,
             module: 'amd',
@@ -52,7 +52,7 @@ gulp.task('build:test', function() {
         }));
 
     return result.js
-            //.pipe(sourcemaps.write())
+            .pipe(sourcemaps.write())
             .pipe(gulp.dest('./test'));
 });
 

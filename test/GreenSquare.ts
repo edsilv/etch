@@ -8,12 +8,12 @@ export class GreenSquare extends DisplayObject {
     }
 
     Setup() {
-        console.log('setup green');
+        //console.log('setup green');
     }
 
     Update() {
         super.Update();
-        console.log('update green');
+        //console.log('update green');
     }
 
     Draw() {
@@ -21,6 +21,6 @@ export class GreenSquare extends DisplayObject {
 
         this.Ctx.fillStyle = "#00FF00";
         this.Ctx.fillRect(125, 125, 50, 50);
-        console.log("draw green");
+        //console.log("draw green");
     }
 }
