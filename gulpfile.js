@@ -23,8 +23,7 @@ gulp.task('build:dev', function() {
             module: 'amd',
             target: 'es5',
             declaration: true,
-            noExternalResolve: true,
-            noLib: false
+            noExternalResolve: true
         }));
 
     return merge([
