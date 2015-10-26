@@ -4,6 +4,7 @@ module core.drawing{
     export class Canvas implements IDisplayContext {
 
         public HTMLElement: HTMLCanvasElement;
+        public IsCached: boolean = false;
 
         constructor() {
             this.HTMLElement = document.createElement("canvas");

@@ -5,7 +5,6 @@ export default class Test{
 
     public Canvas: Canvas;
     public MainScene: MainScene;
-    public Timer: ClockTimer;
 
     public Setup(): void {
         this.Canvas = new Canvas();
@@ -14,5 +13,12 @@ export default class Test{
         this.Canvas.Height = 600;
         this.MainScene = new MainScene();
         this.MainScene.Init(this.Canvas);
+        // paused so stats can be gathered when running Update
+        this.MainScene.Pause();
+    }
+
+    public Update(): void {
+        this.MainScene.Update();
+        this.MainScene.Draw();
     }
 }

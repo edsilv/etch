@@ -3,27 +3,28 @@ module core.drawing {
     export class DisplayObject implements IDisplayObject {
 
         private _DisplayList:DisplayObjectCollection<IDisplayObject>;
-        public Cache:Canvas;
         public FrameCount:number = -1;
         public Height:number;
-        public IsInitialised:boolean = false;
         public IsCached:boolean = false;
+        public IsInitialised:boolean = false;
         public IsPaused:boolean = false;
         public IsVisible:boolean = true;
         public Position:Vector;
-        public Sketch:IDisplayContext;
+        public DrawFrom:IDisplayContext;
+        public DrawTo:IDisplayContext;
         public Width:number;
         public ZIndex:number;
 
-        Init(sketch: IDisplayContext):void {
-            this.Sketch = sketch;
+        Init(drawTo: IDisplayContext, drawFrom?: IDisplayContext):void {
+            this.DrawTo = drawTo;
+            if (drawFrom) this.DrawFrom = drawFrom;
             this.DisplayList = new DisplayObjectCollection();
             this.IsInitialised = true;
             this.Setup();
         }
 
         get Ctx():CanvasRenderingContext2D {
-            return this.Sketch.Ctx;
+            return this.DrawTo.Ctx;
         }
 
         get CanvasWidth(): number {

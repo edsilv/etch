@@ -4,14 +4,16 @@ import Vector = core.primitives.Vector;
 
 module core.drawing{
     export interface IDisplayObject extends IDisplayContext{
-        CanvasWidth: number;
         CanvasHeight: number;
+        CanvasWidth: number;
         Ctx: CanvasRenderingContext2D;
         DisplayList: DisplayObjectCollection<IDisplayObject>;
         Draw(): void;
+        DrawFrom: IDisplayContext;
+        DrawTo: IDisplayContext;
         Height: number;
         Hide(): void;
-        Init(sketch?: IDisplayContext): void;
+        Init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void;
         IsInitialised: boolean;
         IsPaused: boolean;
         IsVisible: boolean;
@@ -20,7 +22,6 @@ module core.drawing{
         Position: Vector;
         Setup(): void;
         Show(): void;
-        Sketch: IDisplayContext;
         Update(): void;
         Width: number;
         ZIndex: number;

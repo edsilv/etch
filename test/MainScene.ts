@@ -1,3 +1,4 @@
+import Canvas = core.drawing.Canvas;
 import Stage = core.drawing.Stage;
 import {BlueSquare} from './BlueSquare';
 import {Mover} from './Mover';
@@ -16,10 +17,11 @@ export class MainScene extends Stage{
         this.BlueSquare = new BlueSquare();
         this.BlueSquare.Init(this);
 
-        for (var i = 0; i < 1000; i++){
+        var moverCache: Canvas = new Canvas();
+
+        for (var i = 0; i < 2000; i++){
             var mover = new Mover();
-            mover.IsCached = true;
-            mover.Init(this);
+            mover.Init(this, moverCache);
             this.DisplayList.Add(mover);
         }
 

@@ -4,8 +4,8 @@ export class Mover extends DisplayObject {
 
     public Velocity: Vector;
 
-    Init(canvas: IDisplayContext): void {
-        super.Init(canvas);
+    Init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void {
+        super.Init(drawTo, drawFrom);
     }
 
     Setup() {
@@ -37,28 +37,31 @@ export class Mover extends DisplayObject {
     Draw() {
         super.Draw();
 
-        if (this.IsFirstFrame() && this.IsCached){
-            this.Cache = new Canvas();
-            this.Cache.Width = this.Width;
-            this.Cache.Height = this.Height;
-            this.DrawTo(this.Cache.Ctx);
+        // if this is the first frame of the mover, and it has a display cache that hasn't been drawn to yet.
+        // draw to the display cache.
+        if (this.IsFirstFrame() && this.DrawFrom && !this.DrawFrom.IsCached){
+            //console.log("draw to cache");
+            this.DrawFrom.Width = this.Width;
+            this.DrawFrom.Height = this.Height;
+            this.DrawToCtx(this.DrawFrom.Ctx);
+            this.DrawFrom.IsCached = true; // no other movers will draw to the cache
         }
 
-        if (this.IsCached){
-            console.log("draw from cache");
-            this.Ctx.drawImage(this.Cache.HTMLElement, this.Position.x, this.Position.y);
+        if (this.DrawFrom){
+            //console.log("draw from cache");
+            this.Ctx.drawImage((<Canvas>this.DrawFrom).HTMLElement, this.Position.x, this.Position.y);
         } else {
-            console.log("draw fresh");
-            this.DrawTo(this.Ctx);
+            //console.log("draw fresh");
+            this.DrawToCtx(this.Ctx);
         }
     }
 
-    DrawTo(ctx: CanvasRenderingContext2D) {
+    DrawToCtx(ctx: CanvasRenderingContext2D) {
         ctx.moveTo(this.Position.x, this.Position.y);
         ctx.fillStyle = "#000000";
         ctx.beginPath();
 
-        if (this.IsCached){
+        if (this.DrawFrom){
             ctx.arc(this.Width / 2, this.Height / 2, this.Width / 2, 0, Math.TAU);
         } else {
             ctx.arc(this.Position.x, this.Position.y, this.Width / 2, 0, Math.TAU);
