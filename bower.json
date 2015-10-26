@@ -7,5 +7,16 @@
     "fayde": "~0.17.1",
     "jquery": "~2.1.4",
     "extensions": "edsilv/extensions"
-  }
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src",
+    "tasks",
+    "typings"
+  ]
 }
