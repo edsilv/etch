@@ -1,4 +1,6 @@
-import {RoutedEventArgs} from './RoutedEventArgs';
+import RoutedEventArgs = core.events.RoutedEventArgs;
 
-export class RoutedEvent<T extends RoutedEventArgs> extends nullstone.Event<T> {
+module core.events {
+    export class RoutedEvent<T extends RoutedEventArgs> extends nullstone.Event<T> {
+    }
 }

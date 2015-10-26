@@ -1,5 +1,5 @@
-import {DisplayObject} from '../src/Drawing/DisplayObject';
-import {IDisplayContext} from '../src/Drawing/IDisplayContext';
+//import {DisplayObject} from '../src/Drawing/DisplayObject';
+//import {IDisplayContext} from '../src/Drawing/IDisplayContext';
 
 export class RedSquare extends DisplayObject {
 

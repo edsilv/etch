@@ -1,7 +1,4 @@
-import {Canvas} from '../src/Drawing/Canvas';
-import {DisplayObject} from '../src/Drawing/DisplayObject';
-import {IDisplayContext} from '../src/Drawing/IDisplayContext';
-import {Vector} from '../src/Primitives/Vector';
+import Canvas = core.drawing.Canvas;
 
 export class Mover extends DisplayObject {
 

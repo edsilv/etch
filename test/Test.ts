@@ -1,5 +1,4 @@
-//import {Canvas} from '../src/Drawing/Canvas';
-//import {ClockTimer} from '../src/Engine/ClockTimer';
+import Canvas = core.drawing.Canvas;
 import {MainScene} from './MainScene';
 
 export default class Test{

@@ -1,8 +1,7 @@
-import {DisplayObject} from '../src/Drawing/DisplayObject';
-import {RedSquare} from './RedSquare';
+import Stage = core.drawing.Stage;
 import {BlueSquare} from './BlueSquare';
-import {Stage} from '../src/Drawing/Stage';
 import {Mover} from './Mover';
+import {RedSquare} from './RedSquare';
 
 export class MainScene extends Stage{
 

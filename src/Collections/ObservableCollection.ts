@@ -1,8 +1,5 @@
-import CollectionChangedEventArgs = core.events.CollectionChangedEventArgs;
-import {IndexOutOfRangeException} from '../Exceptions/Exceptions';
-import {INotifyCollectionChanged} from '../Events/INotifyCollectionChanged';
-import {INotifyPropertyChanged} from '../Events/INotifyPropertyChanged';
-import {PropertyChangedEventArgs} from './PropertyChangedEventArgs';
+import IndexOutOfRangeException = core.exceptions.IndexOutOfRangeException;
+import INotifyCollectionChanged = core.events.INotifyCollectionChanged;
 
 module core.collections {
 

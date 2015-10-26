@@ -1,55 +1,56 @@
-import {IDisplayObject} from './IDisplayObject';
-import {ObservableCollection} from '../Collections/ObservableCollection';
-import {Exception} from '../Exceptions/Exceptions';
+import ObservableCollection = core.collections.ObservableCollection;
+import Exception = core.exceptions.Exception;
 
-export class DisplayObjectCollection<T extends IDisplayObject> extends ObservableCollection<T> {
+module core.drawing{
+    export class DisplayObjectCollection<T extends IDisplayObject> extends ObservableCollection<T> {
 
-    constructor(){
-        super();
+        constructor(){
+            super();
 
-        this.CollectionChanged.on(() => {
-            // update ZIndex properties
-            for (var i = 0; i < this.Count; i++){
-                var obj: IDisplayObject = this.GetValueAt(i);
-                obj.ZIndex = i;
+            this.CollectionChanged.on(() => {
+                // update ZIndex properties
+                for (var i = 0; i < this.Count; i++){
+                    var obj: IDisplayObject = this.GetValueAt(i);
+                    obj.ZIndex = i;
+                }
+            }, this)
+        }
+
+        Swap(obj1: T, obj2: T){
+            var obj1Index = this.IndexOf(obj1);
+            var obj2Index = this.IndexOf(obj2);
+
+            this.SetIndex(obj1, obj2Index);
+            this.SetIndex(obj2, obj1Index);
+        }
+
+        ToFront(obj: T){
+            var index = 0;
+            if (this.Count > 0){
+                index = this.Count - 1;
             }
-        }, this)
-    }
-
-    Swap(obj1: T, obj2: T){
-        var obj1Index = this.IndexOf(obj1);
-        var obj2Index = this.IndexOf(obj2);
-
-        this.SetIndex(obj1, obj2Index);
-        this.SetIndex(obj2, obj1Index);
-    }
-
-    ToFront(obj: T){
-        var index = 0;
-        if (this.Count > 0){
-            index = this.Count - 1;
-        }
-        this.SetIndex(obj, index);
-    }
-
-    ToBack(obj: T){
-        this.SetIndex(obj, 0);
-    }
-
-    SetIndex(obj: T, index: number){
-        if (index > this.Count || index < 0){
-            throw new Exception("index out of range");
+            this.SetIndex(obj, index);
         }
 
-        this.Remove(obj);
-        this.Insert(index, obj);
-    }
+        ToBack(obj: T){
+            this.SetIndex(obj, 0);
+        }
 
-    get Bottom(): T{
-        return this.GetValueAt(0);
-    }
+        SetIndex(obj: T, index: number){
+            if (index > this.Count || index < 0){
+                throw new Exception("index out of range");
+            }
 
-    get Top(): T{
-        return this.GetValueAt(this.Count - 1);
+            this.Remove(obj);
+            this.Insert(index, obj);
+        }
+
+        get Bottom(): T{
+            return this.GetValueAt(0);
+        }
+
+        get Top(): T{
+            return this.GetValueAt(this.Count - 1);
+        }
     }
 }
