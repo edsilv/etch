@@ -1,6 +1,6 @@
 {
-  "name": "test",
-  "version": "0.0.0",
+  "name": "fletch",
+  "version": "0.0.1",
   "dependencies": {},
   "devDependencies": {
     "r.js": "~2.1.20",

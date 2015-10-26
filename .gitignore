@@ -1,8 +1,6 @@
 .idea
 node_modules
 lib
-dist
-src/**/*.js
 test/*.js
 !test/require-config.js
 .build

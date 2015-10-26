@@ -1,7 +1,7 @@
 require.config({
     baseUrl: "./",
     paths: {
-        "core": ".build/core",
+        "fletch": ".build/fletch",
         "Test": "Test",
         "jquery": "lib/jquery/dist/jquery",
         "extensions": "lib/extensions/dist/extensions"
@@ -12,11 +12,11 @@ require.config({
 });
 
 require([
-    "core",
+    "fletch",
     "Test",
     "jquery",
     "extensions"
-], function (core, Test, jquery) {
+], function (fletch, Test, jquery) {
     window.$ = jquery;
 
     $(document).ready(function() {

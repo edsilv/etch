@@ -57,7 +57,7 @@ export class Mover extends DisplayObject {
         ctx.moveTo(this.Position.x, this.Position.y);
         ctx.fillStyle = "#000000";
         ctx.beginPath();
-        
+
         if (this.IsCached){
             ctx.arc(this.Width / 2, this.Height / 2, this.Width / 2, 0, Math.TAU);
         } else {
