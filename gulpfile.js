@@ -5,8 +5,10 @@ var connect = require('gulp-connect');
 var gulp = require('gulp');
 var merge = require('merge2');
 var path = require('path');
+var requireDir = require('require-dir');
 var runSequence = require('run-sequence');
 var sourcemaps = require('gulp-sourcemaps');
+var tasks = requireDir('./tasks');
 var ts = require('gulp-typescript');
 
 gulp.task('build:dev', function() {

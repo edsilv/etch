@@ -11,9 +11,7 @@ module core.drawing{
             document.body.appendChild(this.HTMLElement);
         }
 
-        //todo: typing as CanvasRenderingContext2D causes "Property 'fillStyle' is missing in type 'WebGLRenderingContext'"
-        // upgrade to newer compiler (1.5) which has no error - requires gulp as grunt-typescript seemingly no longer supported
-        get Ctx(): any {
+        get Ctx(): CanvasRenderingContext2D {
             return this.HTMLElement.getContext("2d");
         }
 

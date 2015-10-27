@@ -62,9 +62,29 @@ export class Mover extends DisplayObject {
         ctx.beginPath();
 
         if (this.DrawFrom){
-            ctx.arc(this.Width / 2, this.Height / 2, this.Width / 2, 0, Math.TAU);
+            ctx.beginPath();
+            ctx.moveTo(16,0);
+            ctx.lineTo(32,16);
+            ctx.lineTo(16,32);
+            ctx.lineTo(0,16);
+            ctx.closePath();
+            ctx.fill();
+
+            //ctx.fillRect(0, 0, this.Width, this.Height);
+
+            //ctx.arc(this.Width / 2, this.Height / 2, this.Width / 2, 0, Math.TAU);
         } else {
-            ctx.arc(this.Position.x, this.Position.y, this.Width / 2, 0, Math.TAU);
+            ctx.beginPath();
+            ctx.moveTo(this.Position.x + 16, this.Position.y);
+            ctx.lineTo(this.Position.x + 32, this.Position.y + 16);
+            ctx.lineTo(this.Position.x + 16, this.Position.y + 32);
+            ctx.lineTo(this.Position.x, this.Position.y + 16);
+            ctx.closePath();
+            ctx.fill();
+
+            //ctx.fillRect(this.Position.x, this.Position.y, this.Width, this.Height);
+
+            //ctx.arc(this.Position.x, this.Position.y, this.Width / 2, 0, Math.TAU);
         }
 
         ctx.closePath();

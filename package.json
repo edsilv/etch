@@ -1,21 +1,23 @@
 {
-  "name": "displayobject-test-harness",
-  "version": "1.0.0",
+  "name": "fletch",
+  "version": "0.0.2",
   "description": "",
   "main": "gulpfile.js",
   "directories": {
     "test": "test"
   },
-  "dependencies": {
-    "gulp": "^3.9.0",
-    "gulp-typescript": "^2.9.2"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-bump": "^1.0.0",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^2.9.2",
     "merge2": "^0.3.6",
-    "run-sequence": "^1.1.4"
+    "require-dir": "^0.3.0",
+    "run-sequence": "^1.1.4",
+    "yargs": "^3.29.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
