@@ -1,6 +1,6 @@
 # FLETCH
 
-A mutant mashup of Fayde, Flash, and Processing.
+A HTML canvas drawing utility providing Processing-style sketches (setup, update, draw) contained within Flash-style display objects (show, hide, play, pause, zindex).
 
 ## Installation
 

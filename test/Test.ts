@@ -17,7 +17,7 @@ export default class Test{
         this.MainScene.Pause();
     }
 
-    public Update(): void {
+    public Tick(): void {
         this.MainScene.Update();
         this.MainScene.Draw();
     }

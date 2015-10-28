@@ -40,7 +40,7 @@ require([
 
             stats.begin();
 
-            window.App.Update();
+            window.App.Tick();
 
             stats.end();
 

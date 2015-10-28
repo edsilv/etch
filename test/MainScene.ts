@@ -19,7 +19,7 @@ export class MainScene extends Stage{
 
         var moverCache: Canvas = new Canvas();
 
-        for (var i = 0; i < 2000; i++){
+        for (var i = 0; i < 1000; i++){
             var mover = new Mover();
             mover.Init(this, moverCache);
             this.DisplayList.Add(mover);
