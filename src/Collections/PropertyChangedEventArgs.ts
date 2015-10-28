@@ -1,4 +1,4 @@
-module core.collections{
+module fletch.collections{
     export class PropertyChangedEventArgs implements nullstone.IEventArgs {
         PropertyName: string;
         constructor(propertyName: string) {

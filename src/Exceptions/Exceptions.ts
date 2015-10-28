@@ -1,4 +1,4 @@
-module core.exceptions{
+module fletch.exceptions{
     export class Exception {
         Message: string;
         constructor(message: string) {

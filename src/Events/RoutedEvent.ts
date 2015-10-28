@@ -1,6 +1,6 @@
-import RoutedEventArgs = core.events.RoutedEventArgs;
+import RoutedEventArgs = fletch.events.RoutedEventArgs;
 
-module core.events {
+module fletch.events {
     export class RoutedEvent<T extends RoutedEventArgs> extends nullstone.Event<T> {
     }
 }

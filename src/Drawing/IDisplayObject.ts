@@ -1,8 +1,8 @@
-import DisplayObjectCollection = core.drawing.DisplayObjectCollection;
-import IDisplayContext = core.drawing.IDisplayContext;
-import Vector = core.primitives.Vector;
+import DisplayObjectCollection = fletch.drawing.DisplayObjectCollection;
+import IDisplayContext = fletch.drawing.IDisplayContext;
+import Vector = fletch.primitives.Vector;
 
-module core.drawing{
+module fletch.drawing{
     export interface IDisplayObject extends IDisplayContext{
         CanvasHeight: number;
         CanvasWidth: number;

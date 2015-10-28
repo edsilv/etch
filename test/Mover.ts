@@ -1,4 +1,4 @@
-import Canvas = core.drawing.Canvas;
+import Canvas = fletch.drawing.Canvas;
 
 export class Mover extends DisplayObject {
 
@@ -63,10 +63,10 @@ export class Mover extends DisplayObject {
 
         if (this.DrawFrom){
             ctx.beginPath();
-            ctx.moveTo(16,0);
-            ctx.lineTo(32,16);
-            ctx.lineTo(16,32);
-            ctx.lineTo(0,16);
+            ctx.moveTo(this.Width / 2, 0);
+            ctx.lineTo(this.Width, this.Height / 2);
+            ctx.lineTo(this.Width / 2, this.Height);
+            ctx.lineTo(0, this.Height / 2);
             ctx.closePath();
             ctx.fill();
 
@@ -75,10 +75,10 @@ export class Mover extends DisplayObject {
             //ctx.arc(this.Width / 2, this.Height / 2, this.Width / 2, 0, Math.TAU);
         } else {
             ctx.beginPath();
-            ctx.moveTo(this.Position.x + 16, this.Position.y);
-            ctx.lineTo(this.Position.x + 32, this.Position.y + 16);
-            ctx.lineTo(this.Position.x + 16, this.Position.y + 32);
-            ctx.lineTo(this.Position.x, this.Position.y + 16);
+            ctx.moveTo(this.Position.x + this.Width / 2, this.Position.y);
+            ctx.lineTo(this.Position.x + this.Width, this.Position.y + this.Height / 2);
+            ctx.lineTo(this.Position.x + this.Width / 2, this.Position.y + this.Height);
+            ctx.lineTo(this.Position.x, this.Position.y + this.Height / 2);
             ctx.closePath();
             ctx.fill();
 

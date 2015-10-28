@@ -1,5 +1,5 @@
-import Canvas = core.drawing.Canvas;
-import Stage = core.drawing.Stage;
+import Canvas = fletch.drawing.Canvas;
+import Stage = fletch.drawing.Stage;
 import {BlueSquare} from './BlueSquare';
 import {Mover} from './Mover';
 import {RedSquare} from './RedSquare';

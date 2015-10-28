@@ -1,11 +1,11 @@
-import ClockTimer = core.engine.ClockTimer;
-import DisplayObject = core.drawing.DisplayObject;
-import IDisplayObject = core.drawing.IDisplayObject;
+import ClockTimer = fletch.engine.ClockTimer;
+import DisplayObject = fletch.drawing.DisplayObject;
+import IDisplayObject = fletch.drawing.IDisplayObject;
 
 var MAX_FPS: number = 100;
 var MAX_MSPF: number = 1000 / MAX_FPS;
 
-module core.drawing{
+module fletch.drawing{
     export class Stage extends DisplayObject implements ITimerListener {
 
         public FrameCount: number = 0;

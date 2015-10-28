@@ -1,4 +1,4 @@
-module core.drawing {
+module fletch.drawing {
 
     export class DisplayObject implements IDisplayObject {
 

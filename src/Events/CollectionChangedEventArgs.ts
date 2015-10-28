@@ -1,4 +1,4 @@
-module core.events{
+module fletch.events{
 
     export enum CollectionChangedAction {
         Add = 1,

@@ -1,6 +1,6 @@
 import Size = minerva.Size;
 
-module core.drawing{
+module fletch.drawing{
     export class Canvas implements IDisplayContext {
 
         public HTMLElement: HTMLCanvasElement;

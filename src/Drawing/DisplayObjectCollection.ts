@@ -1,7 +1,7 @@
-import ObservableCollection = core.collections.ObservableCollection;
-import Exception = core.exceptions.Exception;
+import ObservableCollection = fletch.collections.ObservableCollection;
+import Exception = fletch.exceptions.Exception;
 
-module core.drawing{
+module fletch.drawing{
     export class DisplayObjectCollection<T extends IDisplayObject> extends ObservableCollection<T> {
 
         constructor(){

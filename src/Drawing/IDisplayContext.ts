@@ -1,4 +1,4 @@
-module core.drawing{
+module fletch.drawing{
     export interface IDisplayContext {
         Ctx: CanvasRenderingContext2D;
         Width: number;
