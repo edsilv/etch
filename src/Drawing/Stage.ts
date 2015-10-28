@@ -5,7 +5,7 @@ import IDisplayObject = fletch.drawing.IDisplayObject;
 var MAX_FPS: number = 100;
 var MAX_MSPF: number = 1000 / MAX_FPS;
 
-module fletch.drawing{
+namespace fletch.drawing{
     export class Stage extends DisplayObject implements ITimerListener {
 
         public FrameCount: number = 0;

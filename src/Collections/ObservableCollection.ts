@@ -1,7 +1,7 @@
 import IndexOutOfRangeException = fletch.exceptions.IndexOutOfRangeException;
 import INotifyCollectionChanged = fletch.events.INotifyCollectionChanged;
 
-module fletch.collections {
+namespace fletch.collections {
 
     export class ObservableCollection<T> implements nullstone.IEnumerable<T>, nullstone.ICollection<T>, INotifyCollectionChanged, INotifyPropertyChanged {
         private _ht: T[] = [];

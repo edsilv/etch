@@ -1,4 +1,4 @@
-module fletch.collections{
+namespace fletch.collections{
     export class PropertyChangedEventArgs implements nullstone.IEventArgs {
         PropertyName: string;
         constructor(propertyName: string) {
@@ -10,6 +10,7 @@ module fletch.collections{
         PropertyChanged: nullstone.Event<PropertyChangedEventArgs>;
     }
 
+    // todo: remove?
     export var INotifyPropertyChanged_ = new nullstone.Interface<INotifyPropertyChanged>("INotifyPropertyChanged");
 
     INotifyPropertyChanged_.is = (o: any): boolean => {

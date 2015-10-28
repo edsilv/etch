@@ -1,4 +1,4 @@
-module fletch.primitives{
+namespace fletch.primitives{
     export class Vector {
 
         constructor(

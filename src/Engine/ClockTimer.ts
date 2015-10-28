@@ -11,7 +11,7 @@ var requestAnimFrame = (function () {
         };
 })();
 
-module fletch.engine{
+namespace fletch.engine{
     export class ClockTimer {
         private _Listeners: ITimerListener[] = [];
         private _LastTime: number = 0;

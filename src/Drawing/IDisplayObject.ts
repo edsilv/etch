@@ -2,7 +2,7 @@ import DisplayObjectCollection = fletch.drawing.DisplayObjectCollection;
 import IDisplayContext = fletch.drawing.IDisplayContext;
 import Vector = fletch.primitives.Vector;
 
-module fletch.drawing{
+namespace fletch.drawing{
     export interface IDisplayObject extends IDisplayContext{
         CanvasHeight: number;
         CanvasWidth: number;

@@ -1,4 +1,4 @@
-module fletch.drawing {
+namespace fletch.drawing {
 
     export class DisplayObject implements IDisplayObject {
 

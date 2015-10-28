@@ -1,4 +1,4 @@
-module fletch.events {
+namespace fletch.events {
 
     export class PropertyChangedEventArgs implements nullstone.IEventArgs {
         PropertyName:string;
