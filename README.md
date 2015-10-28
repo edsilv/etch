@@ -12,6 +12,6 @@ A HTML canvas drawing utility providing Processing-style sketches (setup, update
     
     bower install
     
-    gulp default
+    gulp
     
     gulp test
