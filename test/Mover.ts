@@ -1,4 +1,4 @@
-import Canvas = fletch.drawing.Canvas;
+import Canvas = etch.drawing.Canvas;
 
 export class Mover extends DisplayObject {
 

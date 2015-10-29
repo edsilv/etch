@@ -1,6 +1,6 @@
-import RoutedEventArgs = fletch.events.RoutedEventArgs;
+import RoutedEventArgs = etch.events.RoutedEventArgs;
 
-namespace fletch.events {
+namespace etch.events {
     export class RoutedEvent<T extends RoutedEventArgs> extends nullstone.Event<T> {
     }
 }

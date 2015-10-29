@@ -1,5 +1,5 @@
-import CollectionChangedEventArgs = fletch.events.CollectionChangedEventArgs;
-namespace fletch.events {
+import CollectionChangedEventArgs = etch.events.CollectionChangedEventArgs;
+namespace etch.events {
 
     export interface INotifyCollectionChanged {
         CollectionChanged: nullstone.Event<CollectionChangedEventArgs>;

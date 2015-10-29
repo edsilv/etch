@@ -1,7 +1,7 @@
 require.config({
     baseUrl: "./",
     paths: {
-        "fletch": ".build/fletch",
+        "etch": ".build/etch",
         "Test": "Test",
         "jquery": "lib/jquery/dist/jquery",
         "extensions": "lib/extensions/dist/extensions",
@@ -13,12 +13,12 @@ require.config({
 });
 
 require([
-    "fletch",
+    "etch",
     "Test",
     "jquery",
     "extensions",
     "stats"
-], function (fletch, Test, jquery) {
+], function (etch, Test, jquery) {
     window.$ = jquery;
 
     window.App = new Test.default();

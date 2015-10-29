@@ -1,7 +1,7 @@
-import ObservableCollection = fletch.collections.ObservableCollection;
-import Exception = fletch.exceptions.Exception;
+import ObservableCollection = etch.collections.ObservableCollection;
+import Exception = etch.exceptions.Exception;
 
-namespace fletch.drawing{
+namespace etch.drawing{
     export class DisplayObjectCollection<T extends IDisplayObject> extends ObservableCollection<T> {
 
         constructor(){

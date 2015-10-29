@@ -4,8 +4,8 @@ var GulpConfig = (function () {
     function GulpConfig() {
         this.dist = './dist';
         this.header = '// ' + metadata.name + ' v' + metadata.version + ' ' + metadata.homepage + '\n';
-        this.jsOut = 'fletch.js';
-        this.dtsOut = 'fletch.d.ts';
+        this.jsOut = 'etch.js';
+        this.dtsOut = 'etch.d.ts';
         this.build = './.build';
     }
     return GulpConfig;

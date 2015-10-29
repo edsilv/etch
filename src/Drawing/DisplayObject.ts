@@ -1,4 +1,4 @@
-namespace fletch.drawing {
+namespace etch.drawing {
 
     // todo: make abstract?
     export class DisplayObject implements IDisplayObject {

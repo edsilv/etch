@@ -1,4 +1,4 @@
-import ITimerListener = fletch.engine.ITimerListener;
+import ITimerListener = etch.engine.ITimerListener;
 
 var requestAnimFrame = (function () {
     return window.requestAnimationFrame ||
@@ -11,7 +11,7 @@ var requestAnimFrame = (function () {
         };
 })();
 
-namespace fletch.engine{
+namespace etch.engine{
     export class ClockTimer {
         private _Listeners: ITimerListener[] = [];
         private _LastTime: number = 0;

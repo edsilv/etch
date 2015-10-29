@@ -1,4 +1,4 @@
-namespace fletch.events{
+namespace etch.events{
 
     export enum CollectionChangedAction {
         Add = 1,

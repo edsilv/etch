@@ -1,11 +1,11 @@
-import ClockTimer = fletch.engine.ClockTimer;
-import DisplayObject = fletch.drawing.DisplayObject;
-import IDisplayObject = fletch.drawing.IDisplayObject;
+import ClockTimer = etch.engine.ClockTimer;
+import DisplayObject = etch.drawing.DisplayObject;
+import IDisplayObject = etch.drawing.IDisplayObject;
 
 var MAX_FPS: number = 100;
 var MAX_MSPF: number = 1000 / MAX_FPS;
 
-namespace fletch.drawing{
+namespace etch.drawing{
     export class Stage extends DisplayObject implements ITimerListener {
 
         public FrameCount: number = 0;

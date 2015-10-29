@@ -1,4 +1,4 @@
-namespace fletch.primitives{
+namespace etch.primitives{
     export class Vector {
 
         constructor(

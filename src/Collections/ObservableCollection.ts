@@ -1,7 +1,7 @@
-import IndexOutOfRangeException = fletch.exceptions.IndexOutOfRangeException;
-import INotifyCollectionChanged = fletch.events.INotifyCollectionChanged;
+import IndexOutOfRangeException = etch.exceptions.IndexOutOfRangeException;
+import INotifyCollectionChanged = etch.events.INotifyCollectionChanged;
 
-namespace fletch.collections {
+namespace etch.collections {
 
     export class ObservableCollection<T> implements nullstone.IEnumerable<T>, nullstone.ICollection<T>, INotifyCollectionChanged, INotifyPropertyChanged {
         private _ht: T[] = [];

@@ -1,4 +1,4 @@
-import Canvas = fletch.drawing.Canvas;
+import Canvas = etch.drawing.Canvas;
 import {MainScene} from './MainScene';
 
 export default class Test{

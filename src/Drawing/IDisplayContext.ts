@@ -1,4 +1,4 @@
-namespace fletch.drawing{
+namespace etch.drawing{
     export interface IDisplayContext {
         Ctx: CanvasRenderingContext2D;
         Width: number;
