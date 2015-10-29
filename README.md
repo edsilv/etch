@@ -1,10 +1,13 @@
+<pre>
+
 '||''''|   ||          '||     
  ||   .    ||           ||     
  ||'''|  ''||''  .|'',  ||''|. 
  ||        ||    ||     ||  || 
 .||....|   '|..' '|..' .||  || 
                                
-                               
+</pre>
+                             
 A HTML canvas drawing utility providing Processing-style sketches (setup, update, draw) contained within Flash-style display objects (show, hide, play, pause, zindex).
 
 ## Installation
