@@ -1,5 +1,5 @@
 {
-  "name": "fletch",
+  "name": "etch",
   "version": "0.0.2",
   "description": "",
   "main": "gulpfile.js",
@@ -24,12 +24,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/edsilv/displayobject-test-harness.git"
+    "url": "git+https://github.com/edsilv/etch.git"
   },
   "author": "Edward Silverton <e.silverton@gmail.com> (http://edsilv.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/edsilv/displayobject-test-harness/issues"
+    "url": "https://github.com/edsilv/etch/issues"
   },
-  "homepage": "https://github.com/edsilv/displayobject-test-harness#readme"
+  "homepage": "https://github.com/edsilv/etch#readme"
 }

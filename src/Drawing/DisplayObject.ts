@@ -1,5 +1,6 @@
 namespace fletch.drawing {
 
+    // todo: make abstract?
     export class DisplayObject implements IDisplayObject {
 
         private _DisplayList:DisplayObjectCollection<IDisplayObject>;
