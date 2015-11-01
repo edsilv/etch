@@ -115,17 +115,6 @@ declare module etch.collections {
 /// <reference path="Exceptions/Exceptions.d.ts" />
 /// <reference path="Collections/ObservableCollection.d.ts" />
 
-declare module etch.collections {
-    class PropertyChangedEventArgs implements nullstone.IEventArgs {
-        PropertyName: string;
-        constructor(propertyName: string);
-    }
-    interface INotifyPropertyChanged {
-        PropertyChanged: nullstone.Event<PropertyChangedEventArgs>;
-    }
-    var INotifyPropertyChanged_: nullstone.Interface<INotifyPropertyChanged>;
-}
-
 import Size = minerva.Size;
 declare module etch.drawing {
     class Canvas implements IDisplayContext {
@@ -149,6 +138,7 @@ declare module etch.drawing {
         IsInitialised: boolean;
         IsPaused: boolean;
         IsVisible: boolean;
+        LastVisualTick: number;
         Position: Point;
         DrawFrom: IDisplayContext;
         DrawTo: IDisplayContext;
@@ -211,6 +201,7 @@ declare module etch.drawing {
         IsInitialised: boolean;
         IsPaused: boolean;
         IsVisible: boolean;
+        LastVisualTick: number;
         Pause(): void;
         Play(): void;
         Position: Point;
@@ -237,6 +228,17 @@ declare module etch.drawing {
         UpdateDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
         DrawDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
     }
+}
+
+declare module etch.collections {
+    class PropertyChangedEventArgs implements nullstone.IEventArgs {
+        PropertyName: string;
+        constructor(propertyName: string);
+    }
+    interface INotifyPropertyChanged {
+        PropertyChanged: nullstone.Event<PropertyChangedEventArgs>;
+    }
+    var INotifyPropertyChanged_: nullstone.Interface<INotifyPropertyChanged>;
 }
 
 declare module etch.engine {
