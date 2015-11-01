@@ -86,7 +86,6 @@ declare module etch.exceptions {
     }
 }
 
-import IndexOutOfRangeException = etch.exceptions.IndexOutOfRangeException;
 import INotifyCollectionChanged = etch.events.INotifyCollectionChanged;
 declare module etch.collections {
     class ObservableCollection<T> implements nullstone.IEnumerable<T>, nullstone.ICollection<T>, INotifyCollectionChanged, INotifyPropertyChanged {
@@ -114,17 +113,6 @@ declare module etch.collections {
 /// <reference path="Primitives/Vector.d.ts" />
 /// <reference path="Exceptions/Exceptions.d.ts" />
 /// <reference path="Collections/ObservableCollection.d.ts" />
-
-declare module etch.collections {
-    class PropertyChangedEventArgs implements nullstone.IEventArgs {
-        PropertyName: string;
-        constructor(propertyName: string);
-    }
-    interface INotifyPropertyChanged {
-        PropertyChanged: nullstone.Event<PropertyChangedEventArgs>;
-    }
-    var INotifyPropertyChanged_: nullstone.Interface<INotifyPropertyChanged>;
-}
 
 import Size = minerva.Size;
 declare module etch.drawing {
@@ -172,7 +160,6 @@ declare module etch.drawing {
 }
 
 import ObservableCollection = etch.collections.ObservableCollection;
-import Exception = etch.exceptions.Exception;
 declare module etch.drawing {
     class DisplayObjectCollection<T extends IDisplayObject> extends ObservableCollection<T> {
         constructor();
@@ -240,12 +227,6 @@ declare module etch.drawing {
     }
 }
 
-declare module etch.engine {
-    interface ITimerListener {
-        OnTicked(lastTime: number, nowTime: number): any;
-    }
-}
-
 declare module etch.events {
     enum CollectionChangedAction {
         Add = 1,
@@ -298,4 +279,21 @@ declare module etch.events {
         Source: any;
         OriginalSource: any;
     }
+}
+
+declare module etch.engine {
+    interface ITimerListener {
+        OnTicked(lastTime: number, nowTime: number): any;
+    }
+}
+
+declare module etch.collections {
+    class PropertyChangedEventArgs implements nullstone.IEventArgs {
+        PropertyName: string;
+        constructor(propertyName: string);
+    }
+    interface INotifyPropertyChanged {
+        PropertyChanged: nullstone.Event<PropertyChangedEventArgs>;
+    }
+    var INotifyPropertyChanged_: nullstone.Interface<INotifyPropertyChanged>;
 }

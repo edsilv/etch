@@ -266,7 +266,6 @@ var etch;
     })(exceptions = etch.exceptions || (etch.exceptions = {}));
 })(etch || (etch = {}));
 
-var IndexOutOfRangeException = etch.exceptions.IndexOutOfRangeException;
 var etch;
 (function (etch) {
     var collections;
@@ -293,13 +292,13 @@ var etch;
             ObservableCollection.prototype.GetValueAt = function (index) {
                 var ht = this._ht;
                 if (index < 0 || index >= ht.length)
-                    throw new IndexOutOfRangeException(index);
+                    throw new etch.exceptions.IndexOutOfRangeException(index);
                 return ht[index];
             };
             ObservableCollection.prototype.SetValueAt = function (index, value) {
                 var ht = this._ht;
                 if (index < 0 || index >= ht.length)
-                    throw new IndexOutOfRangeException(index);
+                    throw new etch.exceptions.IndexOutOfRangeException(index);
                 var oldValue = ht[index];
                 ht[index] = value;
                 this.CollectionChanged.raise(this, CollectionChangedEventArgs.Replace(value, oldValue, index));
@@ -321,7 +320,7 @@ var etch;
             ObservableCollection.prototype.Insert = function (index, value) {
                 var ht = this._ht;
                 if (index < 0 || index > ht.length)
-                    throw new IndexOutOfRangeException(index);
+                    throw new etch.exceptions.IndexOutOfRangeException(index);
                 if (index >= ht.length)
                     ht.push(value);
                 else
@@ -346,7 +345,7 @@ var etch;
             };
             ObservableCollection.prototype.RemoveAt = function (index) {
                 if (index < 0 || index >= this._ht.length)
-                    throw new IndexOutOfRangeException(index);
+                    throw new etch.exceptions.IndexOutOfRangeException(index);
                 var item = this._ht.splice(index, 1)[0];
                 this.CollectionChanged.raise(this, CollectionChangedEventArgs.Remove(item, index));
                 this._RaisePropertyChanged("Count");
@@ -370,25 +369,6 @@ var etch;
 /// <reference path="./Primitives/Vector.ts" />
 /// <reference path="./Exceptions/Exceptions.ts" />
 /// <reference path="./Collections/ObservableCollection.ts" /> 
-
-var etch;
-(function (etch) {
-    var collections;
-    (function (collections) {
-        var PropertyChangedEventArgs = (function () {
-            function PropertyChangedEventArgs(propertyName) {
-                Object.defineProperty(this, "PropertyName", { value: propertyName, writable: false });
-            }
-            return PropertyChangedEventArgs;
-        })();
-        collections.PropertyChangedEventArgs = PropertyChangedEventArgs;
-        // todo: remove?
-        collections.INotifyPropertyChanged_ = new nullstone.Interface("INotifyPropertyChanged");
-        collections.INotifyPropertyChanged_.is = function (o) {
-            return o && o.PropertyChanged instanceof nullstone.Event;
-        };
-    })(collections = etch.collections || (etch.collections = {}));
-})(etch || (etch = {}));
 
 var Size = minerva.Size;
 var etch;
@@ -536,7 +516,6 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var ObservableCollection = etch.collections.ObservableCollection;
-var Exception = etch.exceptions.Exception;
 var etch;
 (function (etch) {
     var drawing;
@@ -573,7 +552,7 @@ var etch;
             };
             DisplayObjectCollection.prototype.SetIndex = function (obj, index) {
                 if (index > this.Count || index < 0) {
-                    throw new Exception("index out of range");
+                    throw new etch.exceptions.Exception("index out of range");
                 }
                 this.Remove(obj);
                 this.Insert(index, obj);
@@ -665,8 +644,6 @@ var etch;
         drawing.Stage = Stage;
     })(drawing = etch.drawing || (etch.drawing = {}));
 })(etch || (etch = {}));
-
-
 
 var etch;
 (function (etch) {
@@ -800,4 +777,25 @@ var etch;
         })();
         events.RoutedEventArgs = RoutedEventArgs;
     })(events = etch.events || (etch.events = {}));
+})(etch || (etch = {}));
+
+
+
+var etch;
+(function (etch) {
+    var collections;
+    (function (collections) {
+        var PropertyChangedEventArgs = (function () {
+            function PropertyChangedEventArgs(propertyName) {
+                Object.defineProperty(this, "PropertyName", { value: propertyName, writable: false });
+            }
+            return PropertyChangedEventArgs;
+        })();
+        collections.PropertyChangedEventArgs = PropertyChangedEventArgs;
+        // todo: remove?
+        collections.INotifyPropertyChanged_ = new nullstone.Interface("INotifyPropertyChanged");
+        collections.INotifyPropertyChanged_.is = function (o) {
+            return o && o.PropertyChanged instanceof nullstone.Event;
+        };
+    })(collections = etch.collections || (etch.collections = {}));
 })(etch || (etch = {}));
