@@ -1,4 +1,4 @@
-namespace etch.events{
+module etch.events{
 
     export enum CollectionChangedAction {
         Add = 1,

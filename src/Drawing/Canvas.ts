@@ -1,6 +1,6 @@
 import Size = minerva.Size;
 
-namespace etch.drawing{
+module etch.drawing{
     export class Canvas implements IDisplayContext {
 
         public HTMLElement: HTMLCanvasElement;

@@ -1,7 +1,7 @@
 import ObservableCollection = etch.collections.ObservableCollection;
 import Exception = etch.exceptions.Exception;
 
-namespace etch.drawing{
+module etch.drawing{
     export class DisplayObjectCollection<T extends IDisplayObject> extends ObservableCollection<T> {
 
         constructor(){

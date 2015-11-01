@@ -1,5 +1,5 @@
 import CollectionChangedEventArgs = etch.events.CollectionChangedEventArgs;
-namespace etch.events {
+module etch.events {
 
     export interface INotifyCollectionChanged {
         CollectionChanged: nullstone.Event<CollectionChangedEventArgs>;

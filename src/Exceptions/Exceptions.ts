@@ -1,4 +1,4 @@
-namespace etch.exceptions{
+module etch.exceptions{
     export class Exception {
         Message: string;
         constructor(message: string) {

@@ -1,6 +1,6 @@
 import RoutedEventArgs = etch.events.RoutedEventArgs;
 
-namespace etch.events {
+module etch.events {
     export class RoutedEvent<T extends RoutedEventArgs> extends nullstone.Event<T> {
     }
 }

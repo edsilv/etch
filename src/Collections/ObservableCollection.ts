@@ -1,7 +1,7 @@
 import IndexOutOfRangeException = etch.exceptions.IndexOutOfRangeException;
 import INotifyCollectionChanged = etch.events.INotifyCollectionChanged;
 
-namespace etch.collections {
+module etch.collections {
 
     export class ObservableCollection<T> implements nullstone.IEnumerable<T>, nullstone.ICollection<T>, INotifyCollectionChanged, INotifyPropertyChanged {
         private _ht: T[] = [];

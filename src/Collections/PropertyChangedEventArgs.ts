@@ -1,4 +1,4 @@
-namespace etch.collections{
+module etch.collections{
     export class PropertyChangedEventArgs implements nullstone.IEventArgs {
         PropertyName: string;
         constructor(propertyName: string) {

@@ -5,7 +5,7 @@ import IDisplayObject = etch.drawing.IDisplayObject;
 var MAX_FPS: number = 100;
 var MAX_MSPF: number = 1000 / MAX_FPS;
 
-namespace etch.drawing{
+module etch.drawing{
     export class Stage extends DisplayObject implements ITimerListener {
 
         public FrameCount: number = 0;

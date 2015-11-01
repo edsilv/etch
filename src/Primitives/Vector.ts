@@ -1,4 +1,4 @@
-namespace etch.primitives{
+module etch.primitives{
     // todo: use utils.Maths.Vector
     export class Vector {
 

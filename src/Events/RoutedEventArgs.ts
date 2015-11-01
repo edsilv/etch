@@ -1,4 +1,4 @@
-namespace etch.events {
+module etch.events {
     export class RoutedEventArgs implements nullstone.IEventArgs {
         Handled: boolean = false;
         Source: any = null;

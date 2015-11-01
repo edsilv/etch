@@ -2,7 +2,7 @@ import DisplayObjectCollection = etch.drawing.DisplayObjectCollection;
 import IDisplayContext = etch.drawing.IDisplayContext;
 import Vector = etch.primitives.Vector;
 
-namespace etch.drawing{
+module etch.drawing{
     export interface IDisplayObject extends IDisplayContext{
         CanvasHeight: number;
         CanvasWidth: number;

@@ -1,4 +1,4 @@
-namespace etch.drawing {
+module etch.drawing {
 
     // todo: make abstract?
     export class DisplayObject implements IDisplayObject {

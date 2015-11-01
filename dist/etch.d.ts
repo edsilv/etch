@@ -1,6 +1,6 @@
 import ITimerListener = etch.engine.ITimerListener;
 declare var requestAnimFrame: any;
-declare namespace etch.engine {
+declare module etch.engine {
     class ClockTimer {
         private _Listeners;
         private _LastTime;
@@ -11,7 +11,7 @@ declare namespace etch.engine {
     }
 }
 
-declare namespace etch.primitives {
+declare module etch.primitives {
     class Vector {
         x: number;
         y: number;
@@ -40,7 +40,7 @@ declare namespace etch.primitives {
     }
 }
 
-declare namespace etch.exceptions {
+declare module etch.exceptions {
     class Exception {
         Message: string;
         constructor(message: string);
@@ -88,7 +88,7 @@ declare namespace etch.exceptions {
 
 import IndexOutOfRangeException = etch.exceptions.IndexOutOfRangeException;
 import INotifyCollectionChanged = etch.events.INotifyCollectionChanged;
-declare namespace etch.collections {
+declare module etch.collections {
     class ObservableCollection<T> implements nullstone.IEnumerable<T>, nullstone.ICollection<T>, INotifyCollectionChanged, INotifyPropertyChanged {
         private _ht;
         getEnumerator(): nullstone.IEnumerator<T>;
@@ -115,7 +115,7 @@ declare namespace etch.collections {
 /// <reference path="Exceptions/Exceptions.d.ts" />
 /// <reference path="Collections/ObservableCollection.d.ts" />
 
-declare namespace etch.collections {
+declare module etch.collections {
     class PropertyChangedEventArgs implements nullstone.IEventArgs {
         PropertyName: string;
         constructor(propertyName: string);
@@ -127,7 +127,7 @@ declare namespace etch.collections {
 }
 
 import Size = minerva.Size;
-declare namespace etch.drawing {
+declare module etch.drawing {
     class Canvas implements IDisplayContext {
         HTMLElement: HTMLCanvasElement;
         IsCached: boolean;
@@ -140,7 +140,7 @@ declare namespace etch.drawing {
     }
 }
 
-declare namespace etch.drawing {
+declare module etch.drawing {
     class DisplayObject implements IDisplayObject {
         private _DisplayList;
         FrameCount: number;
@@ -173,7 +173,7 @@ declare namespace etch.drawing {
 
 import ObservableCollection = etch.collections.ObservableCollection;
 import Exception = etch.exceptions.Exception;
-declare namespace etch.drawing {
+declare module etch.drawing {
     class DisplayObjectCollection<T extends IDisplayObject> extends ObservableCollection<T> {
         constructor();
         Swap(obj1: T, obj2: T): void;
@@ -185,7 +185,7 @@ declare namespace etch.drawing {
     }
 }
 
-declare namespace etch.drawing {
+declare module etch.drawing {
     interface IDisplayContext {
         Ctx: CanvasRenderingContext2D;
         Width: number;
@@ -197,7 +197,7 @@ declare namespace etch.drawing {
 import DisplayObjectCollection = etch.drawing.DisplayObjectCollection;
 import IDisplayContext = etch.drawing.IDisplayContext;
 import Vector = etch.primitives.Vector;
-declare namespace etch.drawing {
+declare module etch.drawing {
     interface IDisplayObject extends IDisplayContext {
         CanvasHeight: number;
         CanvasWidth: number;
@@ -228,7 +228,7 @@ import DisplayObject = etch.drawing.DisplayObject;
 import IDisplayObject = etch.drawing.IDisplayObject;
 declare var MAX_FPS: number;
 declare var MAX_MSPF: number;
-declare namespace etch.drawing {
+declare module etch.drawing {
     class Stage extends DisplayObject implements ITimerListener {
         FrameCount: number;
         LastVisualTick: number;
@@ -240,13 +240,13 @@ declare namespace etch.drawing {
     }
 }
 
-declare namespace etch.engine {
+declare module etch.engine {
     interface ITimerListener {
         OnTicked(lastTime: number, nowTime: number): any;
     }
 }
 
-declare namespace etch.events {
+declare module etch.events {
     enum CollectionChangedAction {
         Add = 1,
         Remove = 2,
@@ -268,14 +268,14 @@ declare namespace etch.events {
 }
 
 import CollectionChangedEventArgs = etch.events.CollectionChangedEventArgs;
-declare namespace etch.events {
+declare module etch.events {
     interface INotifyCollectionChanged {
         CollectionChanged: nullstone.Event<CollectionChangedEventArgs>;
     }
     var INotifyCollectionChanged_: nullstone.Interface<INotifyCollectionChanged>;
 }
 
-declare namespace etch.events {
+declare module etch.events {
     class PropertyChangedEventArgs implements nullstone.IEventArgs {
         PropertyName: string;
         constructor(propertyName: string);
@@ -287,12 +287,12 @@ declare namespace etch.events {
 }
 
 import RoutedEventArgs = etch.events.RoutedEventArgs;
-declare namespace etch.events {
+declare module etch.events {
     class RoutedEvent<T extends RoutedEventArgs> extends nullstone.Event<T> {
     }
 }
 
-declare namespace etch.events {
+declare module etch.events {
     class RoutedEventArgs implements nullstone.IEventArgs {
         Handled: boolean;
         Source: any;
