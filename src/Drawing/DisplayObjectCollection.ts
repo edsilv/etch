@@ -1,5 +1,4 @@
 import ObservableCollection = etch.collections.ObservableCollection;
-import Exception = etch.exceptions.Exception;
 
 module etch.drawing{
     export class DisplayObjectCollection<T extends IDisplayObject> extends ObservableCollection<T> {
@@ -39,7 +38,7 @@ module etch.drawing{
 
         SetIndex(obj: T, index: number){
             if (index > this.Count || index < 0){
-                throw new Exception("index out of range");
+                throw new etch.exceptions.Exception("index out of range");
             }
 
             this.Remove(obj);

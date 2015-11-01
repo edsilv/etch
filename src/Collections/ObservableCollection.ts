@@ -1,4 +1,3 @@
-import IndexOutOfRangeException = etch.exceptions.IndexOutOfRangeException;
 import INotifyCollectionChanged = etch.events.INotifyCollectionChanged;
 
 module etch.collections {
@@ -24,14 +23,14 @@ module etch.collections {
         GetValueAt (index: number): T {
             var ht = this._ht;
             if (index < 0 || index >= ht.length)
-                throw new IndexOutOfRangeException(index);
+                throw new etch.exceptions.IndexOutOfRangeException(index);
             return ht[index];
         }
 
         SetValueAt (index: number, value: T) {
             var ht = this._ht;
             if (index < 0 || index >= ht.length)
-                throw new IndexOutOfRangeException(index);
+                throw new etch.exceptions.IndexOutOfRangeException(index);
             var oldValue = ht[index];
             ht[index] = value;
             this.CollectionChanged.raise(this, CollectionChangedEventArgs.Replace(value, oldValue, index));
@@ -56,7 +55,7 @@ module etch.collections {
         Insert (index: number, value: T) {
             var ht = this._ht;
             if (index < 0 || index > ht.length)
-                throw new IndexOutOfRangeException(index);
+                throw new etch.exceptions.IndexOutOfRangeException(index);
             if (index >= ht.length)
                 ht.push(value);
             else
@@ -85,7 +84,7 @@ module etch.collections {
 
         RemoveAt (index: number) {
             if (index < 0 || index >= this._ht.length)
-                throw new IndexOutOfRangeException(index);
+                throw new etch.exceptions.IndexOutOfRangeException(index);
             var item = this._ht.splice(index, 1)[0];
             this.CollectionChanged.raise(this, CollectionChangedEventArgs.Remove(item, index));
             this._RaisePropertyChanged("Count");
