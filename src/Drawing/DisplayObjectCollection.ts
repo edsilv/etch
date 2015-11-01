@@ -16,6 +16,7 @@ namespace etch.drawing{
             }, this)
         }
 
+        // todo: use utils.Collections.swap
         Swap(obj1: T, obj2: T){
             var obj1Index = this.IndexOf(obj1);
             var obj2Index = this.IndexOf(obj2);

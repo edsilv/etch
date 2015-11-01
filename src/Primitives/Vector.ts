@@ -1,4 +1,5 @@
 namespace etch.primitives{
+    // todo: use utils.Maths.Vector
     export class Vector {
 
         constructor(
