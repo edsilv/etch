@@ -3,5 +3,9 @@ module etch.primitives {
         Clone(): Point {
             return new Point(this.x, this.y);
         }
+
+        ToVector(): Vector {
+            return new Vector(this.x, this.y);
+        }
     }
 }

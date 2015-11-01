@@ -1,6 +1,6 @@
 import DisplayObjectCollection = etch.drawing.DisplayObjectCollection;
 import IDisplayContext = etch.drawing.IDisplayContext;
-import Vector = etch.primitives.Vector;
+import Point = etch.primitives.Point;
 
 module etch.drawing{
     export interface IDisplayObject extends IDisplayContext{
@@ -19,7 +19,7 @@ module etch.drawing{
         IsVisible: boolean;
         Pause(): void;
         Play(): void;
-        Position: Vector;
+        Position: Point;
         Setup(): void;
         Show(): void;
         Update(): void;

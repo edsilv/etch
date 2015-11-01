@@ -104,5 +104,9 @@ module etch.primitives{
         static FromAngle(angle: number): Vector {
             return new Vector(Math.cos(angle), Math.sin(angle));
         }
+
+        public ToPoint(): Point {
+            return new Point(this.x, this.y);
+        }
     }
 }

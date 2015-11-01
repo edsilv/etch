@@ -10,7 +10,7 @@ module etch.drawing {
         public IsInitialised:boolean = false;
         public IsPaused:boolean = false;
         public IsVisible:boolean = true;
-        public Position:Vector;
+        public Position:Point;
         public DrawFrom:IDisplayContext;
         public DrawTo:IDisplayContext;
         public Width:number;

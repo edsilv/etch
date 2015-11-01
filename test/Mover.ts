@@ -1,4 +1,5 @@
 import Canvas = etch.drawing.Canvas;
+import Vector = etch.primitives.Vector;
 
 export class Mover extends DisplayObject {
 
@@ -12,26 +13,29 @@ export class Mover extends DisplayObject {
         this.Width = 30;
         this.Height = 30;
 
-        this.Position = new Vector(Math.randomBetween(this.CanvasWidth), Math.randomBetween(this.CanvasHeight));
+        this.Position = new Vector(Math.randomBetween(this.CanvasWidth), Math.randomBetween(this.CanvasHeight)).ToPoint();
         this.Velocity = new Vector(Math.randomBetween(-10, 10), Math.randomBetween(-10, 10));
     }
 
     Update() {
         super.Update();
 
-        this.Position.Add(this.Velocity);
+        var p: Vector = this.Position.ToVector();
+        p.Add(this.Velocity);
 
-        if (this.Position.x > this.CanvasWidth) {
-            this.Position.x = 0;
-        } else if (this.Position.x < 0) {
-            this.Position.x = this.CanvasWidth;
+        if (p.x > this.CanvasWidth) {
+            p.x = 0;
+        } else if (p.x < 0) {
+            p.x = this.CanvasWidth;
         }
 
-        if (this.Position.y > this.CanvasHeight) {
-            this.Position.y = 0;
-        } else if (this.Position.y < 0) {
-            this.Position.y = this.CanvasHeight;
+        if (p.y > this.CanvasHeight) {
+            p.y = 0;
+        } else if (p.y < 0) {
+            p.y = this.CanvasHeight;
         }
+
+        this.Position = p.ToPoint();
     }
 
     Draw() {

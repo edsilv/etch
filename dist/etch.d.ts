@@ -37,6 +37,7 @@ declare module etch.primitives {
         Heading(): number;
         static Random2D(): Vector;
         static FromAngle(angle: number): Vector;
+        ToPoint(): Point;
     }
 }
 
@@ -125,6 +126,119 @@ declare module etch.collections {
     var INotifyPropertyChanged_: nullstone.Interface<INotifyPropertyChanged>;
 }
 
+import Size = minerva.Size;
+declare module etch.drawing {
+    class Canvas implements IDisplayContext {
+        HTMLElement: HTMLCanvasElement;
+        IsCached: boolean;
+        constructor();
+        Ctx: CanvasRenderingContext2D;
+        Width: number;
+        Height: number;
+        Size: Size;
+        Style: any;
+    }
+}
+
+declare module etch.drawing {
+    class DisplayObject implements IDisplayObject {
+        private _DisplayList;
+        FrameCount: number;
+        Height: number;
+        IsCached: boolean;
+        IsInitialised: boolean;
+        IsPaused: boolean;
+        IsVisible: boolean;
+        Position: Point;
+        DrawFrom: IDisplayContext;
+        DrawTo: IDisplayContext;
+        Width: number;
+        ZIndex: number;
+        Init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void;
+        Ctx: CanvasRenderingContext2D;
+        CanvasWidth: number;
+        CanvasHeight: number;
+        DisplayList: DisplayObjectCollection<IDisplayObject>;
+        Setup(): void;
+        Update(): void;
+        Draw(): void;
+        IsFirstFrame(): boolean;
+        Dispose(): void;
+        Play(): void;
+        Pause(): void;
+        Show(): void;
+        Hide(): void;
+    }
+}
+
+import ObservableCollection = etch.collections.ObservableCollection;
+declare module etch.drawing {
+    class DisplayObjectCollection<T extends IDisplayObject> extends ObservableCollection<T> {
+        constructor();
+        Swap(obj1: T, obj2: T): void;
+        ToFront(obj: T): void;
+        ToBack(obj: T): void;
+        SetIndex(obj: T, index: number): void;
+        Bottom: T;
+        Top: T;
+    }
+}
+
+declare module etch.drawing {
+    interface IDisplayContext {
+        Ctx: CanvasRenderingContext2D;
+        Width: number;
+        Height: number;
+        IsCached: boolean;
+    }
+}
+
+import DisplayObjectCollection = etch.drawing.DisplayObjectCollection;
+import IDisplayContext = etch.drawing.IDisplayContext;
+import Point = etch.primitives.Point;
+declare module etch.drawing {
+    interface IDisplayObject extends IDisplayContext {
+        CanvasHeight: number;
+        CanvasWidth: number;
+        Ctx: CanvasRenderingContext2D;
+        DisplayList: DisplayObjectCollection<IDisplayObject>;
+        Draw(): void;
+        DrawFrom: IDisplayContext;
+        DrawTo: IDisplayContext;
+        Height: number;
+        Hide(): void;
+        Init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void;
+        IsInitialised: boolean;
+        IsPaused: boolean;
+        IsVisible: boolean;
+        Pause(): void;
+        Play(): void;
+        Position: Point;
+        Setup(): void;
+        Show(): void;
+        Update(): void;
+        Width: number;
+        ZIndex: number;
+    }
+}
+
+import ClockTimer = etch.engine.ClockTimer;
+import DisplayObject = etch.drawing.DisplayObject;
+import IDisplayObject = etch.drawing.IDisplayObject;
+declare var MAX_FPS: number;
+declare var MAX_MSPF: number;
+declare module etch.drawing {
+    class Stage extends DisplayObject implements ITimerListener {
+        FrameCount: number;
+        LastVisualTick: number;
+        Timer: ClockTimer;
+        Init(sketch: IDisplayContext): void;
+        OnTicked(lastTime: number, nowTime: number): void;
+        UpdateDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
+        DrawDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
+    }
+}
+
 declare module etch.engine {
     interface ITimerListener {
         OnTicked(lastTime: number, nowTime: number): any;
@@ -185,121 +299,9 @@ declare module etch.events {
     }
 }
 
-import Size = minerva.Size;
-declare module etch.drawing {
-    class Canvas implements IDisplayContext {
-        HTMLElement: HTMLCanvasElement;
-        IsCached: boolean;
-        constructor();
-        Ctx: CanvasRenderingContext2D;
-        Width: number;
-        Height: number;
-        Size: Size;
-        Style: any;
-    }
-}
-
-declare module etch.drawing {
-    class DisplayObject implements IDisplayObject {
-        private _DisplayList;
-        FrameCount: number;
-        Height: number;
-        IsCached: boolean;
-        IsInitialised: boolean;
-        IsPaused: boolean;
-        IsVisible: boolean;
-        Position: Vector;
-        DrawFrom: IDisplayContext;
-        DrawTo: IDisplayContext;
-        Width: number;
-        ZIndex: number;
-        Init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void;
-        Ctx: CanvasRenderingContext2D;
-        CanvasWidth: number;
-        CanvasHeight: number;
-        DisplayList: DisplayObjectCollection<IDisplayObject>;
-        Setup(): void;
-        Update(): void;
-        Draw(): void;
-        IsFirstFrame(): boolean;
-        Dispose(): void;
-        Play(): void;
-        Pause(): void;
-        Show(): void;
-        Hide(): void;
-    }
-}
-
-import ObservableCollection = etch.collections.ObservableCollection;
-declare module etch.drawing {
-    class DisplayObjectCollection<T extends IDisplayObject> extends ObservableCollection<T> {
-        constructor();
-        Swap(obj1: T, obj2: T): void;
-        ToFront(obj: T): void;
-        ToBack(obj: T): void;
-        SetIndex(obj: T, index: number): void;
-        Bottom: T;
-        Top: T;
-    }
-}
-
-declare module etch.drawing {
-    interface IDisplayContext {
-        Ctx: CanvasRenderingContext2D;
-        Width: number;
-        Height: number;
-        IsCached: boolean;
-    }
-}
-
-import DisplayObjectCollection = etch.drawing.DisplayObjectCollection;
-import IDisplayContext = etch.drawing.IDisplayContext;
-import Vector = etch.primitives.Vector;
-declare module etch.drawing {
-    interface IDisplayObject extends IDisplayContext {
-        CanvasHeight: number;
-        CanvasWidth: number;
-        Ctx: CanvasRenderingContext2D;
-        DisplayList: DisplayObjectCollection<IDisplayObject>;
-        Draw(): void;
-        DrawFrom: IDisplayContext;
-        DrawTo: IDisplayContext;
-        Height: number;
-        Hide(): void;
-        Init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void;
-        IsInitialised: boolean;
-        IsPaused: boolean;
-        IsVisible: boolean;
-        Pause(): void;
-        Play(): void;
-        Position: Vector;
-        Setup(): void;
-        Show(): void;
-        Update(): void;
-        Width: number;
-        ZIndex: number;
-    }
-}
-
-import ClockTimer = etch.engine.ClockTimer;
-import DisplayObject = etch.drawing.DisplayObject;
-import IDisplayObject = etch.drawing.IDisplayObject;
-declare var MAX_FPS: number;
-declare var MAX_MSPF: number;
-declare module etch.drawing {
-    class Stage extends DisplayObject implements ITimerListener {
-        FrameCount: number;
-        LastVisualTick: number;
-        Timer: ClockTimer;
-        Init(sketch: IDisplayContext): void;
-        OnTicked(lastTime: number, nowTime: number): void;
-        UpdateDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
-        DrawDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
-    }
-}
-
 declare module etch.primitives {
     class Point extends minerva.Point {
         Clone(): Point;
+        ToVector(): Vector;
     }
 }
