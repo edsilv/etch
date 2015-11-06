@@ -85,7 +85,7 @@ module etch.drawing {
         }
 
         //HitRect(x, y, w, h, mx, my): boolean {
-        //return Utils.Measurements.Dimensions.HitRect(x, y, w, h, mx, my);
+        //    return Utils.Measurements.Dimensions.HitRect(x, y, w, h, mx, my);
         //}
     }
 }

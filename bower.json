@@ -1,12 +1,14 @@
 {
   "name": "etch",
   "version": "0.0.8",
-  "dependencies": {},
+  "dependencies": {
+    "minerva": "~0.7.3",
+    "nullstone": "~0.4.5",
+    "extensions": "edsilv/extensions"
+  },
   "devDependencies": {
     "r.js": "~2.1.20",
-    "fayde": "~0.17.1",
-    "jquery": "~2.1.4",
-    "extensions": "edsilv/extensions"
+    "jquery": "~2.1.4"
   },
   "license": "MIT",
   "ignore": [
