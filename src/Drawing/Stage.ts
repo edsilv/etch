@@ -8,11 +8,10 @@ var MAX_MSPF: number = 1000 / MAX_FPS;
 module etch.drawing{
     export class Stage extends DisplayObject implements ITimerListener {
 
-        public FrameCount: number = 0;
         public LastVisualTick: number = new Date(0).getTime();
         public Timer: ClockTimer;
-        //Updated = new nullstone.Event<nullstone.IEventArgs>();
-        //Drawn = new nullstone.Event<nullstone.IEventArgs>();
+        Updated = new nullstone.Event<number>();
+        Drawn = new nullstone.Event<number>();
 
         Init(sketch: IDisplayContext): void {
             super.Init(sketch);
@@ -22,22 +21,18 @@ module etch.drawing{
         }
 
         OnTicked(lastTime: number, nowTime: number) {
-            var now = new Date().getTime();
+            var now: number = new Date().getTime();
             if (now - this.LastVisualTick < MAX_MSPF) return;
 
             this.LastVisualTick = now;
 
-            //TWEEN.update(nowTime);
-
             this.Ctx.clearRect(0, 0, this.Ctx.canvas.width, this.Ctx.canvas.height);
 
             this.UpdateDisplayList(this.DisplayList);
-
-            //this.Updated.raise(this, new nullstone.EventArgs());
+            this.Updated.raise(this, this.LastVisualTick);
 
             this.DrawDisplayList(this.DisplayList);
-
-            //this.Drawn.raise(this, new nullstone.EventArgs());
+            this.Drawn.raise(this, this.LastVisualTick);
         }
 
         UpdateDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void {

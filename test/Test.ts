@@ -13,6 +13,10 @@ export default class Test{
         this.Canvas.Height = 600;
         this.MainScene = new MainScene();
         this.MainScene.Init(this.Canvas);
+        this.MainScene.Drawn.on((s: any, time: number) => {
+            console.log(time);
+        }, this);
+
         // paused so stats can be gathered when running Update
         this.MainScene.Pause();
     }

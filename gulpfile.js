@@ -102,3 +102,7 @@ gulp.task('test', function() {
 gulp.task('default', function(cb) {
     runSequence('build:dev', 'build:test', cb);
 });
+
+gulp.task('dist', function(cb) {
+    runSequence('build:dist', cb);
+});
