@@ -149,7 +149,6 @@ declare module etch.drawing {
         IsInitialised: boolean;
         IsPaused: boolean;
         IsVisible: boolean;
-        LastVisualTick: number;
         Position: Point;
         DrawFrom: IDisplayContext;
         DrawTo: IDisplayContext;
@@ -206,13 +205,13 @@ declare module etch.drawing {
         Draw(): void;
         DrawFrom: IDisplayContext;
         DrawTo: IDisplayContext;
+        FrameCount: number;
         Height: number;
         Hide(): void;
         Init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void;
         IsInitialised: boolean;
         IsPaused: boolean;
         IsVisible: boolean;
-        LastVisualTick: number;
         Pause(): void;
         Play(): void;
         Position: Point;
@@ -239,6 +238,12 @@ declare module etch.drawing {
         OnTicked(lastTime: number, nowTime: number): void;
         UpdateDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
         DrawDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
+    }
+}
+
+declare module etch.engine {
+    interface ITimerListener {
+        OnTicked(lastTime: number, nowTime: number): any;
     }
 }
 
@@ -293,12 +298,6 @@ declare module etch.events {
         Handled: boolean;
         Source: any;
         OriginalSource: any;
-    }
-}
-
-declare module etch.engine {
-    interface ITimerListener {
-        OnTicked(lastTime: number, nowTime: number): any;
     }
 }
 

@@ -11,13 +11,13 @@ module etch.drawing{
         Draw(): void;
         DrawFrom: IDisplayContext;
         DrawTo: IDisplayContext;
+        FrameCount: number;
         Height: number;
         Hide(): void;
         Init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void;
         IsInitialised: boolean;
         IsPaused: boolean;
         IsVisible: boolean;
-        LastVisualTick: number;
         Pause(): void;
         Play(): void;
         Position: Point;

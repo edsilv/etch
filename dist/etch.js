@@ -462,7 +462,6 @@ var etch;
                 this.IsInitialised = false;
                 this.IsPaused = false;
                 this.IsVisible = true;
-                this.LastVisualTick = new Date(0).getTime();
             }
             DisplayObject.prototype.Init = function (drawTo, drawFrom) {
                 this.DrawTo = drawTo;
@@ -506,13 +505,9 @@ var etch;
             DisplayObject.prototype.Setup = function () {
             };
             DisplayObject.prototype.Update = function () {
+                this.FrameCount++;
             };
             DisplayObject.prototype.Draw = function () {
-                this.FrameCount++;
-                var now = new Date().getTime();
-                if (now - this.LastVisualTick < MAX_MSPF)
-                    return;
-                this.LastVisualTick = now;
             };
             DisplayObject.prototype.IsFirstFrame = function () {
                 return this.FrameCount === 0;
@@ -670,6 +665,8 @@ var etch;
     })(drawing = etch.drawing || (etch.drawing = {}));
 })(etch || (etch = {}));
 
+
+
 var etch;
 (function (etch) {
     var events;
@@ -803,8 +800,6 @@ var etch;
         events.RoutedEventArgs = RoutedEventArgs;
     })(events = etch.events || (etch.events = {}));
 })(etch || (etch = {}));
-
-
 
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];

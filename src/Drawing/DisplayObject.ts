@@ -10,7 +10,6 @@ module etch.drawing {
         public IsInitialised:boolean = false;
         public IsPaused:boolean = false;
         public IsVisible:boolean = true;
-        public LastVisualTick: number = new Date(0).getTime();
         public Position:Point;
         public DrawFrom:IDisplayContext;
         public DrawTo:IDisplayContext;
@@ -50,14 +49,11 @@ module etch.drawing {
         }
 
         public Update():void {
-
+            this.FrameCount++;
         }
 
         public Draw():void {
-            this.FrameCount++;
-            var now = new Date().getTime();
-            if (now - this.LastVisualTick < MAX_MSPF) return;
-            this.LastVisualTick = now;
+
         }
 
         public IsFirstFrame():boolean {
