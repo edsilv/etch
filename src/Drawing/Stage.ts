@@ -38,6 +38,8 @@ module etch.drawing{
         UpdateDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void {
             for (var i = 0; i < displayList.Count; i++){
                 var displayObject: IDisplayObject = displayList.GetValueAt(i);
+                displayObject.FrameCount++;
+                displayObject.LastVisualTick = this.LastVisualTick;
                 if (!displayObject.IsPaused) {
                     displayObject.Update();
                 }

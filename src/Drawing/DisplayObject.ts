@@ -10,6 +10,7 @@ module etch.drawing {
         public IsInitialised:boolean = false;
         public IsPaused:boolean = false;
         public IsVisible:boolean = true;
+        public LastVisualTick:number;
         public Position:Point;
         public DrawFrom:IDisplayContext;
         public DrawTo:IDisplayContext;
@@ -49,7 +50,7 @@ module etch.drawing {
         }
 
         public Update():void {
-            this.FrameCount++;
+
         }
 
         public Draw():void {

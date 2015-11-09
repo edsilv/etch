@@ -18,6 +18,7 @@ module etch.drawing{
         IsInitialised: boolean;
         IsPaused: boolean;
         IsVisible: boolean;
+        LastVisualTick: number;
         Pause(): void;
         Play(): void;
         Position: Point;

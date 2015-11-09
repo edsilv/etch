@@ -373,25 +373,6 @@ var etch;
 /// <reference path="./Exceptions/Exceptions.ts" />
 /// <reference path="./Collections/ObservableCollection.ts" /> 
 
-var etch;
-(function (etch) {
-    var collections;
-    (function (collections) {
-        var PropertyChangedEventArgs = (function () {
-            function PropertyChangedEventArgs(propertyName) {
-                Object.defineProperty(this, "PropertyName", { value: propertyName, writable: false });
-            }
-            return PropertyChangedEventArgs;
-        })();
-        collections.PropertyChangedEventArgs = PropertyChangedEventArgs;
-        // todo: remove?
-        collections.INotifyPropertyChanged_ = new nullstone.Interface("INotifyPropertyChanged");
-        collections.INotifyPropertyChanged_.is = function (o) {
-            return o && o.PropertyChanged instanceof nullstone.Event;
-        };
-    })(collections = etch.collections || (etch.collections = {}));
-})(etch || (etch = {}));
-
 var Size = minerva.Size;
 var etch;
 (function (etch) {
@@ -505,7 +486,6 @@ var etch;
             DisplayObject.prototype.Setup = function () {
             };
             DisplayObject.prototype.Update = function () {
-                this.FrameCount++;
             };
             DisplayObject.prototype.Draw = function () {
             };
@@ -644,6 +624,8 @@ var etch;
             Stage.prototype.UpdateDisplayList = function (displayList) {
                 for (var i = 0; i < displayList.Count; i++) {
                     var displayObject = displayList.GetValueAt(i);
+                    displayObject.FrameCount++;
+                    displayObject.LastVisualTick = this.LastVisualTick;
                     if (!displayObject.IsPaused) {
                         displayObject.Update();
                     }
@@ -666,6 +648,51 @@ var etch;
 })(etch || (etch = {}));
 
 
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var etch;
+(function (etch) {
+    var primitives;
+    (function (primitives) {
+        var Point = (function (_super) {
+            __extends(Point, _super);
+            function Point() {
+                _super.apply(this, arguments);
+            }
+            Point.prototype.Clone = function () {
+                return new Point(this.x, this.y);
+            };
+            Point.prototype.ToVector = function () {
+                return new primitives.Vector(this.x, this.y);
+            };
+            return Point;
+        })(minerva.Point);
+        primitives.Point = Point;
+    })(primitives = etch.primitives || (etch.primitives = {}));
+})(etch || (etch = {}));
+
+var etch;
+(function (etch) {
+    var collections;
+    (function (collections) {
+        var PropertyChangedEventArgs = (function () {
+            function PropertyChangedEventArgs(propertyName) {
+                Object.defineProperty(this, "PropertyName", { value: propertyName, writable: false });
+            }
+            return PropertyChangedEventArgs;
+        })();
+        collections.PropertyChangedEventArgs = PropertyChangedEventArgs;
+        // todo: remove?
+        collections.INotifyPropertyChanged_ = new nullstone.Interface("INotifyPropertyChanged");
+        collections.INotifyPropertyChanged_.is = function (o) {
+            return o && o.PropertyChanged instanceof nullstone.Event;
+        };
+    })(collections = etch.collections || (etch.collections = {}));
+})(etch || (etch = {}));
 
 var etch;
 (function (etch) {
@@ -799,30 +826,4 @@ var etch;
         })();
         events.RoutedEventArgs = RoutedEventArgs;
     })(events = etch.events || (etch.events = {}));
-})(etch || (etch = {}));
-
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var etch;
-(function (etch) {
-    var primitives;
-    (function (primitives) {
-        var Point = (function (_super) {
-            __extends(Point, _super);
-            function Point() {
-                _super.apply(this, arguments);
-            }
-            Point.prototype.Clone = function () {
-                return new Point(this.x, this.y);
-            };
-            Point.prototype.ToVector = function () {
-                return new primitives.Vector(this.x, this.y);
-            };
-            return Point;
-        })(minerva.Point);
-        primitives.Point = Point;
-    })(primitives = etch.primitives || (etch.primitives = {}));
 })(etch || (etch = {}));
