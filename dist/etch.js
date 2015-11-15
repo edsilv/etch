@@ -373,6 +373,25 @@ var etch;
 /// <reference path="./Exceptions/Exceptions.ts" />
 /// <reference path="./Collections/ObservableCollection.ts" /> 
 
+var etch;
+(function (etch) {
+    var collections;
+    (function (collections) {
+        var PropertyChangedEventArgs = (function () {
+            function PropertyChangedEventArgs(propertyName) {
+                Object.defineProperty(this, "PropertyName", { value: propertyName, writable: false });
+            }
+            return PropertyChangedEventArgs;
+        })();
+        collections.PropertyChangedEventArgs = PropertyChangedEventArgs;
+        // todo: remove?
+        collections.INotifyPropertyChanged_ = new nullstone.Interface("INotifyPropertyChanged");
+        collections.INotifyPropertyChanged_.is = function (o) {
+            return o && o.PropertyChanged instanceof nullstone.Event;
+        };
+    })(collections = etch.collections || (etch.collections = {}));
+})(etch || (etch = {}));
+
 var Size = minerva.Size;
 var etch;
 (function (etch) {
@@ -438,6 +457,7 @@ var etch;
         // todo: make abstract?
         var DisplayObject = (function () {
             function DisplayObject() {
+                this._DisplayList = new drawing.DisplayObjectCollection();
                 this.FrameCount = -1;
                 this.IsCached = false;
                 this.IsInitialised = false;
@@ -448,7 +468,6 @@ var etch;
                 this.DrawTo = drawTo;
                 if (drawFrom)
                     this.DrawFrom = drawFrom;
-                this.DisplayList = new drawing.DisplayObjectCollection();
                 this.IsInitialised = true;
                 this.Setup();
             };
@@ -499,6 +518,8 @@ var etch;
             };
             DisplayObject.prototype.Pause = function () {
                 this.IsPaused = true;
+            };
+            DisplayObject.prototype.Resize = function () {
             };
             DisplayObject.prototype.Show = function () {
                 this.IsVisible = true;
@@ -605,8 +626,8 @@ var etch;
                 this.Updated = new nullstone.Event();
                 this.Drawn = new nullstone.Event();
             }
-            Stage.prototype.Init = function (sketch) {
-                _super.prototype.Init.call(this, sketch);
+            Stage.prototype.Init = function (drawTo) {
+                _super.prototype.Init.call(this, drawTo);
                 this.Timer = new ClockTimer();
                 this.Timer.RegisterTimer(this);
             };
@@ -615,6 +636,7 @@ var etch;
                 if (now - this.LastVisualTick < MAX_MSPF)
                     return;
                 this.LastVisualTick = now;
+                // todo: make this configurable
                 this.Ctx.clearRect(0, 0, this.Ctx.canvas.width, this.Ctx.canvas.height);
                 this.UpdateDisplayList(this.DisplayList);
                 this.Updated.raise(this, this.LastVisualTick);
@@ -640,6 +662,17 @@ var etch;
                     }
                     this.DrawDisplayList(displayObject.DisplayList);
                 }
+            };
+            Stage.prototype.ResizeDisplayList = function (displayList) {
+                for (var i = 0; i < displayList.Count; i++) {
+                    var displayObject = displayList.GetValueAt(i);
+                    displayObject.Resize();
+                    this.ResizeDisplayList(displayObject.DisplayList);
+                }
+            };
+            Stage.prototype.Resize = function () {
+                _super.prototype.Resize.call(this);
+                this.ResizeDisplayList(this.DisplayList);
             };
             return Stage;
         })(drawing.DisplayObject);
@@ -673,25 +706,6 @@ var etch;
         })(minerva.Point);
         primitives.Point = Point;
     })(primitives = etch.primitives || (etch.primitives = {}));
-})(etch || (etch = {}));
-
-var etch;
-(function (etch) {
-    var collections;
-    (function (collections) {
-        var PropertyChangedEventArgs = (function () {
-            function PropertyChangedEventArgs(propertyName) {
-                Object.defineProperty(this, "PropertyName", { value: propertyName, writable: false });
-            }
-            return PropertyChangedEventArgs;
-        })();
-        collections.PropertyChangedEventArgs = PropertyChangedEventArgs;
-        // todo: remove?
-        collections.INotifyPropertyChanged_ = new nullstone.Interface("INotifyPropertyChanged");
-        collections.INotifyPropertyChanged_.is = function (o) {
-            return o && o.PropertyChanged instanceof nullstone.Event;
-        };
-    })(collections = etch.collections || (etch.collections = {}));
 })(etch || (etch = {}));
 
 var etch;

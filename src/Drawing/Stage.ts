@@ -13,8 +13,8 @@ module etch.drawing{
         Updated = new nullstone.Event<number>();
         Drawn = new nullstone.Event<number>();
 
-        Init(sketch: IDisplayContext): void {
-            super.Init(sketch);
+        Init(drawTo: IDisplayContext): void {
+            super.Init(drawTo);
 
             this.Timer = new ClockTimer();
             this.Timer.RegisterTimer(this);
@@ -26,6 +26,7 @@ module etch.drawing{
 
             this.LastVisualTick = now;
 
+            // todo: make this configurable
             this.Ctx.clearRect(0, 0, this.Ctx.canvas.width, this.Ctx.canvas.height);
 
             this.UpdateDisplayList(this.DisplayList);
@@ -55,6 +56,19 @@ module etch.drawing{
                 }
                 this.DrawDisplayList(displayObject.DisplayList);
             }
+        }
+
+        ResizeDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void {
+            for (var i = 0; i < displayList.Count; i++){
+                var displayObject: IDisplayObject = displayList.GetValueAt(i);
+                displayObject.Resize();
+                this.ResizeDisplayList(displayObject.DisplayList);
+            }
+        }
+
+        Resize(): void {
+            super.Resize();
+            this.ResizeDisplayList(this.DisplayList);
         }
     }
 }

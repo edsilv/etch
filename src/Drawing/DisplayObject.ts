@@ -3,7 +3,7 @@ module etch.drawing {
     // todo: make abstract?
     export class DisplayObject implements IDisplayObject {
 
-        private _DisplayList:DisplayObjectCollection<IDisplayObject>;
+        private _DisplayList:DisplayObjectCollection<IDisplayObject> = new DisplayObjectCollection();
         public FrameCount:number = -1;
         public Height:number;
         public IsCached:boolean = false;
@@ -20,7 +20,6 @@ module etch.drawing {
         Init(drawTo: IDisplayContext, drawFrom?: IDisplayContext):void {
             this.DrawTo = drawTo;
             if (drawFrom) this.DrawFrom = drawFrom;
-            this.DisplayList = new DisplayObjectCollection();
             this.IsInitialised = true;
             this.Setup();
         }
@@ -73,6 +72,10 @@ module etch.drawing {
             this.IsPaused = true;
         }
 
+        public Resize(): void {
+
+        }
+
         public Show():void {
             this.IsVisible = true;
         }
@@ -80,9 +83,5 @@ module etch.drawing {
         public Hide():void {
             this.IsVisible = false;
         }
-
-        //HitRect(x, y, w, h, mx, my): boolean {
-        //    return Utils.Measurements.Dimensions.HitRect(x, y, w, h, mx, my);
-        //}
     }
 }

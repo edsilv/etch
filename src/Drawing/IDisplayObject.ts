@@ -22,6 +22,7 @@ module etch.drawing{
         Pause(): void;
         Play(): void;
         Position: Point;
+        Resize(): void;
         Setup(): void;
         Show(): void;
         Update(): void;
