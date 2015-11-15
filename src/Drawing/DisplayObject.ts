@@ -22,6 +22,7 @@ module etch.drawing {
             if (drawFrom) this.DrawFrom = drawFrom;
             this.IsInitialised = true;
             this.Setup();
+            this.Resize();
         }
 
         get Ctx():CanvasRenderingContext2D {

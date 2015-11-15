@@ -392,6 +392,8 @@ var etch;
     })(collections = etch.collections || (etch.collections = {}));
 })(etch || (etch = {}));
 
+
+
 var Size = minerva.Size;
 var etch;
 (function (etch) {
@@ -470,6 +472,7 @@ var etch;
                     this.DrawFrom = drawFrom;
                 this.IsInitialised = true;
                 this.Setup();
+                this.Resize();
             };
             Object.defineProperty(DisplayObject.prototype, "Ctx", {
                 get: function () {
@@ -680,34 +683,6 @@ var etch;
     })(drawing = etch.drawing || (etch.drawing = {}));
 })(etch || (etch = {}));
 
-
-
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var etch;
-(function (etch) {
-    var primitives;
-    (function (primitives) {
-        var Point = (function (_super) {
-            __extends(Point, _super);
-            function Point() {
-                _super.apply(this, arguments);
-            }
-            Point.prototype.Clone = function () {
-                return new Point(this.x, this.y);
-            };
-            Point.prototype.ToVector = function () {
-                return new primitives.Vector(this.x, this.y);
-            };
-            return Point;
-        })(minerva.Point);
-        primitives.Point = Point;
-    })(primitives = etch.primitives || (etch.primitives = {}));
-})(etch || (etch = {}));
-
 var etch;
 (function (etch) {
     var events;
@@ -840,4 +815,30 @@ var etch;
         })();
         events.RoutedEventArgs = RoutedEventArgs;
     })(events = etch.events || (etch.events = {}));
+})(etch || (etch = {}));
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var etch;
+(function (etch) {
+    var primitives;
+    (function (primitives) {
+        var Point = (function (_super) {
+            __extends(Point, _super);
+            function Point() {
+                _super.apply(this, arguments);
+            }
+            Point.prototype.Clone = function () {
+                return new Point(this.x, this.y);
+            };
+            Point.prototype.ToVector = function () {
+                return new primitives.Vector(this.x, this.y);
+            };
+            return Point;
+        })(minerva.Point);
+        primitives.Point = Point;
+    })(primitives = etch.primitives || (etch.primitives = {}));
 })(etch || (etch = {}));
