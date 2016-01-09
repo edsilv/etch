@@ -16,9 +16,6 @@ export default class Test{
         this.MainScene.Drawn.on((s: any, time: number) => {
             console.log(time);
         }, this);
-
-        // paused so stats can be gathered when running Update
-        this.MainScene.Pause();
     }
 
     public Tick(): void {

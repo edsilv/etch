@@ -1,6 +1,6 @@
 {
   "name": "etch",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "",
   "main": "gulpfile.js",
   "directories": {
@@ -20,7 +20,7 @@
     "yargs": "^3.29.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "gulp copy:npmComponents"
   },
   "repository": {
     "type": "git",

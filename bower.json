@@ -1,6 +1,6 @@
 {
   "name": "etch",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "dependencies": {
     "minerva": "~0.7.3",
     "nullstone": "~0.4.5",
