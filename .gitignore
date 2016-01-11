@@ -5,3 +5,4 @@ test/*.js
 !test/require-config.js
 !test/stats.min.js
 .build
+npm-debug.log
