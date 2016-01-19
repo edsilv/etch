@@ -19,9 +19,6 @@
     "run-sequence": "^1.1.4",
     "yargs": "^3.29.0"
   },
-  "scripts": {
-    "postinstall": "gulp copy:npmComponents"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/edsilv/etch.git"
