@@ -10,6 +10,10 @@ A HTML canvas drawing utility providing Processing-style sketches (setup, update
 
 Uses elements from [Fayde](https://github.com/wsick/Fayde), and has dependencies on [minerva](https://github.com/wsick/minerva) and [nullstone](https://github.com/wsick/nullstone).
 
+## Examples
+
+Etch is the graphics library used by [BlokDust](https://github.com/BlokDust/)
+
 ## Installation
 
     bower install etch --save
