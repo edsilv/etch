@@ -21,10 +21,9 @@ module etch.drawing{
         }
 
         OnTicked(lastTime: number, nowTime: number) {
-            var now: number = new Date().getTime();
-            if (now - this.LastVisualTick < MAX_MSPF) return;
+            if (nowTime - this.LastVisualTick < MAX_MSPF) return;
 
-            this.LastVisualTick = now;
+            this.LastVisualTick = nowTime;
 
             // todo: make this configurable
             this.Ctx.clearRect(0, 0, this.Ctx.canvas.width, this.Ctx.canvas.height);
