@@ -8,6 +8,7 @@ var MAX_MSPF: number = 1000 / MAX_FPS;
 module etch.drawing{
     export class Stage extends DisplayObject implements ITimerListener {
 
+        public DeltaTime: number = new Date(0).getTime();
         public LastVisualTick: number = new Date(0).getTime();
         public Timer: ClockTimer;
         Updated = new nullstone.Event<number>();
@@ -21,8 +22,11 @@ module etch.drawing{
         }
 
         OnTicked(lastTime: number, nowTime: number) {
+            // if the number of milliseconds elapsed since the last
+            // frame is less than the max per second, return.
             if (nowTime - this.LastVisualTick < MAX_MSPF) return;
 
+            this.DeltaTime = nowTime - this.LastVisualTick;
             this.LastVisualTick = nowTime;
 
             // todo: make this configurable
@@ -39,6 +43,7 @@ module etch.drawing{
             for (var i = 0; i < displayList.Count; i++){
                 var displayObject: IDisplayObject = displayList.GetValueAt(i);
                 displayObject.FrameCount++;
+                displayObject.DeltaTime = this.DeltaTime;
                 displayObject.LastVisualTick = this.LastVisualTick;
                 if (!displayObject.IsPaused) {
                     displayObject.Update();

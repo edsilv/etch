@@ -7,6 +7,7 @@ module etch.drawing{
         CanvasHeight: number;
         CanvasWidth: number;
         Ctx: CanvasRenderingContext2D;
+        DeltaTime: number;
         DisplayList: DisplayObjectCollection<IDisplayObject>;
         Draw(): void;
         DrawFrom: IDisplayContext;

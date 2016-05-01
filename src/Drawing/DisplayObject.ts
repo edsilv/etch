@@ -4,6 +4,7 @@ module etch.drawing {
     export class DisplayObject implements IDisplayObject {
 
         private _DisplayList: DisplayObjectCollection<IDisplayObject> = new DisplayObjectCollection();
+        public DeltaTime: number;
         public FrameCount: number = -1;
         public Height: number;
         public IsCached: boolean = false;

@@ -3,6 +3,8 @@ import Stage = etch.drawing.Stage;
 import {BlueSquare} from './BlueSquare';
 import {Mover} from './Mover';
 import {RedSquare} from './RedSquare';
+import {GreenSquare} from "./GreenSquare";
+import {DeltaMover} from "./DeltaMover";
 
 export class MainScene extends Stage{
 
@@ -19,21 +21,19 @@ export class MainScene extends Stage{
 
         var moverCache: Canvas = new Canvas();
 
+        //for (var i = 0; i < 1000; i++){
+        //    var mover = new Mover();
+        //    mover.Init(this, moverCache);
+        //    this.DisplayList.Add(mover);
+        //}
+
         for (var i = 0; i < 1000; i++){
-            var mover = new Mover();
+            var mover = new DeltaMover();
             mover.Init(this, moverCache);
             this.DisplayList.Add(mover);
         }
 
         this.DisplayList.Add(this.RedSquare);
         this.DisplayList.Add(this.BlueSquare);
-    }
-
-    Update() {
-        super.Update();
-    }
-
-    Draw() {
-        super.Draw();
     }
 }
