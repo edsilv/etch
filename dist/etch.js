@@ -465,6 +465,7 @@ var etch;
                 this.IsInitialised = false;
                 this.IsPaused = false;
                 this.IsVisible = true;
+                this.LastVisualTick = 0;
             }
             DisplayObject.prototype.Init = function (drawTo, drawFrom) {
                 this.DrawTo = drawTo;
@@ -518,17 +519,33 @@ var etch;
             };
             DisplayObject.prototype.Play = function () {
                 this.IsPaused = false;
+                for (var i = 0; i < this.DisplayList.Count; i++) {
+                    var displayObject = this.DisplayList.GetValueAt(i);
+                    displayObject.Play();
+                }
             };
             DisplayObject.prototype.Pause = function () {
                 this.IsPaused = true;
+                for (var i = 0; i < this.DisplayList.Count; i++) {
+                    var displayObject = this.DisplayList.GetValueAt(i);
+                    displayObject.Pause();
+                }
             };
             DisplayObject.prototype.Resize = function () {
             };
             DisplayObject.prototype.Show = function () {
                 this.IsVisible = true;
+                for (var i = 0; i < this.DisplayList.Count; i++) {
+                    var displayObject = this.DisplayList.GetValueAt(i);
+                    displayObject.Show();
+                }
             };
             DisplayObject.prototype.Hide = function () {
                 this.IsVisible = false;
+                for (var i = 0; i < this.DisplayList.Count; i++) {
+                    var displayObject = this.DisplayList.GetValueAt(i);
+                    displayObject.Hide();
+                }
             };
             return DisplayObject;
         })();
@@ -625,6 +642,7 @@ var etch;
             __extends(Stage, _super);
             function Stage() {
                 _super.apply(this, arguments);
+                this.DeltaTime = new Date(0).getTime();
                 this.LastVisualTick = new Date(0).getTime();
                 this.Updated = new nullstone.Event();
                 this.Drawn = new nullstone.Event();
@@ -635,10 +653,12 @@ var etch;
                 this.Timer.RegisterTimer(this);
             };
             Stage.prototype.OnTicked = function (lastTime, nowTime) {
-                var now = new Date().getTime();
-                if (now - this.LastVisualTick < MAX_MSPF)
+                // if the number of milliseconds elapsed since the last
+                // frame is less than the max per second, return.
+                if (nowTime - this.LastVisualTick < MAX_MSPF)
                     return;
-                this.LastVisualTick = now;
+                this.DeltaTime = nowTime - this.LastVisualTick;
+                this.LastVisualTick = nowTime;
                 // todo: make this configurable
                 this.Ctx.clearRect(0, 0, this.Ctx.canvas.width, this.Ctx.canvas.height);
                 this.UpdateDisplayList(this.DisplayList);
@@ -650,6 +670,7 @@ var etch;
                 for (var i = 0; i < displayList.Count; i++) {
                     var displayObject = displayList.GetValueAt(i);
                     displayObject.FrameCount++;
+                    displayObject.DeltaTime = this.DeltaTime;
                     displayObject.LastVisualTick = this.LastVisualTick;
                     if (!displayObject.IsPaused) {
                         displayObject.Update();

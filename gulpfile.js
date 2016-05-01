@@ -100,9 +100,9 @@ gulp.task('test', function() {
 });
 
 gulp.task('default', function(cb) {
-    runSequence('build:dev', 'build:test', cb);
+    runSequence('build:dev', 'build:test', 'build:dist', cb);
 });
 
-gulp.task('dist', function(cb) {
-    runSequence('build:dist', cb);
-});
+//gulp.task('dist', function(cb) {
+//    runSequence('build:dist', cb);
+//});

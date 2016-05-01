@@ -9,12 +9,12 @@ export default class Test{
     public Setup(): void {
         this.Canvas = new Canvas();
         this.Canvas.Style.backgroundColor = '#FFF';
-        this.Canvas.Width = 800;
-        this.Canvas.Height = 600;
+        this.Canvas.Width = 1024;
+        this.Canvas.Height = 768;
         this.MainScene = new MainScene();
         this.MainScene.Init(this.Canvas);
         this.MainScene.Drawn.on((s: any, time: number) => {
-            console.log(time);
+            //console.log(time);
         }, this);
     }
 

@@ -13,7 +13,7 @@ export class DeltaMover extends DisplayObject {
         this.Width = 30;
         this.Height = 30;
 
-        this.Position = new Vector(Math.randomBetween(this.CanvasWidth), Math.randomBetween(this.CanvasHeight)).ToPoint();
+        this.Position = new Vector(Math.randomBetween(this.CanvasWidth - this.Width), Math.randomBetween(this.CanvasHeight - this.Height)).ToPoint();
         this.Velocity = new Vector(Math.randomBetween(-0.25, 0.25), Math.randomBetween(-0.25, 0.25));
     }
 
