@@ -632,8 +632,6 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var ClockTimer = etch.engine.ClockTimer;
 var DisplayObject = etch.drawing.DisplayObject;
-var MAX_FPS = 100;
-var MAX_MSPF = 1000 / MAX_FPS;
 var etch;
 (function (etch) {
     var drawing;
@@ -653,10 +651,6 @@ var etch;
                 this.Timer.RegisterTimer(this);
             };
             Stage.prototype.OnTicked = function (lastTime, nowTime) {
-                // if the number of milliseconds elapsed since the last
-                // frame is less than the max per second, return.
-                if (nowTime - this.LastVisualTick < MAX_MSPF)
-                    return;
                 this.DeltaTime = nowTime - this.LastVisualTick;
                 this.LastVisualTick = nowTime;
                 // todo: make this configurable

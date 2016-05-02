@@ -2,9 +2,6 @@ import ClockTimer = etch.engine.ClockTimer;
 import DisplayObject = etch.drawing.DisplayObject;
 import IDisplayObject = etch.drawing.IDisplayObject;
 
-var MAX_FPS: number = 100;
-var MAX_MSPF: number = 1000 / MAX_FPS;
-
 module etch.drawing{
     export class Stage extends DisplayObject implements ITimerListener {
 
@@ -22,9 +19,6 @@ module etch.drawing{
         }
 
         OnTicked(lastTime: number, nowTime: number) {
-            // if the number of milliseconds elapsed since the last
-            // frame is less than the max per second, return.
-            if (nowTime - this.LastVisualTick < MAX_MSPF) return;
 
             this.DeltaTime = nowTime - this.LastVisualTick;
             this.LastVisualTick = nowTime;
