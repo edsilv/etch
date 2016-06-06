@@ -5,12 +5,19 @@ import IDisplayObject = etch.drawing.IDisplayObject;
 module etch.drawing{
     export class Stage extends DisplayObject implements ITimerListener {
 
+        private _MaxDelta: number;
         public DeltaTime: number = new Date(0).getTime();
         public LastVisualTick: number = new Date(0).getTime();
         public Timer: ClockTimer;
+        
         Updated = new nullstone.Event<number>();
         Drawn = new nullstone.Event<number>();
-
+        
+        constructor(maxDelta?: number) {
+            super();
+            this._MaxDelta = maxDelta || 1000 / 60;
+        }
+        
         Init(drawTo: IDisplayContext): void {
             super.Init(drawTo);
 
@@ -20,7 +27,7 @@ module etch.drawing{
 
         OnTicked(lastTime: number, nowTime: number) {
 
-            this.DeltaTime = nowTime - this.LastVisualTick;
+            this.DeltaTime = Math.min(nowTime - this.LastVisualTick, this._MaxDelta);
             this.LastVisualTick = nowTime;
 
             // todo: make this configurable

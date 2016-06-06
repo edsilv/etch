@@ -392,8 +392,6 @@ var etch;
     })(collections = etch.collections || (etch.collections = {}));
 })(etch || (etch = {}));
 
-
-
 var Size = minerva.Size;
 var etch;
 (function (etch) {
@@ -638,12 +636,13 @@ var etch;
     (function (drawing) {
         var Stage = (function (_super) {
             __extends(Stage, _super);
-            function Stage() {
-                _super.apply(this, arguments);
+            function Stage(maxDelta) {
+                _super.call(this);
                 this.DeltaTime = new Date(0).getTime();
                 this.LastVisualTick = new Date(0).getTime();
                 this.Updated = new nullstone.Event();
                 this.Drawn = new nullstone.Event();
+                this._MaxDelta = maxDelta || 1000 / 60;
             }
             Stage.prototype.Init = function (drawTo) {
                 _super.prototype.Init.call(this, drawTo);
@@ -651,7 +650,7 @@ var etch;
                 this.Timer.RegisterTimer(this);
             };
             Stage.prototype.OnTicked = function (lastTime, nowTime) {
-                this.DeltaTime = nowTime - this.LastVisualTick;
+                this.DeltaTime = Math.min(nowTime - this.LastVisualTick, this._MaxDelta);
                 this.LastVisualTick = nowTime;
                 // todo: make this configurable
                 this.Ctx.clearRect(0, 0, this.Ctx.canvas.width, this.Ctx.canvas.height);
@@ -697,6 +696,8 @@ var etch;
         drawing.Stage = Stage;
     })(drawing = etch.drawing || (etch.drawing = {}));
 })(etch || (etch = {}));
+
+
 
 var etch;
 (function (etch) {

@@ -11,6 +11,10 @@ export class MainScene extends Stage{
     public RedSquare: RedSquare;
     public BlueSquare: BlueSquare;
 
+    constructor(maxDelta?: number){
+        super(maxDelta);
+    }
+
     Setup() {
         super.Setup();
 
