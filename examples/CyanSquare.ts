@@ -1,27 +1,26 @@
-//import {DisplayObject} from '../src/Drawing/DisplayObject';
-//import {IDisplayContext} from '../src/Drawing/IDisplayContext';
 import {GreenSquare} from './GreenSquare';
+import DisplayObject = etch.drawing.DisplayObject;
 
 export class CyanSquare extends DisplayObject {
 
-    Init(canvas: IDisplayContext): void {
-        super.Init(canvas);
+    init(canvas: IDisplayContext): void {
+        super.init(canvas);
     }
 
-    Setup() {
+    setup() {
         //console.log('setup cyan');
     }
 
-    Update() {
-        super.Update();
+    update() {
+        super.update();
         //console.log('update cyan');
     }
 
-    Draw() {
-        super.Draw();
+    draw() {
+        super.draw();
 
-        this.Ctx.fillStyle = "#00FFFF";
-        this.Ctx.fillRect(145, 145, 50, 50);
+        this.ctx.fillStyle = "#00FFFF";
+        this.ctx.fillRect(145, 145, 50, 50);
         //console.log("draw cyan");
     }
 }

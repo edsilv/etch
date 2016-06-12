@@ -8,20 +8,20 @@ import {DeltaMover} from "./DeltaMover";
 
 export class MainScene extends Stage{
 
-    public RedSquare: RedSquare;
-    public BlueSquare: BlueSquare;
+    public redSquare: RedSquare;
+    public blueSquare: BlueSquare;
 
     constructor(maxDelta?: number){
         super(maxDelta);
     }
 
-    Setup() {
-        super.Setup();
+    setup() {
+        super.setup();
 
-        this.RedSquare = new RedSquare();
-        this.RedSquare.Init(this);
-        this.BlueSquare = new BlueSquare();
-        this.BlueSquare.Init(this);
+        this.redSquare = new RedSquare();
+        this.redSquare.init(this);
+        this.blueSquare = new BlueSquare();
+        this.blueSquare.init(this);
 
         var moverCache: Canvas = new Canvas();
 
@@ -33,11 +33,11 @@ export class MainScene extends Stage{
 
         for (var i = 0; i < 1000; i++){
             var mover = new DeltaMover();
-            mover.Init(this, moverCache);
-            this.DisplayList.Add(mover);
+            mover.init(this, moverCache);
+            this.displayList.add(mover);
         }
 
-        this.DisplayList.Add(this.RedSquare);
-        this.DisplayList.Add(this.BlueSquare);
+        this.displayList.add(this.redSquare);
+        this.displayList.add(this.blueSquare);
     }
 }

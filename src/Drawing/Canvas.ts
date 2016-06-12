@@ -3,40 +3,40 @@ import Size = minerva.Size;
 module etch.drawing{
     export class Canvas implements IDisplayContext {
 
-        public HTMLElement: HTMLCanvasElement;
-        public IsCached: boolean = false;
+        public htmlElement: HTMLCanvasElement;
+        public isCached: boolean = false;
 
         constructor() {
-            this.HTMLElement = document.createElement("canvas");
-            document.body.appendChild(this.HTMLElement);
+            this.htmlElement = document.createElement("canvas");
+            document.body.appendChild(this.htmlElement);
         }
 
-        get Ctx(): CanvasRenderingContext2D {
-            return this.HTMLElement.getContext("2d");
+        get ctx(): CanvasRenderingContext2D {
+            return this.htmlElement.getContext("2d");
         }
 
-        get Width(): number {
-            return this.Ctx.canvas.width;
+        get width(): number {
+            return this.ctx.canvas.width;
         }
 
-        set Width(value: number) {
-            this.Ctx.canvas.width = value;
+        set width(value: number) {
+            this.ctx.canvas.width = value;
         }
 
-        get Height(): number {
-            return this.Ctx.canvas.height;
+        get height(): number {
+            return this.ctx.canvas.height;
         }
 
-        set Height(value: number) {
-            this.Ctx.canvas.height = value;
+        set height(value: number) {
+            this.ctx.canvas.height = value;
         }
 
-        get Size(): Size {
-            return new Size(this.Width, this.Height);
+        get size(): Size {
+            return new Size(this.width, this.height);
         }
 
-        get Style(): any {
-            return this.Ctx.canvas.style;
+        get style(): any {
+            return this.ctx.canvas.style;
         }
     }
 }

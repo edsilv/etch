@@ -12,12 +12,12 @@ define(["require", "exports", './BlueSquare', './RedSquare', "./DeltaMover"], fu
         function MainScene(maxDelta) {
             _super.call(this, maxDelta);
         }
-        MainScene.prototype.Setup = function () {
-            _super.prototype.Setup.call(this);
-            this.RedSquare = new RedSquare_1.RedSquare();
-            this.RedSquare.Init(this);
-            this.BlueSquare = new BlueSquare_1.BlueSquare();
-            this.BlueSquare.Init(this);
+        MainScene.prototype.setup = function () {
+            _super.prototype.setup.call(this);
+            this.redSquare = new RedSquare_1.RedSquare();
+            this.redSquare.init(this);
+            this.blueSquare = new BlueSquare_1.BlueSquare();
+            this.blueSquare.init(this);
             var moverCache = new Canvas();
             //for (var i = 0; i < 1000; i++){
             //    var mover = new Mover();
@@ -26,11 +26,11 @@ define(["require", "exports", './BlueSquare', './RedSquare', "./DeltaMover"], fu
             //}
             for (var i = 0; i < 1000; i++) {
                 var mover = new DeltaMover_1.DeltaMover();
-                mover.Init(this, moverCache);
-                this.DisplayList.Add(mover);
+                mover.init(this, moverCache);
+                this.displayList.add(mover);
             }
-            this.DisplayList.Add(this.RedSquare);
-            this.DisplayList.Add(this.BlueSquare);
+            this.displayList.add(this.redSquare);
+            this.displayList.add(this.blueSquare);
         };
         return MainScene;
     }(Stage));

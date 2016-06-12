@@ -1,5 +1,3 @@
-//import {DisplayObject} from '../src/Drawing/DisplayObject';
-//import {IDisplayContext} from '../src/Drawing/IDisplayContext';
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -7,25 +5,26 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 define(["require", "exports"], function (require, exports) {
     "use strict";
+    var DisplayObject = etch.drawing.DisplayObject;
     var GreenSquare = (function (_super) {
         __extends(GreenSquare, _super);
         function GreenSquare() {
             _super.apply(this, arguments);
         }
-        GreenSquare.prototype.Init = function (canvas) {
-            _super.prototype.Init.call(this, canvas);
+        GreenSquare.prototype.init = function (canvas) {
+            _super.prototype.init.call(this, canvas);
         };
-        GreenSquare.prototype.Setup = function () {
+        GreenSquare.prototype.setup = function () {
             //console.log('setup green');
         };
-        GreenSquare.prototype.Update = function () {
-            _super.prototype.Update.call(this);
+        GreenSquare.prototype.update = function () {
+            _super.prototype.update.call(this);
             //console.log('update green');
         };
-        GreenSquare.prototype.Draw = function () {
-            _super.prototype.Draw.call(this);
-            this.Ctx.fillStyle = "#00FF00";
-            this.Ctx.fillRect(125, 125, 50, 50);
+        GreenSquare.prototype.draw = function () {
+            _super.prototype.draw.call(this);
+            this.ctx.fillStyle = "#00FF00";
+            this.ctx.fillRect(125, 125, 50, 50);
             //console.log("draw green");
         };
         return GreenSquare;

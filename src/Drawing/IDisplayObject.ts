@@ -4,30 +4,29 @@ import Point = etch.primitives.Point;
 
 module etch.drawing{
     export interface IDisplayObject extends IDisplayContext{
-        CanvasHeight: number;
-        CanvasWidth: number;
-        Ctx: CanvasRenderingContext2D;
-        DeltaTime: number;
-        DisplayList: DisplayObjectCollection<IDisplayObject>;
-        Draw(): void;
-        DrawFrom: IDisplayContext;
-        DrawTo: IDisplayContext;
-        FrameCount: number;
-        Height: number;
-        Hide(): void;
-        Init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void;
-        IsInitialised: boolean;
-        IsPaused: boolean;
-        IsVisible: boolean;
-        LastVisualTick: number;
-        Pause(): void;
-        Play(): void;
-        Position: Point;
-        Resize(): void;
-        Setup(): void;
-        Show(): void;
-        Update(): void;
-        Width: number;
-        ZIndex: number;
+        canvasHeight: number;
+        canvasWidth: number;
+        deltaTime: number;
+        displayList: DisplayObjectCollection<IDisplayObject>;
+        draw(): void;
+        drawFrom: IDisplayContext;
+        drawTo: IDisplayContext;
+        frameCount: number;
+        height: number;
+        hide(): void;
+        init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void;
+        isInitialised: boolean;
+        isPaused: boolean;
+        isVisible: boolean;
+        lastVisualTick: number;
+        pause(): void;
+        play(): void;
+        position: Point;
+        resize(): void;
+        setup(): void;
+        show(): void;
+        update(): void;
+        width: number;
+        zIndex: number;
     }
 }

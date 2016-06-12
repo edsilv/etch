@@ -10,33 +10,41 @@ module etch.drawing{
                 // update ZIndex properties
                 for (var i = 0; i < this.Count; i++){
                     var obj: IDisplayObject = this.GetValueAt(i);
-                    obj.ZIndex = i;
+                    obj.zIndex = i;
                 }
             }, this)
         }
 
+        public add(value: T){
+            super.Add(value);
+        }
+
+        public remove (value: T): boolean {
+            return super.Remove(value);
+        }
+
         // todo: use utils.Collections.swap
-        Swap(obj1: T, obj2: T){
+        public swap(obj1: T, obj2: T){
             var obj1Index = this.IndexOf(obj1);
             var obj2Index = this.IndexOf(obj2);
 
-            this.SetIndex(obj1, obj2Index);
-            this.SetIndex(obj2, obj1Index);
+            this.setIndex(obj1, obj2Index);
+            this.setIndex(obj2, obj1Index);
         }
 
-        ToFront(obj: T){
+        public toFront(obj: T){
             var index = 0;
             if (this.Count > 0){
                 index = this.Count - 1;
             }
-            this.SetIndex(obj, index);
+            this.setIndex(obj, index);
         }
 
-        ToBack(obj: T){
-            this.SetIndex(obj, 0);
+        public toBack(obj: T){
+            this.setIndex(obj, 0);
         }
 
-        SetIndex(obj: T, index: number){
+        public setIndex(obj: T, index: number){
             if (index > this.Count || index < 0){
                 throw new etch.exceptions.Exception("index out of range");
             }
@@ -45,11 +53,11 @@ module etch.drawing{
             this.Insert(index, obj);
         }
 
-        get Bottom(): T{
+        get bottom(): T{
             return this.GetValueAt(0);
         }
 
-        get Top(): T{
+        get top(): T{
             return this.GetValueAt(this.Count - 1);
         }
     }

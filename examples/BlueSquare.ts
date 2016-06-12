@@ -1,44 +1,43 @@
-//import {DisplayObject} from '../src/Drawing/DisplayObject';
-//import {IDisplayContext} from '../src/Drawing/IDisplayContext';
 import {GreenSquare} from './GreenSquare';
 import {CyanSquare} from './CyanSquare';
+import DisplayObject = etch.drawing.DisplayObject;
 
 export class BlueSquare extends DisplayObject {
 
-    public CyanSquare: CyanSquare;
-    public GreenSquare: GreenSquare;
+    public cyanSquare: CyanSquare;
+    public greenSquare: GreenSquare;
 
-    Init(canvas: IDisplayContext): void {
-        super.Init(canvas);
+    init(canvas: IDisplayContext): void {
+        super.init(canvas);
     }
 
-    Setup() {
+    setup() {
         //console.log('setup blue');
-        this.GreenSquare = new GreenSquare();
-        this.GreenSquare.Init(this);
-        //this.GreenSquare.Hide();
-        //this.GreenSquare.Pause();
-        this.DisplayList.Add(this.GreenSquare);
+        this.greenSquare = new GreenSquare();
+        this.greenSquare.init(this);
+        //this.greenSquare.Hide();
+        //this.greenSquare.Pause();
+        this.displayList.add(this.greenSquare);
 
-        this.CyanSquare = new CyanSquare();
-        this.CyanSquare.Init(this);
-        this.DisplayList.Add(this.CyanSquare);
+        this.cyanSquare = new CyanSquare();
+        this.cyanSquare.init(this);
+        this.displayList.add(this.cyanSquare);
 
-        //this.DisplayList.Swap(this.GreenSquare, this.CyanSquare);
-        //this.DisplayList.ToFront(this.GreenSquare);
-        //this.DisplayList.SetIndex(this.GreenSquare, 1);
+        //this.DisplayList.Swap(this.greenSquare, this.cyanSquare);
+        //this.DisplayList.ToFront(this.greenSquare);
+        //this.DisplayList.SetIndex(this.greenSquare, 1);
     }
 
-    Update() {
-        super.Update();
+    update() {
+        super.update();
         //console.log('update blue');
     }
 
-    Draw() {
-        super.Draw();
+    draw() {
+        super.draw();
 
-        this.Ctx.fillStyle = "#0000FF";
-        this.Ctx.fillRect(150, 150, 150, 150);
+        this.ctx.fillStyle = "#0000FF";
+        this.ctx.fillRect(150, 150, 150, 150);
         //console.log("draw blue");
     }
 }

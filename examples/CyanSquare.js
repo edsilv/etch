@@ -5,25 +5,26 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 define(["require", "exports"], function (require, exports) {
     "use strict";
+    var DisplayObject = etch.drawing.DisplayObject;
     var CyanSquare = (function (_super) {
         __extends(CyanSquare, _super);
         function CyanSquare() {
             _super.apply(this, arguments);
         }
-        CyanSquare.prototype.Init = function (canvas) {
-            _super.prototype.Init.call(this, canvas);
+        CyanSquare.prototype.init = function (canvas) {
+            _super.prototype.init.call(this, canvas);
         };
-        CyanSquare.prototype.Setup = function () {
+        CyanSquare.prototype.setup = function () {
             //console.log('setup cyan');
         };
-        CyanSquare.prototype.Update = function () {
-            _super.prototype.Update.call(this);
+        CyanSquare.prototype.update = function () {
+            _super.prototype.update.call(this);
             //console.log('update cyan');
         };
-        CyanSquare.prototype.Draw = function () {
-            _super.prototype.Draw.call(this);
-            this.Ctx.fillStyle = "#00FFFF";
-            this.Ctx.fillRect(145, 145, 50, 50);
+        CyanSquare.prototype.draw = function () {
+            _super.prototype.draw.call(this);
+            this.ctx.fillStyle = "#00FFFF";
+            this.ctx.fillRect(145, 145, 50, 50);
             //console.log("draw cyan");
         };
         return CyanSquare;

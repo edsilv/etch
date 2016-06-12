@@ -3,106 +3,106 @@ module etch.drawing {
     // todo: make abstract?
     export class DisplayObject implements IDisplayObject {
 
-        private _DisplayList: DisplayObjectCollection<IDisplayObject> = new DisplayObjectCollection();
-        public DeltaTime: number;
-        public FrameCount: number = -1;
-        public Height: number;
-        public IsCached: boolean = false;
-        public IsInitialised: boolean = false;
-        public IsPaused: boolean = false;
-        public IsVisible: boolean = true;
-        public LastVisualTick: number = 0;
-        public Position: Point;
-        public DrawFrom: IDisplayContext;
-        public DrawTo: IDisplayContext;
-        public Width: number;
-        public ZIndex: number;
+        private _displayList: DisplayObjectCollection<IDisplayObject> = new DisplayObjectCollection();
+        public deltaTime: number;
+        public frameCount: number = -1;
+        public height: number;
+        public isCached: boolean = false;
+        public isInitialised: boolean = false;
+        public isPaused: boolean = false;
+        public isVisible: boolean = true;
+        public lastVisualTick: number = 0;
+        public position: Point;
+        public drawFrom: IDisplayContext;
+        public drawTo: IDisplayContext;
+        public width: number;
+        public zIndex: number;
 
-        Init(drawTo: IDisplayContext, drawFrom?: IDisplayContext):void {
-            this.DrawTo = drawTo;
-            if (drawFrom) this.DrawFrom = drawFrom;
-            this.IsInitialised = true;
-            this.Setup();
-            this.Resize();
+        init(drawTo: IDisplayContext, drawFrom?: IDisplayContext):void {
+            this.drawTo = drawTo;
+            if (drawFrom) this.drawFrom = drawFrom;
+            this.isInitialised = true;
+            this.setup();
+            this.resize();
         }
 
-        get Ctx(): CanvasRenderingContext2D {
-            return this.DrawTo.Ctx;
+        get ctx(): CanvasRenderingContext2D {
+            return this.drawTo.ctx;
         }
 
-        get CanvasWidth(): number {
-            return this.Ctx.canvas.width;
+        get canvasWidth(): number {
+            return this.ctx.canvas.width;
         }
 
-        get CanvasHeight(): number {
-            return this.Ctx.canvas.height;
+        get canvasHeight(): number {
+            return this.ctx.canvas.height;
         }
 
-        get DisplayList(): DisplayObjectCollection<IDisplayObject> {
-            return this._DisplayList;
+        get displayList(): DisplayObjectCollection<IDisplayObject> {
+            return this._displayList;
         }
 
-        set DisplayList(value: DisplayObjectCollection<IDisplayObject>) {
-            this._DisplayList = value;
+        set displayList(value: DisplayObjectCollection<IDisplayObject>) {
+            this._displayList = value;
         }
 
-        public Setup(): void {
-
-        }
-
-        public Update(): void {
+        public setup(): void {
 
         }
 
-        public Draw(): void {
+        public update(): void {
 
         }
 
-        public IsFirstFrame(): boolean {
-            return this.FrameCount === 0;
-        }
-
-        public Dispose(): void {
+        public draw(): void {
 
         }
 
-        public Play(): void {
-            this.IsPaused = false;
+        public isFirstFrame(): boolean {
+            return this.frameCount === 0;
+        }
 
-            for (var i = 0; i < this.DisplayList.Count; i++){
-                var displayObject: IDisplayObject = this.DisplayList.GetValueAt(i);
-                displayObject.Play();
+        public dispose(): void {
+
+        }
+
+        public play(): void {
+            this.isPaused = false;
+
+            for (var i = 0; i < this.displayList.Count; i++){
+                var displayObject: IDisplayObject = this.displayList.GetValueAt(i);
+                displayObject.play();
             }
         }
 
-        public Pause(): void {
-            this.IsPaused = true;
+        public pause(): void {
+            this.isPaused = true;
 
-            for (var i = 0; i < this.DisplayList.Count; i++){
-                var displayObject: IDisplayObject = this.DisplayList.GetValueAt(i);
-                displayObject.Pause();
+            for (var i = 0; i < this.displayList.Count; i++){
+                var displayObject: IDisplayObject = this.displayList.GetValueAt(i);
+                displayObject.pause();
             }
         }
 
-        public Resize(): void {
+        public resize(): void {
 
         }
 
-        public Show(): void {
-            this.IsVisible = true;
+        public show(): void {
+            this.isVisible = true;
 
-            for (var i = 0; i < this.DisplayList.Count; i++){
-                var displayObject: IDisplayObject = this.DisplayList.GetValueAt(i);
-                displayObject.Show();
+            for (var i = 0; i < this.displayList.Count; i++){
+                var displayObject: IDisplayObject = this.displayList.GetValueAt(i);
+                displayObject.show();
             }
         }
 
-        public Hide(): void {
-            this.IsVisible = false;
+        public hide(): void {
+            this.isVisible = false;
 
-            for (var i = 0; i < this.DisplayList.Count; i++){
-                var displayObject: IDisplayObject = this.DisplayList.GetValueAt(i);
-                displayObject.Hide();
+            for (var i = 0; i < this.displayList.Count; i++){
+                var displayObject: IDisplayObject = this.displayList.GetValueAt(i);
+                displayObject.hide();
             }
         }
     }

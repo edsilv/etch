@@ -1,19 +1,19 @@
 import Canvas = etch.drawing.Canvas;
 import {MainScene} from './MainScene';
 
-export default class Test{
+export default class Example{
 
-    public Canvas: Canvas;
-    public MainScene: MainScene;
+    public canvas: Canvas;
+    public mainScene: MainScene;
 
-    public Setup(): void {
-        this.Canvas = new Canvas();
-        this.Canvas.Style.backgroundColor = '#FFF';
-        this.Canvas.Width = 1024;
-        this.Canvas.Height = 768;
-        this.MainScene = new MainScene();
-        this.MainScene.Init(this.Canvas);
-        this.MainScene.Drawn.on((s: any, time: number) => {
+    public setup(): void {
+        this.canvas = new Canvas();
+        this.canvas.style.backgroundColor = '#FFF';
+        this.canvas.width = 1024;
+        this.canvas.height = 768;
+        this.mainScene = new MainScene();
+        this.mainScene.init(this.canvas);
+        this.mainScene.drawn.on((s: any, time: number) => {
             //console.log(time);
         }, this);
     }

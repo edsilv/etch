@@ -13,43 +13,43 @@ var requestAnimFrame = (function () {
 
 module etch.engine{
     export class ClockTimer {
-        private _Listeners: ITimerListener[] = [];
-        private _LastTime: number = 0;
+        private _listeners: ITimerListener[] = [];
+        private _lastTime: number = 0;
 
-        RegisterTimer(listener: ITimerListener) {
-            var ls = this._Listeners;
+        registerTimer(listener: ITimerListener) {
+            var ls = this._listeners;
             var index = ls.indexOf(listener);
             if (index > -1)
                 return;
             ls.push(listener);
             if (ls.length === 1)
-                this._RequestAnimationTick();
+                this._requestAnimationTick();
         }
 
-        UnregisterTimer(listener: ITimerListener) {
-            var ls = this._Listeners;
+        unregisterTimer(listener: ITimerListener) {
+            var ls = this._listeners;
             var index = ls.indexOf(listener);
             if (index > -1)
                 ls.splice(index, 1);
         }
 
-        private _DoTick() {
+        private _doTick() {
             var nowTime = new Date().getTime();
-            var lastTime = this._LastTime;
-            this._LastTime = nowTime;
+            var lastTime = this._lastTime;
+            this._lastTime = nowTime;
 
-            var ls = this._Listeners;
+            var ls = this._listeners;
             var len = ls.length;
             if (len === 0)
                 return;
             for (var i = 0; i < len; i++) {
-                ls[i].OnTicked(lastTime, nowTime);
+                ls[i].onTicked(lastTime, nowTime);
             }
-            this._RequestAnimationTick();
+            this._requestAnimationTick();
         }
 
-        private _RequestAnimationTick() {
-            requestAnimFrame(() => this._DoTick());
+        private _requestAnimationTick() {
+            requestAnimFrame(() => this._doTick());
         }
     }
 }

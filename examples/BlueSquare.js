@@ -5,36 +5,37 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 define(["require", "exports", './GreenSquare', './CyanSquare'], function (require, exports, GreenSquare_1, CyanSquare_1) {
     "use strict";
+    var DisplayObject = etch.drawing.DisplayObject;
     var BlueSquare = (function (_super) {
         __extends(BlueSquare, _super);
         function BlueSquare() {
             _super.apply(this, arguments);
         }
-        BlueSquare.prototype.Init = function (canvas) {
-            _super.prototype.Init.call(this, canvas);
+        BlueSquare.prototype.init = function (canvas) {
+            _super.prototype.init.call(this, canvas);
         };
-        BlueSquare.prototype.Setup = function () {
+        BlueSquare.prototype.setup = function () {
             //console.log('setup blue');
-            this.GreenSquare = new GreenSquare_1.GreenSquare();
-            this.GreenSquare.Init(this);
-            //this.GreenSquare.Hide();
-            //this.GreenSquare.Pause();
-            this.DisplayList.Add(this.GreenSquare);
-            this.CyanSquare = new CyanSquare_1.CyanSquare();
-            this.CyanSquare.Init(this);
-            this.DisplayList.Add(this.CyanSquare);
-            //this.DisplayList.Swap(this.GreenSquare, this.CyanSquare);
-            //this.DisplayList.ToFront(this.GreenSquare);
-            //this.DisplayList.SetIndex(this.GreenSquare, 1);
+            this.greenSquare = new GreenSquare_1.GreenSquare();
+            this.greenSquare.init(this);
+            //this.greenSquare.Hide();
+            //this.greenSquare.Pause();
+            this.displayList.add(this.greenSquare);
+            this.cyanSquare = new CyanSquare_1.CyanSquare();
+            this.cyanSquare.init(this);
+            this.displayList.add(this.cyanSquare);
+            //this.DisplayList.Swap(this.greenSquare, this.cyanSquare);
+            //this.DisplayList.ToFront(this.greenSquare);
+            //this.DisplayList.SetIndex(this.greenSquare, 1);
         };
-        BlueSquare.prototype.Update = function () {
-            _super.prototype.Update.call(this);
+        BlueSquare.prototype.update = function () {
+            _super.prototype.update.call(this);
             //console.log('update blue');
         };
-        BlueSquare.prototype.Draw = function () {
-            _super.prototype.Draw.call(this);
-            this.Ctx.fillStyle = "#0000FF";
-            this.Ctx.fillRect(150, 150, 150, 150);
+        BlueSquare.prototype.draw = function () {
+            _super.prototype.draw.call(this);
+            this.ctx.fillStyle = "#0000FF";
+            this.ctx.fillRect(150, 150, 150, 150);
             //console.log("draw blue");
         };
         return BlueSquare;

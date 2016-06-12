@@ -1,26 +1,25 @@
-//import {DisplayObject} from '../src/Drawing/DisplayObject';
-//import {IDisplayContext} from '../src/Drawing/IDisplayContext';
+import DisplayObject = etch.drawing.DisplayObject;
 
 export class GreenSquare extends DisplayObject {
 
-    Init(canvas: IDisplayContext): void {
-        super.Init(canvas);
+    init(canvas: IDisplayContext): void {
+        super.init(canvas);
     }
 
-    Setup() {
+    setup() {
         //console.log('setup green');
     }
 
-    Update() {
-        super.Update();
+    update() {
+        super.update();
         //console.log('update green');
     }
 
-    Draw() {
-        super.Draw();
+    draw() {
+        super.draw();
 
-        this.Ctx.fillStyle = "#00FF00";
-        this.Ctx.fillRect(125, 125, 50, 50);
+        this.ctx.fillStyle = "#00FF00";
+        this.ctx.fillRect(125, 125, 50, 50);
         //console.log("draw green");
     }
 }

@@ -1,5 +1,3 @@
-//import {DisplayObject} from '../src/Drawing/DisplayObject';
-//import {IDisplayContext} from '../src/Drawing/IDisplayContext';
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -7,25 +5,26 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 define(["require", "exports"], function (require, exports) {
     "use strict";
+    var DisplayObject = etch.drawing.DisplayObject;
     var RedSquare = (function (_super) {
         __extends(RedSquare, _super);
         function RedSquare() {
             _super.apply(this, arguments);
         }
-        RedSquare.prototype.Init = function (canvas) {
-            _super.prototype.Init.call(this, canvas);
+        RedSquare.prototype.init = function (canvas) {
+            _super.prototype.init.call(this, canvas);
         };
-        RedSquare.prototype.Setup = function () {
+        RedSquare.prototype.setup = function () {
             //console.log('setup red');
         };
-        RedSquare.prototype.Update = function () {
-            _super.prototype.Update.call(this);
+        RedSquare.prototype.update = function () {
+            _super.prototype.update.call(this);
             //console.log('update red');
         };
-        RedSquare.prototype.Draw = function () {
-            _super.prototype.Draw.call(this);
-            this.Ctx.fillStyle = "#FF0000";
-            this.Ctx.fillRect(0, 0, 150, 150);
+        RedSquare.prototype.draw = function () {
+            _super.prototype.draw.call(this);
+            this.ctx.fillStyle = "#FF0000";
+            this.ctx.fillRect(0, 0, 150, 150);
             //console.log("draw red");
         };
         return RedSquare;

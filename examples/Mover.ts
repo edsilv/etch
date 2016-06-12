@@ -1,94 +1,95 @@
 import Canvas = etch.drawing.Canvas;
+import DisplayObject = etch.drawing.DisplayObject;
 import Vector = etch.primitives.Vector;
 
 export class Mover extends DisplayObject {
 
-    public Velocity: Vector;
+    public velocity: Vector;
 
-    Init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void {
-        super.Init(drawTo, drawFrom);
+    init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void {
+        super.init(drawTo, drawFrom);
     }
 
-    Setup() {
-        this.Width = 30;
-        this.Height = 30;
+    setup() {
+        this.width = 30;
+        this.height = 30;
 
-        this.Position = new Vector(Math.randomBetween(this.CanvasWidth), Math.randomBetween(this.CanvasHeight)).ToPoint();
-        this.Velocity = new Vector(Math.randomBetween(-10, 10), Math.randomBetween(-10, 10));
+        this.position = new Vector(Math.randomBetween(this.canvasWidth), Math.randomBetween(this.canvasHeight)).toPoint();
+        this.velocity = new Vector(Math.randomBetween(-10, 10), Math.randomBetween(-10, 10));
     }
 
-    Update() {
-        super.Update();
+    update() {
+        super.update();
 
-        var p: Vector = this.Position.ToVector();
-        p.Add(this.Velocity);
+        var p: Vector = this.position.toVector();
+        p.add(this.velocity);
 
-        if (p.x > this.CanvasWidth) {
+        if (p.x > this.canvasWidth) {
             p.x = 0;
         } else if (p.x < 0) {
-            p.x = this.CanvasWidth;
+            p.x = this.canvasWidth;
         }
 
-        if (p.y > this.CanvasHeight) {
+        if (p.y > this.canvasHeight) {
             p.y = 0;
         } else if (p.y < 0) {
-            p.y = this.CanvasHeight;
+            p.y = this.canvasHeight;
         }
 
-        this.Position = p.ToPoint();
+        this.position = p.toPoint();
     }
 
-    Draw() {
-        super.Draw();
+    draw() {
+        super.draw();
 
         // if this is the first frame of the mover, and it has a display cache that hasn't been drawn to yet.
         // draw to the display cache.
-        if (this.IsFirstFrame() && this.DrawFrom && !this.DrawFrom.IsCached){
+        if (this.isFirstFrame() && this.drawFrom && !this.drawFrom.isCached){
             //console.log("draw to cache");
-            this.DrawFrom.Width = this.Width;
-            this.DrawFrom.Height = this.Height;
-            this.DrawToCtx(this.DrawFrom.Ctx);
-            this.DrawFrom.IsCached = true; // no other movers will draw to the cache
+            this.drawFrom.width = this.width;
+            this.drawFrom.height = this.height;
+            this.drawToCtx(this.drawFrom.ctx);
+            this.drawFrom.isCached = true; // no other movers will draw to the cache
         }
 
-        if (this.DrawFrom){
+        if (this.drawFrom){
             //console.log("draw from cache");
-            this.Ctx.drawImage((<Canvas>this.DrawFrom).HTMLElement, this.Position.x, this.Position.y);
+            this.ctx.drawImage((<Canvas>this.drawFrom).htmlElement, this.position.x, this.position.y);
         } else {
             //console.log("draw fresh");
-            this.DrawToCtx(this.Ctx);
+            this.drawToCtx(this.ctx);
         }
     }
 
-    DrawToCtx(ctx: CanvasRenderingContext2D) {
-        ctx.moveTo(this.Position.x, this.Position.y);
+    drawToCtx(ctx: CanvasRenderingContext2D) {
+        ctx.moveTo(this.position.x, this.position.y);
         ctx.fillStyle = "#000000";
         ctx.beginPath();
 
-        if (this.DrawFrom){
+        if (this.drawFrom){
             ctx.beginPath();
-            ctx.moveTo(this.Width / 2, 0);
-            ctx.lineTo(this.Width, this.Height / 2);
-            ctx.lineTo(this.Width / 2, this.Height);
-            ctx.lineTo(0, this.Height / 2);
+            ctx.moveTo(this.width / 2, 0);
+            ctx.lineTo(this.width, this.height / 2);
+            ctx.lineTo(this.width / 2, this.height);
+            ctx.lineTo(0, this.height / 2);
             ctx.closePath();
             ctx.fill();
 
-            //ctx.fillRect(0, 0, this.Width, this.Height);
+            //ctx.fillRect(0, 0, this.width, this.height);
 
-            //ctx.arc(this.Width / 2, this.Height / 2, this.Width / 2, 0, Math.TAU);
+            //ctx.arc(this.width / 2, this.height / 2, this.width / 2, 0, Math.TAU);
         } else {
             ctx.beginPath();
-            ctx.moveTo(this.Position.x + this.Width / 2, this.Position.y);
-            ctx.lineTo(this.Position.x + this.Width, this.Position.y + this.Height / 2);
-            ctx.lineTo(this.Position.x + this.Width / 2, this.Position.y + this.Height);
-            ctx.lineTo(this.Position.x, this.Position.y + this.Height / 2);
+            ctx.moveTo(this.position.x + this.width / 2, this.position.y);
+            ctx.lineTo(this.position.x + this.width, this.position.y + this.height / 2);
+            ctx.lineTo(this.position.x + this.width / 2, this.position.y + this.height);
+            ctx.lineTo(this.position.x, this.position.y + this.height / 2);
             ctx.closePath();
             ctx.fill();
 
-            //ctx.fillRect(this.Position.x, this.Position.y, this.Width, this.Height);
+            //ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
 
-            //ctx.arc(this.Position.x, this.Position.y, this.Width / 2, 0, Math.TAU);
+            //ctx.arc(this.position.x, this.position.y, this.width / 2, 0, Math.TAU);
         }
 
         ctx.closePath();

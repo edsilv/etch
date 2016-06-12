@@ -1,26 +1,25 @@
-//import {DisplayObject} from '../src/Drawing/DisplayObject';
-//import {IDisplayContext} from '../src/Drawing/IDisplayContext';
+import DisplayObject = etch.drawing.DisplayObject;
 
 export class RedSquare extends DisplayObject {
 
-    Init(canvas: IDisplayContext): void {
-        super.Init(canvas);
+    init(canvas: IDisplayContext): void {
+        super.init(canvas);
     }
 
-    Setup() {
+    setup() {
         //console.log('setup red');
     }
 
-    Update() {
-        super.Update();
+    update() {
+        super.update();
         //console.log('update red');
     }
 
-    Draw() {
-        super.Draw();
+    draw() {
+        super.draw();
 
-        this.Ctx.fillStyle = "#FF0000";
-        this.Ctx.fillRect(0, 0, 150, 150);
+        this.ctx.fillStyle = "#FF0000";
+        this.ctx.fillRect(0, 0, 150, 150);
         //console.log("draw red");
     }
 }

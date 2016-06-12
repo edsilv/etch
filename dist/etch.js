@@ -15,40 +15,40 @@ var etch;
     (function (engine) {
         var ClockTimer = (function () {
             function ClockTimer() {
-                this._Listeners = [];
-                this._LastTime = 0;
+                this._listeners = [];
+                this._lastTime = 0;
             }
-            ClockTimer.prototype.RegisterTimer = function (listener) {
-                var ls = this._Listeners;
+            ClockTimer.prototype.registerTimer = function (listener) {
+                var ls = this._listeners;
                 var index = ls.indexOf(listener);
                 if (index > -1)
                     return;
                 ls.push(listener);
                 if (ls.length === 1)
-                    this._RequestAnimationTick();
+                    this._requestAnimationTick();
             };
-            ClockTimer.prototype.UnregisterTimer = function (listener) {
-                var ls = this._Listeners;
+            ClockTimer.prototype.unregisterTimer = function (listener) {
+                var ls = this._listeners;
                 var index = ls.indexOf(listener);
                 if (index > -1)
                     ls.splice(index, 1);
             };
-            ClockTimer.prototype._DoTick = function () {
+            ClockTimer.prototype._doTick = function () {
                 var nowTime = new Date().getTime();
-                var lastTime = this._LastTime;
-                this._LastTime = nowTime;
-                var ls = this._Listeners;
+                var lastTime = this._lastTime;
+                this._lastTime = nowTime;
+                var ls = this._listeners;
                 var len = ls.length;
                 if (len === 0)
                     return;
                 for (var i = 0; i < len; i++) {
-                    ls[i].OnTicked(lastTime, nowTime);
+                    ls[i].onTicked(lastTime, nowTime);
                 }
-                this._RequestAnimationTick();
+                this._requestAnimationTick();
             };
-            ClockTimer.prototype._RequestAnimationTick = function () {
+            ClockTimer.prototype._requestAnimationTick = function () {
                 var _this = this;
-                requestAnimFrame(function () { return _this._DoTick(); });
+                requestAnimFrame(function () { return _this._doTick(); });
             };
             return ClockTimer;
         }());
@@ -66,21 +66,21 @@ var etch;
                 this.x = x;
                 this.y = y;
             }
-            Vector.prototype.Get = function () {
+            Vector.prototype.get = function () {
                 return new Vector(this.x, this.y);
             };
-            Vector.prototype.Set = function (x, y) {
+            Vector.prototype.set = function (x, y) {
                 this.x = x;
                 this.y = y;
             };
-            Vector.prototype.Add = function (v) {
+            Vector.prototype.add = function (v) {
                 this.x += v.x;
                 this.y += v.y;
             };
-            Vector.Add = function (v1, v2) {
+            Vector.add = function (v1, v2) {
                 return new Vector(v1.x + v2.x, v1.y + v2.y);
             };
-            Vector.prototype.Clone = function () {
+            Vector.prototype.clone = function () {
                 return new Vector(this.x, this.y);
             };
             Vector.LERP = function (start, end, p) {
@@ -88,62 +88,62 @@ var etch;
                 var y = start.y + (end.y - start.y) * p;
                 return new Vector(x, y);
             };
-            Vector.prototype.Sub = function (v) {
+            Vector.prototype.sub = function (v) {
                 this.x -= v.x;
                 this.y -= v.y;
             };
-            Vector.Sub = function (v1, v2) {
+            Vector.sub = function (v1, v2) {
                 return new Vector(v1.x - v2.x, v1.y - v2.y);
             };
-            Vector.prototype.Mult = function (n) {
+            Vector.prototype.mult = function (n) {
                 this.x = this.x * n;
                 this.y = this.y * n;
             };
-            Vector.Mult = function (v1, v2) {
+            Vector.mult = function (v1, v2) {
                 return new Vector(v1.x * v2.x, v1.y * v2.y);
             };
-            Vector.MultN = function (v1, n) {
+            Vector.multN = function (v1, n) {
                 return new Vector(v1.x * n, v1.y * n);
             };
-            Vector.prototype.Div = function (n) {
+            Vector.prototype.div = function (n) {
                 this.x = this.x / n;
                 this.y = this.y / n;
             };
-            Vector.Div = function (v1, v2) {
+            Vector.div = function (v1, v2) {
                 return new Vector(v1.x / v2.x, v1.y / v2.y);
             };
-            Vector.DivN = function (v1, n) {
+            Vector.divN = function (v1, n) {
                 return new Vector(v1.x / n, v1.y / n);
             };
-            Vector.prototype.Mag = function () {
+            Vector.prototype.mag = function () {
                 return Math.sqrt(this.x * this.x + this.y * this.y);
             };
-            Vector.prototype.MagSq = function () {
+            Vector.prototype.magSq = function () {
                 return (this.x * this.x + this.y * this.y);
             };
-            Vector.prototype.Normalize = function () {
-                var m = this.Mag();
+            Vector.prototype.normalize = function () {
+                var m = this.mag();
                 if (m != 0 && m != 1) {
-                    this.Div(m);
+                    this.div(m);
                 }
             };
-            Vector.prototype.Limit = function (max) {
-                if (this.MagSq() > max * max) {
-                    this.Normalize();
-                    this.Mult(max);
+            Vector.prototype.limit = function (max) {
+                if (this.magSq() > max * max) {
+                    this.normalize();
+                    this.mult(max);
                 }
             };
-            Vector.prototype.Heading = function () {
+            Vector.prototype.heading = function () {
                 var angle = Math.atan2(-this.y, this.x);
                 return -1 * angle;
             };
-            Vector.Random2D = function () {
-                return Vector.FromAngle((Math.random() * Math.TAU));
+            Vector.random2D = function () {
+                return Vector.fromAngle((Math.random() * Math.TAU));
             };
-            Vector.FromAngle = function (angle) {
+            Vector.fromAngle = function (angle) {
                 return new Vector(Math.cos(angle), Math.sin(angle));
             };
-            Vector.prototype.ToPoint = function () {
+            Vector.prototype.toPoint = function () {
                 return new primitives.Point(this.x, this.y);
             };
             return Vector;
@@ -400,47 +400,47 @@ var etch;
     (function (drawing) {
         var Canvas = (function () {
             function Canvas() {
-                this.IsCached = false;
-                this.HTMLElement = document.createElement("canvas");
-                document.body.appendChild(this.HTMLElement);
+                this.isCached = false;
+                this.htmlElement = document.createElement("canvas");
+                document.body.appendChild(this.htmlElement);
             }
-            Object.defineProperty(Canvas.prototype, "Ctx", {
+            Object.defineProperty(Canvas.prototype, "ctx", {
                 get: function () {
-                    return this.HTMLElement.getContext("2d");
+                    return this.htmlElement.getContext("2d");
                 },
                 enumerable: true,
                 configurable: true
             });
-            Object.defineProperty(Canvas.prototype, "Width", {
+            Object.defineProperty(Canvas.prototype, "width", {
                 get: function () {
-                    return this.Ctx.canvas.width;
+                    return this.ctx.canvas.width;
                 },
                 set: function (value) {
-                    this.Ctx.canvas.width = value;
+                    this.ctx.canvas.width = value;
                 },
                 enumerable: true,
                 configurable: true
             });
-            Object.defineProperty(Canvas.prototype, "Height", {
+            Object.defineProperty(Canvas.prototype, "height", {
                 get: function () {
-                    return this.Ctx.canvas.height;
+                    return this.ctx.canvas.height;
                 },
                 set: function (value) {
-                    this.Ctx.canvas.height = value;
+                    this.ctx.canvas.height = value;
                 },
                 enumerable: true,
                 configurable: true
             });
-            Object.defineProperty(Canvas.prototype, "Size", {
+            Object.defineProperty(Canvas.prototype, "size", {
                 get: function () {
-                    return new Size(this.Width, this.Height);
+                    return new Size(this.width, this.height);
                 },
                 enumerable: true,
                 configurable: true
             });
-            Object.defineProperty(Canvas.prototype, "Style", {
+            Object.defineProperty(Canvas.prototype, "style", {
                 get: function () {
-                    return this.Ctx.canvas.style;
+                    return this.ctx.canvas.style;
                 },
                 enumerable: true,
                 configurable: true
@@ -458,92 +458,92 @@ var etch;
         // todo: make abstract?
         var DisplayObject = (function () {
             function DisplayObject() {
-                this._DisplayList = new drawing.DisplayObjectCollection();
-                this.FrameCount = -1;
-                this.IsCached = false;
-                this.IsInitialised = false;
-                this.IsPaused = false;
-                this.IsVisible = true;
-                this.LastVisualTick = 0;
+                this._displayList = new drawing.DisplayObjectCollection();
+                this.frameCount = -1;
+                this.isCached = false;
+                this.isInitialised = false;
+                this.isPaused = false;
+                this.isVisible = true;
+                this.lastVisualTick = 0;
             }
-            DisplayObject.prototype.Init = function (drawTo, drawFrom) {
-                this.DrawTo = drawTo;
+            DisplayObject.prototype.init = function (drawTo, drawFrom) {
+                this.drawTo = drawTo;
                 if (drawFrom)
-                    this.DrawFrom = drawFrom;
-                this.IsInitialised = true;
-                this.Setup();
-                this.Resize();
+                    this.drawFrom = drawFrom;
+                this.isInitialised = true;
+                this.setup();
+                this.resize();
             };
-            Object.defineProperty(DisplayObject.prototype, "Ctx", {
+            Object.defineProperty(DisplayObject.prototype, "ctx", {
                 get: function () {
-                    return this.DrawTo.Ctx;
+                    return this.drawTo.ctx;
                 },
                 enumerable: true,
                 configurable: true
             });
-            Object.defineProperty(DisplayObject.prototype, "CanvasWidth", {
+            Object.defineProperty(DisplayObject.prototype, "canvasWidth", {
                 get: function () {
-                    return this.Ctx.canvas.width;
+                    return this.ctx.canvas.width;
                 },
                 enumerable: true,
                 configurable: true
             });
-            Object.defineProperty(DisplayObject.prototype, "CanvasHeight", {
+            Object.defineProperty(DisplayObject.prototype, "canvasHeight", {
                 get: function () {
-                    return this.Ctx.canvas.height;
+                    return this.ctx.canvas.height;
                 },
                 enumerable: true,
                 configurable: true
             });
-            Object.defineProperty(DisplayObject.prototype, "DisplayList", {
+            Object.defineProperty(DisplayObject.prototype, "displayList", {
                 get: function () {
-                    return this._DisplayList;
+                    return this._displayList;
                 },
                 set: function (value) {
-                    this._DisplayList = value;
+                    this._displayList = value;
                 },
                 enumerable: true,
                 configurable: true
             });
-            DisplayObject.prototype.Setup = function () {
+            DisplayObject.prototype.setup = function () {
             };
-            DisplayObject.prototype.Update = function () {
+            DisplayObject.prototype.update = function () {
             };
-            DisplayObject.prototype.Draw = function () {
+            DisplayObject.prototype.draw = function () {
             };
-            DisplayObject.prototype.IsFirstFrame = function () {
-                return this.FrameCount === 0;
+            DisplayObject.prototype.isFirstFrame = function () {
+                return this.frameCount === 0;
             };
-            DisplayObject.prototype.Dispose = function () {
+            DisplayObject.prototype.dispose = function () {
             };
-            DisplayObject.prototype.Play = function () {
-                this.IsPaused = false;
-                for (var i = 0; i < this.DisplayList.Count; i++) {
-                    var displayObject = this.DisplayList.GetValueAt(i);
-                    displayObject.Play();
+            DisplayObject.prototype.play = function () {
+                this.isPaused = false;
+                for (var i = 0; i < this.displayList.Count; i++) {
+                    var displayObject = this.displayList.GetValueAt(i);
+                    displayObject.play();
                 }
             };
-            DisplayObject.prototype.Pause = function () {
-                this.IsPaused = true;
-                for (var i = 0; i < this.DisplayList.Count; i++) {
-                    var displayObject = this.DisplayList.GetValueAt(i);
-                    displayObject.Pause();
+            DisplayObject.prototype.pause = function () {
+                this.isPaused = true;
+                for (var i = 0; i < this.displayList.Count; i++) {
+                    var displayObject = this.displayList.GetValueAt(i);
+                    displayObject.pause();
                 }
             };
-            DisplayObject.prototype.Resize = function () {
+            DisplayObject.prototype.resize = function () {
             };
-            DisplayObject.prototype.Show = function () {
-                this.IsVisible = true;
-                for (var i = 0; i < this.DisplayList.Count; i++) {
-                    var displayObject = this.DisplayList.GetValueAt(i);
-                    displayObject.Show();
+            DisplayObject.prototype.show = function () {
+                this.isVisible = true;
+                for (var i = 0; i < this.displayList.Count; i++) {
+                    var displayObject = this.displayList.GetValueAt(i);
+                    displayObject.show();
                 }
             };
-            DisplayObject.prototype.Hide = function () {
-                this.IsVisible = false;
-                for (var i = 0; i < this.DisplayList.Count; i++) {
-                    var displayObject = this.DisplayList.GetValueAt(i);
-                    displayObject.Hide();
+            DisplayObject.prototype.hide = function () {
+                this.isVisible = false;
+                for (var i = 0; i < this.displayList.Count; i++) {
+                    var displayObject = this.displayList.GetValueAt(i);
+                    displayObject.hide();
                 }
             };
             return DisplayObject;
@@ -571,42 +571,48 @@ var etch;
                     // update ZIndex properties
                     for (var i = 0; i < _this.Count; i++) {
                         var obj = _this.GetValueAt(i);
-                        obj.ZIndex = i;
+                        obj.zIndex = i;
                     }
                 }, this);
             }
+            DisplayObjectCollection.prototype.add = function (value) {
+                _super.prototype.Add.call(this, value);
+            };
+            DisplayObjectCollection.prototype.remove = function (value) {
+                return _super.prototype.Remove.call(this, value);
+            };
             // todo: use utils.Collections.swap
-            DisplayObjectCollection.prototype.Swap = function (obj1, obj2) {
+            DisplayObjectCollection.prototype.swap = function (obj1, obj2) {
                 var obj1Index = this.IndexOf(obj1);
                 var obj2Index = this.IndexOf(obj2);
-                this.SetIndex(obj1, obj2Index);
-                this.SetIndex(obj2, obj1Index);
+                this.setIndex(obj1, obj2Index);
+                this.setIndex(obj2, obj1Index);
             };
-            DisplayObjectCollection.prototype.ToFront = function (obj) {
+            DisplayObjectCollection.prototype.toFront = function (obj) {
                 var index = 0;
                 if (this.Count > 0) {
                     index = this.Count - 1;
                 }
-                this.SetIndex(obj, index);
+                this.setIndex(obj, index);
             };
-            DisplayObjectCollection.prototype.ToBack = function (obj) {
-                this.SetIndex(obj, 0);
+            DisplayObjectCollection.prototype.toBack = function (obj) {
+                this.setIndex(obj, 0);
             };
-            DisplayObjectCollection.prototype.SetIndex = function (obj, index) {
+            DisplayObjectCollection.prototype.setIndex = function (obj, index) {
                 if (index > this.Count || index < 0) {
                     throw new etch.exceptions.Exception("index out of range");
                 }
                 this.Remove(obj);
                 this.Insert(index, obj);
             };
-            Object.defineProperty(DisplayObjectCollection.prototype, "Bottom", {
+            Object.defineProperty(DisplayObjectCollection.prototype, "bottom", {
                 get: function () {
                     return this.GetValueAt(0);
                 },
                 enumerable: true,
                 configurable: true
             });
-            Object.defineProperty(DisplayObjectCollection.prototype, "Top", {
+            Object.defineProperty(DisplayObjectCollection.prototype, "top", {
                 get: function () {
                     return this.GetValueAt(this.Count - 1);
                 },
@@ -639,58 +645,58 @@ var etch;
             __extends(Stage, _super);
             function Stage(maxDelta) {
                 _super.call(this);
-                this.DeltaTime = new Date(0).getTime();
-                this.LastVisualTick = new Date(0).getTime();
-                this.Updated = new nullstone.Event();
-                this.Drawn = new nullstone.Event();
-                this._MaxDelta = maxDelta || 1000 / 60;
+                this.deltaTime = new Date(0).getTime();
+                this.lastVisualTick = new Date(0).getTime();
+                this.updated = new nullstone.Event();
+                this.drawn = new nullstone.Event();
+                this._maxDelta = maxDelta || 1000 / 60; // 60 fps
             }
-            Stage.prototype.Init = function (drawTo) {
-                _super.prototype.Init.call(this, drawTo);
-                this.Timer = new ClockTimer();
-                this.Timer.RegisterTimer(this);
+            Stage.prototype.init = function (drawTo) {
+                _super.prototype.init.call(this, drawTo);
+                this.timer = new ClockTimer();
+                this.timer.registerTimer(this);
             };
-            Stage.prototype.OnTicked = function (lastTime, nowTime) {
-                this.DeltaTime = Math.min(nowTime - this.LastVisualTick, this._MaxDelta);
-                this.LastVisualTick = nowTime;
+            Stage.prototype.onTicked = function (lastTime, nowTime) {
+                this.deltaTime = Math.min(nowTime - this.lastVisualTick, this._maxDelta);
+                this.lastVisualTick = nowTime;
                 // todo: make this configurable
-                this.Ctx.clearRect(0, 0, this.Ctx.canvas.width, this.Ctx.canvas.height);
-                this.UpdateDisplayList(this.DisplayList);
-                this.Updated.raise(this, this.LastVisualTick);
-                this.DrawDisplayList(this.DisplayList);
-                this.Drawn.raise(this, this.LastVisualTick);
+                this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+                this.updateDisplayList(this.displayList);
+                this.updated.raise(this, this.lastVisualTick);
+                this.drawDisplayList(this.displayList);
+                this.drawn.raise(this, this.lastVisualTick);
             };
-            Stage.prototype.UpdateDisplayList = function (displayList) {
+            Stage.prototype.updateDisplayList = function (displayList) {
                 for (var i = 0; i < displayList.Count; i++) {
                     var displayObject = displayList.GetValueAt(i);
-                    displayObject.FrameCount++;
-                    displayObject.DeltaTime = this.DeltaTime;
-                    displayObject.LastVisualTick = this.LastVisualTick;
-                    if (!displayObject.IsPaused) {
-                        displayObject.Update();
+                    displayObject.frameCount++;
+                    displayObject.deltaTime = this.deltaTime;
+                    displayObject.lastVisualTick = this.lastVisualTick;
+                    if (!displayObject.isPaused) {
+                        displayObject.update();
                     }
-                    this.UpdateDisplayList(displayObject.DisplayList);
+                    this.updateDisplayList(displayObject.displayList);
                 }
             };
-            Stage.prototype.DrawDisplayList = function (displayList) {
+            Stage.prototype.drawDisplayList = function (displayList) {
                 for (var i = 0; i < displayList.Count; i++) {
                     var displayObject = displayList.GetValueAt(i);
-                    if (displayObject.IsVisible) {
-                        displayObject.Draw();
+                    if (displayObject.isVisible) {
+                        displayObject.draw();
                     }
-                    this.DrawDisplayList(displayObject.DisplayList);
+                    this.drawDisplayList(displayObject.displayList);
                 }
             };
-            Stage.prototype.ResizeDisplayList = function (displayList) {
+            Stage.prototype.resizeDisplayList = function (displayList) {
                 for (var i = 0; i < displayList.Count; i++) {
                     var displayObject = displayList.GetValueAt(i);
-                    displayObject.Resize();
-                    this.ResizeDisplayList(displayObject.DisplayList);
+                    displayObject.resize();
+                    this.resizeDisplayList(displayObject.displayList);
                 }
             };
-            Stage.prototype.Resize = function () {
-                _super.prototype.Resize.call(this);
-                this.ResizeDisplayList(this.DisplayList);
+            Stage.prototype.resize = function () {
+                _super.prototype.resize.call(this);
+                this.resizeDisplayList(this.displayList);
             };
             return Stage;
         }(drawing.DisplayObject));
@@ -848,10 +854,10 @@ var etch;
             function Point() {
                 _super.apply(this, arguments);
             }
-            Point.prototype.Clone = function () {
+            Point.prototype.clone = function () {
                 return new Point(this.x, this.y);
             };
-            Point.prototype.ToVector = function () {
+            Point.prototype.toVector = function () {
                 return new primitives.Vector(this.x, this.y);
             };
             return Point;

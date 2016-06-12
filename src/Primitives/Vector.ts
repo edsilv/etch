@@ -7,25 +7,25 @@ module etch.primitives{
             public y: number
         ) {}
 
-        public Get(): Vector {
+        public get(): Vector {
             return new Vector(this.x, this.y);
         }
 
-        public Set(x: number, y: number): void{
+        public set(x: number, y: number): void{
             this.x = x;
             this.y = y;
         }
 
-        public Add(v: Vector): void {
+        public add(v: Vector): void {
             this.x += v.x;
             this.y += v.y;
         }
 
-        static Add(v1: Vector, v2: Vector): Vector {
+        static add(v1: Vector, v2: Vector): Vector {
             return new Vector(v1.x + v2.x, v1.y + v2.y);
         }
 
-        public Clone(): Vector {
+        public clone(): Vector {
             return new Vector(this.x, this.y);
         }
 
@@ -35,77 +35,77 @@ module etch.primitives{
             return new Vector(x, y);
         }
 
-        public Sub(v: Vector): void {
+        public sub(v: Vector): void {
             this.x -= v.x;
             this.y -= v.y;
         }
 
-        static Sub(v1: Vector, v2: Vector): Vector {
+        static sub(v1: Vector, v2: Vector): Vector {
             return new Vector(v1.x - v2.x, v1.y - v2.y);
         }
 
-        public Mult(n: number): void {
+        public mult(n: number): void {
             this.x = this.x * n;
             this.y = this.y * n;
         }
 
-        static Mult(v1: Vector, v2: Vector): Vector {
+        static mult(v1: Vector, v2: Vector): Vector {
             return new Vector(v1.x * v2.x, v1.y * v2.y);
         }
 
-        static MultN(v1: Vector, n: number): Vector {
+        static multN(v1: Vector, n: number): Vector {
             return new Vector(v1.x * n, v1.y * n);
         }
 
-        public Div(n: number): void {
+        public div(n: number): void {
             this.x = this.x / n;
             this.y = this.y / n;
         }
 
-        static Div(v1: Vector, v2: Vector): Vector {
+        static div(v1: Vector, v2: Vector): Vector {
             return new Vector(v1.x / v2.x, v1.y / v2.y);
         }
 
-        static DivN(v1: Vector, n: number): Vector {
+        static divN(v1: Vector, n: number): Vector {
             return new Vector(v1.x / n, v1.y / n);
         }
 
-        public Mag(): number {
+        public mag(): number {
             return Math.sqrt(this.x * this.x + this.y * this.y);
         }
 
-        public MagSq(): number {
+        public magSq(): number {
             return (this.x * this.x + this.y * this.y);
         }
 
-        public Normalize(): void {
-            var m = this.Mag();
+        public normalize(): void {
+            var m = this.mag();
             if (m != 0 && m != 1) {
-                this.Div(m);
+                this.div(m);
             }
         }
 
-        public Limit(max: number){
-            if (this.MagSq() > max * max) {
-                this.Normalize();
-                this.Mult(max);
+        public limit(max: number){
+            if (this.magSq() > max * max) {
+                this.normalize();
+                this.mult(max);
             }
         }
 
-        public Heading() {
+        public heading() {
             var angle = Math.atan2(-this.y, this.x);
             return -1*angle;
         }
 
-        static Random2D(): Vector{
-            return Vector.FromAngle((Math.random() * Math.TAU));
+        static random2D(): Vector{
+            return Vector.fromAngle((Math.random() * Math.TAU));
         }
 
-        static FromAngle(angle: number): Vector {
+        static fromAngle(angle: number): Vector {
             return new Vector(Math.cos(angle), Math.sin(angle));
         }
 
-        public ToPoint(): Point {
+        public toPoint(): Point {
             return new Point(this.x, this.y);
         }
     }

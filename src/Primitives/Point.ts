@@ -1,10 +1,10 @@
 module etch.primitives {
     export class Point extends minerva.Point {
-        Clone(): Point {
+        clone(): Point {
             return new Point(this.x, this.y);
         }
 
-        ToVector(): Vector {
+        toVector(): Vector {
             return new Vector(this.x, this.y);
         }
     }

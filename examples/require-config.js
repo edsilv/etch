@@ -1,9 +1,7 @@
 require.config({
     baseUrl: "./",
     paths: {
-        "etch": "js/etch.bundle",
-        "Example": "Example",
-        "stats": "stats.min"
+        "example": "Example"
     },
     shim: {
 
@@ -11,12 +9,12 @@ require.config({
 });
 
 require([
-    "etch",
-    "Example",
-    "stats"
-], function (etch, Example) {
-    window.App = new Example.default();
-    window.App.Setup();
+    "example"
+], function (example) {
+    var example = new example.default();
+    example.setup();
+
+    // uncomment for stats
 
     // $(function() {
 
