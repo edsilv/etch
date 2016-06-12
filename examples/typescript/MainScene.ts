@@ -24,6 +24,7 @@ export class MainScene extends Stage{
         this.blueSquare.init(this);
 
         var moverCache: Canvas = new Canvas();
+        moverCache.hide();
 
         //for (var i = 0; i < 1000; i++){
         //    var mover = new Mover();

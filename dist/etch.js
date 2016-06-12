@@ -393,6 +393,8 @@ var etch;
     })(collections = etch.collections || (etch.collections = {}));
 })(etch || (etch = {}));
 
+
+
 var Size = minerva.Size;
 var etch;
 (function (etch) {
@@ -445,6 +447,12 @@ var etch;
                 enumerable: true,
                 configurable: true
             });
+            Canvas.prototype.hide = function () {
+                this.style.display = 'none';
+            };
+            Canvas.prototype.show = function () {
+                this.style.display = 'block';
+            };
             return Canvas;
         }());
         drawing.Canvas = Canvas;
@@ -706,8 +714,6 @@ var etch;
         drawing.Stage = Stage;
     })(drawing = etch.drawing || (etch.drawing = {}));
 })(etch || (etch = {}));
-
-
 
 var etch;
 (function (etch) {

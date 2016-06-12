@@ -42,6 +42,7 @@ var GulpConfig = (function () {
         };
         this.examplesTSSrc = [
             './examples/*.ts',
+            './examples/**/*.ts',
             './dist/*.d.ts',
             './typings/*.ts'
         ];

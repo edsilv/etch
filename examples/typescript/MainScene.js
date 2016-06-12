@@ -19,6 +19,7 @@ define(["require", "exports", './BlueSquare', './RedSquare', "./DeltaMover"], fu
             this.blueSquare = new BlueSquare_1.BlueSquare();
             this.blueSquare.init(this);
             var moverCache = new Canvas();
+            moverCache.hide();
             //for (var i = 0; i < 1000; i++){
             //    var mover = new Mover();
             //    mover.Init(this, moverCache);

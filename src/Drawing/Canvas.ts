@@ -38,5 +38,13 @@ module etch.drawing{
         get style(): any {
             return this.ctx.canvas.style;
         }
+
+        public hide(): void {
+            this.style.display = 'none';
+        }
+
+        public show(): void {
+            this.style.display = 'block';
+        }
     }
 }
