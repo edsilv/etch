@@ -393,8 +393,6 @@ var etch;
     })(collections = etch.collections || (etch.collections = {}));
 })(etch || (etch = {}));
 
-
-
 var Size = minerva.Size;
 var etch;
 (function (etch) {
@@ -714,6 +712,8 @@ var etch;
         drawing.Stage = Stage;
     })(drawing = etch.drawing || (etch.drawing = {}));
 })(etch || (etch = {}));
+
+
 
 var etch;
 (function (etch) {
