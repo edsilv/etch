@@ -1,22 +1,14 @@
-import Sketch = require("../../../src/sketch");
-import Mover2 = require("./Mover2");
+import Canvas = etch.drawing.Canvas;
+import Stage = etch.drawing.Stage;
+import Vector = etch.primitives.Vector;
+import {Mover2} from "./Mover2";
 
-class ConstantAcceleration extends Sketch{
+export class ConstantAcceleration extends Stage{
 
-	mover: Mover2;
+	public mover: Mover2;
 
 	setup(): void{
 		this.mover = new Mover2();
 	}
 
-	draw(): void{
-		background(255);
-
-        this.mover.update();
-        this.mover.checkEdges();
-        this.mover.display();
-	}
-
 }
-
-export = ConstantAcceleration;

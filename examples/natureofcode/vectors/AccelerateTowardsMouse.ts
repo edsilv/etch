@@ -1,22 +1,14 @@
-import Sketch = require("../../../src/sketch");
-import Mover4 = require("./mover4");
+import Canvas = etch.drawing.Canvas;
+import Stage = etch.drawing.Stage;
+import Vector = etch.primitives.Vector;
+import {Mover4} from './Mover4';
 
-class AccelerateTowardsMouse extends Sketch{
+export class AccelerateTowardsMouse extends Stage{
 
-	mover: Mover4;
+	public mover: Mover4;
 
 	setup(): void{
 		this.mover = new Mover4();
 	}
 
-	draw(): void{
-		background(255);
-
-        this.mover.update();
-        this.mover.checkEdges();
-        this.mover.display();
-	}
-
 }
-
-export = AccelerateTowardsMouse;

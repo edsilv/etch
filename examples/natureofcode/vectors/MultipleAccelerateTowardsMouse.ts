@@ -1,7 +1,9 @@
-import Sketch = require("../../../src/sketch");
-import Mover4 = require("./mover4");
+import Canvas = etch.drawing.Canvas;
+import Stage = etch.drawing.Stage;
+import Vector = etch.primitives.Vector;
+import {Mover4} from "./mover4";
 
-class MultipleAccelerateTowardsMouse extends Sketch{
+export class MultipleAccelerateTowardsMouse extends Stage{
 
 	movers: Array<Mover4>;
 
@@ -13,16 +15,4 @@ class MultipleAccelerateTowardsMouse extends Sketch{
 		}
 	}
 
-	draw(): void{
-		background(255);
-
-        for (var i = 0; i < this.movers.length; i++) {
-			this.movers[i].update();
-			this.movers[i].checkEdges();
-			this.movers[i].display();
-		}
-	}
-
 }
-
-export = MultipleAccelerateTowardsMouse;

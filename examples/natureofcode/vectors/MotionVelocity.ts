@@ -1,22 +1,14 @@
-import Sketch = require("../../../src/sketch");
-import Mover = require("./mover");
+import Canvas = etch.drawing.Canvas;
+import Stage = etch.drawing.Stage;
+import Vector = etch.primitives.Vector;
+import {Mover} from "./mover";
 
-class MotionVelocity extends Sketch{
+export class MotionVelocity extends Stage{
 
-    mover: Mover;
+    public mover: Mover;
 
     setup(): void{
         this.mover = new Mover();
     }
 
-    draw(){
-        background(255);
-
-        this.mover.update();
-        this.mover.checkEdges();
-        this.mover.display();
-    }
-
 }
-
-export = MotionVelocity;
