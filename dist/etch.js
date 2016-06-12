@@ -1,3 +1,4 @@
+// etch v0.1.1 https://github.com/edsilv/etch#readme
 var requestAnimFrame = (function () {
     return window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
@@ -50,7 +51,7 @@ var etch;
                 requestAnimFrame(function () { return _this._DoTick(); });
             };
             return ClockTimer;
-        })();
+        }());
         engine.ClockTimer = ClockTimer;
     })(engine = etch.engine || (etch.engine = {}));
 })(etch || (etch = {}));
@@ -146,7 +147,7 @@ var etch;
                 return new primitives.Point(this.x, this.y);
             };
             return Vector;
-        })();
+        }());
         primitives.Vector = Vector;
     })(primitives = etch.primitives || (etch.primitives = {}));
 })(etch || (etch = {}));
@@ -171,7 +172,7 @@ var etch;
                 return this.Message;
             };
             return Exception;
-        })();
+        }());
         exceptions.Exception = Exception;
         var ArgumentException = (function (_super) {
             __extends(ArgumentException, _super);
@@ -179,7 +180,7 @@ var etch;
                 _super.call(this, message);
             }
             return ArgumentException;
-        })(Exception);
+        }(Exception));
         exceptions.ArgumentException = ArgumentException;
         var ArgumentNullException = (function (_super) {
             __extends(ArgumentNullException, _super);
@@ -187,7 +188,7 @@ var etch;
                 _super.call(this, message);
             }
             return ArgumentNullException;
-        })(Exception);
+        }(Exception));
         exceptions.ArgumentNullException = ArgumentNullException;
         var InvalidOperationException = (function (_super) {
             __extends(InvalidOperationException, _super);
@@ -195,7 +196,7 @@ var etch;
                 _super.call(this, message);
             }
             return InvalidOperationException;
-        })(Exception);
+        }(Exception));
         exceptions.InvalidOperationException = InvalidOperationException;
         var NotSupportedException = (function (_super) {
             __extends(NotSupportedException, _super);
@@ -203,7 +204,7 @@ var etch;
                 _super.call(this, message);
             }
             return NotSupportedException;
-        })(Exception);
+        }(Exception));
         exceptions.NotSupportedException = NotSupportedException;
         var IndexOutOfRangeException = (function (_super) {
             __extends(IndexOutOfRangeException, _super);
@@ -211,7 +212,7 @@ var etch;
                 _super.call(this, index.toString());
             }
             return IndexOutOfRangeException;
-        })(Exception);
+        }(Exception));
         exceptions.IndexOutOfRangeException = IndexOutOfRangeException;
         var ArgumentOutOfRangeException = (function (_super) {
             __extends(ArgumentOutOfRangeException, _super);
@@ -219,7 +220,7 @@ var etch;
                 _super.call(this, msg);
             }
             return ArgumentOutOfRangeException;
-        })(Exception);
+        }(Exception));
         exceptions.ArgumentOutOfRangeException = ArgumentOutOfRangeException;
         var AttachException = (function (_super) {
             __extends(AttachException, _super);
@@ -228,7 +229,7 @@ var etch;
                 this.Data = data;
             }
             return AttachException;
-        })(Exception);
+        }(Exception));
         exceptions.AttachException = AttachException;
         var InvalidJsonException = (function (_super) {
             __extends(InvalidJsonException, _super);
@@ -238,7 +239,7 @@ var etch;
                 this.InnerException = innerException;
             }
             return InvalidJsonException;
-        })(Exception);
+        }(Exception));
         exceptions.InvalidJsonException = InvalidJsonException;
         var TargetInvocationException = (function (_super) {
             __extends(TargetInvocationException, _super);
@@ -247,7 +248,7 @@ var etch;
                 this.InnerException = innerException;
             }
             return TargetInvocationException;
-        })(Exception);
+        }(Exception));
         exceptions.TargetInvocationException = TargetInvocationException;
         var UnknownTypeException = (function (_super) {
             __extends(UnknownTypeException, _super);
@@ -256,7 +257,7 @@ var etch;
                 this.FullTypeName = fullTypeName;
             }
             return UnknownTypeException;
-        })(Exception);
+        }(Exception));
         exceptions.UnknownTypeException = UnknownTypeException;
         var FormatException = (function (_super) {
             __extends(FormatException, _super);
@@ -264,7 +265,7 @@ var etch;
                 _super.call(this, message);
             }
             return FormatException;
-        })(Exception);
+        }(Exception));
         exceptions.FormatException = FormatException;
     })(exceptions = etch.exceptions || (etch.exceptions = {}));
 })(etch || (etch = {}));
@@ -363,7 +364,7 @@ var etch;
                 this.PropertyChanged.raise(this, new collections.PropertyChangedEventArgs(propertyName));
             };
             return ObservableCollection;
-        })();
+        }());
         collections.ObservableCollection = ObservableCollection;
     })(collections = etch.collections || (etch.collections = {}));
 })(etch || (etch = {}));
@@ -382,7 +383,7 @@ var etch;
                 Object.defineProperty(this, "PropertyName", { value: propertyName, writable: false });
             }
             return PropertyChangedEventArgs;
-        })();
+        }());
         collections.PropertyChangedEventArgs = PropertyChangedEventArgs;
         // todo: remove?
         collections.INotifyPropertyChanged_ = new nullstone.Interface("INotifyPropertyChanged");
@@ -445,7 +446,7 @@ var etch;
                 configurable: true
             });
             return Canvas;
-        })();
+        }());
         drawing.Canvas = Canvas;
     })(drawing = etch.drawing || (etch.drawing = {}));
 })(etch || (etch = {}));
@@ -546,7 +547,7 @@ var etch;
                 }
             };
             return DisplayObject;
-        })();
+        }());
         drawing.DisplayObject = DisplayObject;
     })(drawing = etch.drawing || (etch.drawing = {}));
 })(etch || (etch = {}));
@@ -613,7 +614,7 @@ var etch;
                 configurable: true
             });
             return DisplayObjectCollection;
-        })(ObservableCollection);
+        }(ObservableCollection));
         drawing.DisplayObjectCollection = DisplayObjectCollection;
     })(drawing = etch.drawing || (etch.drawing = {}));
 })(etch || (etch = {}));
@@ -692,7 +693,7 @@ var etch;
                 this.ResizeDisplayList(this.DisplayList);
             };
             return Stage;
-        })(drawing.DisplayObject);
+        }(drawing.DisplayObject));
         drawing.Stage = Stage;
     })(drawing = etch.drawing || (etch.drawing = {}));
 })(etch || (etch = {}));
@@ -759,7 +760,7 @@ var etch;
                 return args;
             };
             return CollectionChangedEventArgs;
-        })();
+        }());
         events.CollectionChangedEventArgs = CollectionChangedEventArgs;
     })(events = etch.events || (etch.events = {}));
 })(etch || (etch = {}));
@@ -786,7 +787,7 @@ var etch;
                 Object.defineProperty(this, "PropertyName", { value: propertyName, writable: false });
             }
             return PropertyChangedEventArgs;
-        })();
+        }());
         events.PropertyChangedEventArgs = PropertyChangedEventArgs;
         events.INotifyPropertyChanged_ = new nullstone.Interface("INotifyPropertyChanged");
         // todo: remove?
@@ -812,7 +813,7 @@ var etch;
                 _super.apply(this, arguments);
             }
             return RoutedEvent;
-        })(nullstone.Event);
+        }(nullstone.Event));
         events.RoutedEvent = RoutedEvent;
     })(events = etch.events || (etch.events = {}));
 })(etch || (etch = {}));
@@ -828,7 +829,7 @@ var etch;
                 this.OriginalSource = null;
             }
             return RoutedEventArgs;
-        })();
+        }());
         events.RoutedEventArgs = RoutedEventArgs;
     })(events = etch.events || (etch.events = {}));
 })(etch || (etch = {}));
@@ -854,7 +855,7 @@ var etch;
                 return new primitives.Vector(this.x, this.y);
             };
             return Point;
-        })(minerva.Point);
+        }(minerva.Point));
         primitives.Point = Point;
     })(primitives = etch.primitives || (etch.primitives = {}));
 })(etch || (etch = {}));

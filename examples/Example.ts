@@ -18,8 +18,9 @@ export default class Test{
         }, this);
     }
 
-    public Tick(): void {
-        this.MainScene.Update();
-        this.MainScene.Draw();
-    }
+    // necessary for stats
+    // public Tick(): void {
+    //     this.MainScene.Update();
+    //     this.MainScene.Draw();
+    // }
 }

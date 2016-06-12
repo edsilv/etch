@@ -1,3 +1,4 @@
+// etch v0.1.1 https://github.com/edsilv/etch#readme
 import ITimerListener = etch.engine.ITimerListener;
 declare var requestAnimFrame: any;
 declare module etch.engine {

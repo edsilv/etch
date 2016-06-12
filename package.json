@@ -8,6 +8,8 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "del": "^2.2.0",
+    "extensions": "https://github.com/edsilv/extensions",
     "gulp": "^3.9.0",
     "gulp-bump": "^1.0.0",
     "gulp-concat": "^2.6.0",
@@ -16,6 +18,8 @@
     "gulp-typescript": "^2.9.2",
     "gulp-utils": "git://github.com/edsilv/gulp-utils",
     "merge2": "^0.3.6",
+    "minerva": "git://github.com/wsick/minerva.git",
+    "nullstone": "git://github.com/wsick/nullstone.git",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.4",
     "yargs": "^3.29.0"

@@ -5,9 +5,9 @@ var connect = require('gulp-connect');
 var gulp = require('gulp');
 var utils = require('gulp-utils');
 
-gulp.task('test', function() {
+gulp.task('example', function() {
     connect.server({
-        root: './test',
+        root: config.examplesDir,
         middleware: function(connect, opt) {
             return [
                 // serve contents of the dist folder
