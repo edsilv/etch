@@ -578,6 +578,9 @@ var etch;
             DisplayObjectCollection.prototype.add = function (value) {
                 _super.prototype.Add.call(this, value);
             };
+            DisplayObjectCollection.prototype.addRange = function (values) {
+                _super.prototype.AddRange.call(this, values);
+            };
             DisplayObjectCollection.prototype.remove = function (value) {
                 return _super.prototype.Remove.call(this, value);
             };

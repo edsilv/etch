@@ -19,6 +19,10 @@ module etch.drawing{
             super.Add(value);
         }
 
+        public addRange (values: T[]){
+            super.AddRange(values);
+        }
+
         public remove (value: T): boolean {
             return super.Remove(value);
         }

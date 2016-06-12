@@ -4112,6 +4112,7 @@ declare module etch.drawing {
     class DisplayObjectCollection<T extends IDisplayObject> extends ObservableCollection<T> {
         constructor();
         add(value: T): void;
+        addRange(values: T[]): void;
         remove(value: T): boolean;
         swap(obj1: T, obj2: T): void;
         toFront(obj: T): void;
