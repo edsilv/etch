@@ -393,18 +393,21 @@ var etch;
     })(collections = etch.collections || (etch.collections = {}));
 })(etch || (etch = {}));
 
-
-
 var Size = minerva.Size;
 var etch;
 (function (etch) {
     var drawing;
     (function (drawing) {
         var Canvas = (function () {
-            function Canvas() {
+            function Canvas(parentElement) {
                 this.isCached = false;
                 this.htmlElement = document.createElement("canvas");
-                document.body.appendChild(this.htmlElement);
+                if (parentElement) {
+                    parentElement.appendChild(this.htmlElement);
+                }
+                else {
+                    document.body.appendChild(this.htmlElement);
+                }
             }
             Object.defineProperty(Canvas.prototype, "ctx", {
                 get: function () {
@@ -714,6 +717,8 @@ var etch;
         drawing.Stage = Stage;
     })(drawing = etch.drawing || (etch.drawing = {}));
 })(etch || (etch = {}));
+
+
 
 var etch;
 (function (etch) {
