@@ -28,4 +28,4 @@ http://edsilv.github.io/etch/examples
     
     gulp
     
-    gulp test
+    gulp examples
