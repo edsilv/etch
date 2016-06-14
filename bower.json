@@ -4,8 +4,6 @@
   "dependencies": {
   },
   "devDependencies": {
-    "r.js": "~2.1.20",
-    "jquery": "~2.1.4"
   },
   "license": "MIT",
   "ignore": [

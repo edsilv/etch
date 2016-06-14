@@ -21,7 +21,7 @@ var GulpConfig = (function () {
             'node_modules/nullstone/dist/nullstone.d.ts'
         ];
         this.typingsDir = './typings';
-        this.dist = './dist';  
+        this.dist = './dist';
         this.header = '// ' + metadata.name + ' v' + metadata.version + ' ' + metadata.homepage + '\n';
         this.jsOut = this.name + '.js';
         this.jsMinOut = this.name + '.min.js';
