@@ -4064,7 +4064,7 @@ declare module etch.drawing {
     class Canvas implements IDisplayContext {
         htmlElement: HTMLCanvasElement;
         isCached: boolean;
-        constructor();
+        constructor(parentElement?: HTMLElement);
         ctx: CanvasRenderingContext2D;
         width: number;
         height: number;

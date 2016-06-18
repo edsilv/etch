@@ -399,10 +399,15 @@ var etch;
     var drawing;
     (function (drawing) {
         var Canvas = (function () {
-            function Canvas() {
+            function Canvas(parentElement) {
                 this.isCached = false;
                 this.htmlElement = document.createElement("canvas");
-                document.body.appendChild(this.htmlElement);
+                if (parentElement) {
+                    parentElement.appendChild(this.htmlElement);
+                }
+                else {
+                    document.body.appendChild(this.htmlElement);
+                }
             }
             Object.defineProperty(Canvas.prototype, "ctx", {
                 get: function () {

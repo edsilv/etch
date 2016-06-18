@@ -8,26 +8,26 @@ var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('build:examples', function() {
 
-    var result = gulp.src(config.examplesTSSrc)
+    var result = gulp.src(config.typescript.examples.src)
         //.pipe(sourcemaps.init())
-        .pipe(ts(config.examplesTSConfig));
+        .pipe(ts(config.typescript.examples.config));
 
     return result.js
-            //.pipe(sourcemaps.write())
-            .pipe(gulp.dest(config.examplesDir));
+        //.pipe(sourcemaps.write())
+        .pipe(gulp.dest(config.directories.examples));
 });
 
 gulp.task('build:dist', function() {
 
-    var result = gulp.src(config.tsSrc)
-        .pipe(ts(config.tsConfig));
+    var result = gulp.src(config.typescript.src)
+        .pipe(ts(config.typescript.config));
 
     return merge([
         result.dts
-            .pipe(concat(config.dtsOut))
-            .pipe(gulp.dest(config.dist)),
+            .pipe(concat(config.fileNames.dtsOut))
+            .pipe(gulp.dest(config.directories.dist)),
         result.js
-            .pipe(concat(config.jsOut))
-            .pipe(gulp.dest(config.dist))
+            .pipe(concat(config.fileNames.jsOut))
+            .pipe(gulp.dest(config.directories.dist))
     ]);
 });

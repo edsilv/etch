@@ -6,9 +6,14 @@ module etch.drawing{
         public htmlElement: HTMLCanvasElement;
         public isCached: boolean = false;
 
-        constructor() {
+        constructor(parentElement?: HTMLElement) {
             this.htmlElement = document.createElement("canvas");
-            document.body.appendChild(this.htmlElement);
+
+            if (parentElement){
+                parentElement.appendChild(this.htmlElement);
+            } else {
+                document.body.appendChild(this.htmlElement);
+            }
         }
 
         get ctx(): CanvasRenderingContext2D {

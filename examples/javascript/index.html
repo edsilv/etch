@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/examples/js/etch.bundle.js"></script>
+    <script type="text/javascript" src="/js/etch.bundle.js"></script>
 
     <style>
         body {
@@ -123,7 +123,7 @@
         }(etch.drawing.DisplayObject));
         
         $(function(){
-            var canvas = new etch.drawing.Canvas();
+            var canvas = new etch.drawing.Canvas(document.getElementById('canvas'));
             canvas.style.backgroundColor = '#FFF';
             canvas.width = 1024;
             canvas.height = 768;
@@ -141,7 +141,6 @@
 
             for (var i = 0; i < 1000; i++){
                 var mover = new Mover();
-                mover.prototype = etch.drawing.DisplayObject;
                 mover.init(mainScene, moverCache);
                 mainScene.displayList.add(mover);
             }
@@ -149,5 +148,6 @@
     </script>
 </head>
 <body>
+    <div id="canvas"></div>
 </body>
 </html>

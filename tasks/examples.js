@@ -5,14 +5,14 @@ var connect = require('gulp-connect');
 var gulp = require('gulp');
 var utils = require('gulp-utils');
 
-gulp.task('example', function() {
+gulp.task('examples', function() {
     connect.server({
-        root: config.examplesDir,
-        middleware: function(connect, opt) {
-            return [
+        root: config.directories.examples//,
+        //middleware: function(connect, opt) {
+            //return [
                 // serve contents of the dist folder
-                utils.mount(connect, './')
-            ]
-        }
+                //utils.mount(connect, './')
+            //]
+        //}
     });
 });
