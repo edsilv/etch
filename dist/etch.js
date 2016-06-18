@@ -393,6 +393,142 @@ var etch;
     })(collections = etch.collections || (etch.collections = {}));
 })(etch || (etch = {}));
 
+var etch;
+(function (etch) {
+    var events;
+    (function (events) {
+        (function (CollectionChangedAction) {
+            CollectionChangedAction[CollectionChangedAction["Add"] = 1] = "Add";
+            CollectionChangedAction[CollectionChangedAction["Remove"] = 2] = "Remove";
+            CollectionChangedAction[CollectionChangedAction["Replace"] = 3] = "Replace";
+            CollectionChangedAction[CollectionChangedAction["Reset"] = 4] = "Reset";
+        })(events.CollectionChangedAction || (events.CollectionChangedAction = {}));
+        var CollectionChangedAction = events.CollectionChangedAction;
+        var CollectionChangedEventArgs = (function () {
+            function CollectionChangedEventArgs() {
+            }
+            CollectionChangedEventArgs.Reset = function (allValues) {
+                var args = new CollectionChangedEventArgs();
+                Object.defineProperty(args, "Action", { value: CollectionChangedAction.Reset, writable: false });
+                Object.defineProperty(args, "OldStartingIndex", { value: 0, writable: false });
+                Object.defineProperty(args, "NewStartingIndex", { value: -1, writable: false });
+                Object.defineProperty(args, "OldItems", { value: allValues, writable: false });
+                Object.defineProperty(args, "NewItems", { value: null, writable: false });
+                return args;
+            };
+            CollectionChangedEventArgs.Replace = function (newValue, oldValue, index) {
+                var args = new CollectionChangedEventArgs();
+                Object.defineProperty(args, "Action", { value: CollectionChangedAction.Replace, writable: false });
+                Object.defineProperty(args, "OldStartingIndex", { value: -1, writable: false });
+                Object.defineProperty(args, "NewStartingIndex", { value: index, writable: false });
+                Object.defineProperty(args, "OldItems", { value: [oldValue], writable: false });
+                Object.defineProperty(args, "NewItems", { value: [newValue], writable: false });
+                return args;
+            };
+            CollectionChangedEventArgs.Add = function (newValue, index) {
+                var args = new CollectionChangedEventArgs();
+                Object.defineProperty(args, "Action", { value: CollectionChangedAction.Add, writable: false });
+                Object.defineProperty(args, "OldStartingIndex", { value: -1, writable: false });
+                Object.defineProperty(args, "NewStartingIndex", { value: index, writable: false });
+                Object.defineProperty(args, "OldItems", { value: null, writable: false });
+                Object.defineProperty(args, "NewItems", { value: [newValue], writable: false });
+                return args;
+            };
+            CollectionChangedEventArgs.AddRange = function (newValues, index) {
+                var args = new CollectionChangedEventArgs();
+                Object.defineProperty(args, "Action", { value: CollectionChangedAction.Add, writable: false });
+                Object.defineProperty(args, "OldStartingIndex", { value: -1, writable: false });
+                Object.defineProperty(args, "NewStartingIndex", { value: index, writable: false });
+                Object.defineProperty(args, "OldItems", { value: null, writable: false });
+                Object.defineProperty(args, "NewItems", { value: newValues, writable: false });
+                return args;
+            };
+            CollectionChangedEventArgs.Remove = function (oldValue, index) {
+                var args = new CollectionChangedEventArgs();
+                Object.defineProperty(args, "Action", { value: CollectionChangedAction.Remove, writable: false });
+                Object.defineProperty(args, "OldStartingIndex", { value: index, writable: false });
+                Object.defineProperty(args, "NewStartingIndex", { value: -1, writable: false });
+                Object.defineProperty(args, "OldItems", { value: [oldValue], writable: false });
+                Object.defineProperty(args, "NewItems", { value: null, writable: false });
+                return args;
+            };
+            return CollectionChangedEventArgs;
+        }());
+        events.CollectionChangedEventArgs = CollectionChangedEventArgs;
+    })(events = etch.events || (etch.events = {}));
+})(etch || (etch = {}));
+
+var CollectionChangedEventArgs = etch.events.CollectionChangedEventArgs;
+var etch;
+(function (etch) {
+    var events;
+    (function (events) {
+        events.INotifyCollectionChanged_ = new nullstone.Interface("INotifyCollectionChanged");
+        // todo: remove?
+        events.INotifyCollectionChanged_.is = function (o) {
+            return o && o.CollectionChanged instanceof nullstone.Event;
+        };
+    })(events = etch.events || (etch.events = {}));
+})(etch || (etch = {}));
+
+var etch;
+(function (etch) {
+    var events;
+    (function (events) {
+        var PropertyChangedEventArgs = (function () {
+            function PropertyChangedEventArgs(propertyName) {
+                Object.defineProperty(this, "PropertyName", { value: propertyName, writable: false });
+            }
+            return PropertyChangedEventArgs;
+        }());
+        events.PropertyChangedEventArgs = PropertyChangedEventArgs;
+        events.INotifyPropertyChanged_ = new nullstone.Interface("INotifyPropertyChanged");
+        // todo: remove?
+        events.INotifyPropertyChanged_.is = function (o) {
+            return o && o.PropertyChanged instanceof nullstone.Event;
+        };
+    })(events = etch.events || (etch.events = {}));
+})(etch || (etch = {}));
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var RoutedEventArgs = etch.events.RoutedEventArgs;
+var etch;
+(function (etch) {
+    var events;
+    (function (events) {
+        var RoutedEvent = (function (_super) {
+            __extends(RoutedEvent, _super);
+            function RoutedEvent() {
+                _super.apply(this, arguments);
+            }
+            return RoutedEvent;
+        }(nullstone.Event));
+        events.RoutedEvent = RoutedEvent;
+    })(events = etch.events || (etch.events = {}));
+})(etch || (etch = {}));
+
+var etch;
+(function (etch) {
+    var events;
+    (function (events) {
+        var RoutedEventArgs = (function () {
+            function RoutedEventArgs() {
+                this.Handled = false;
+                this.Source = null;
+                this.OriginalSource = null;
+            }
+            return RoutedEventArgs;
+        }());
+        events.RoutedEventArgs = RoutedEventArgs;
+    })(events = etch.events || (etch.events = {}));
+})(etch || (etch = {}));
+
+
+
 var Size = minerva.Size;
 var etch;
 (function (etch) {
@@ -716,142 +852,6 @@ var etch;
         }(drawing.DisplayObject));
         drawing.Stage = Stage;
     })(drawing = etch.drawing || (etch.drawing = {}));
-})(etch || (etch = {}));
-
-
-
-var etch;
-(function (etch) {
-    var events;
-    (function (events) {
-        (function (CollectionChangedAction) {
-            CollectionChangedAction[CollectionChangedAction["Add"] = 1] = "Add";
-            CollectionChangedAction[CollectionChangedAction["Remove"] = 2] = "Remove";
-            CollectionChangedAction[CollectionChangedAction["Replace"] = 3] = "Replace";
-            CollectionChangedAction[CollectionChangedAction["Reset"] = 4] = "Reset";
-        })(events.CollectionChangedAction || (events.CollectionChangedAction = {}));
-        var CollectionChangedAction = events.CollectionChangedAction;
-        var CollectionChangedEventArgs = (function () {
-            function CollectionChangedEventArgs() {
-            }
-            CollectionChangedEventArgs.Reset = function (allValues) {
-                var args = new CollectionChangedEventArgs();
-                Object.defineProperty(args, "Action", { value: CollectionChangedAction.Reset, writable: false });
-                Object.defineProperty(args, "OldStartingIndex", { value: 0, writable: false });
-                Object.defineProperty(args, "NewStartingIndex", { value: -1, writable: false });
-                Object.defineProperty(args, "OldItems", { value: allValues, writable: false });
-                Object.defineProperty(args, "NewItems", { value: null, writable: false });
-                return args;
-            };
-            CollectionChangedEventArgs.Replace = function (newValue, oldValue, index) {
-                var args = new CollectionChangedEventArgs();
-                Object.defineProperty(args, "Action", { value: CollectionChangedAction.Replace, writable: false });
-                Object.defineProperty(args, "OldStartingIndex", { value: -1, writable: false });
-                Object.defineProperty(args, "NewStartingIndex", { value: index, writable: false });
-                Object.defineProperty(args, "OldItems", { value: [oldValue], writable: false });
-                Object.defineProperty(args, "NewItems", { value: [newValue], writable: false });
-                return args;
-            };
-            CollectionChangedEventArgs.Add = function (newValue, index) {
-                var args = new CollectionChangedEventArgs();
-                Object.defineProperty(args, "Action", { value: CollectionChangedAction.Add, writable: false });
-                Object.defineProperty(args, "OldStartingIndex", { value: -1, writable: false });
-                Object.defineProperty(args, "NewStartingIndex", { value: index, writable: false });
-                Object.defineProperty(args, "OldItems", { value: null, writable: false });
-                Object.defineProperty(args, "NewItems", { value: [newValue], writable: false });
-                return args;
-            };
-            CollectionChangedEventArgs.AddRange = function (newValues, index) {
-                var args = new CollectionChangedEventArgs();
-                Object.defineProperty(args, "Action", { value: CollectionChangedAction.Add, writable: false });
-                Object.defineProperty(args, "OldStartingIndex", { value: -1, writable: false });
-                Object.defineProperty(args, "NewStartingIndex", { value: index, writable: false });
-                Object.defineProperty(args, "OldItems", { value: null, writable: false });
-                Object.defineProperty(args, "NewItems", { value: newValues, writable: false });
-                return args;
-            };
-            CollectionChangedEventArgs.Remove = function (oldValue, index) {
-                var args = new CollectionChangedEventArgs();
-                Object.defineProperty(args, "Action", { value: CollectionChangedAction.Remove, writable: false });
-                Object.defineProperty(args, "OldStartingIndex", { value: index, writable: false });
-                Object.defineProperty(args, "NewStartingIndex", { value: -1, writable: false });
-                Object.defineProperty(args, "OldItems", { value: [oldValue], writable: false });
-                Object.defineProperty(args, "NewItems", { value: null, writable: false });
-                return args;
-            };
-            return CollectionChangedEventArgs;
-        }());
-        events.CollectionChangedEventArgs = CollectionChangedEventArgs;
-    })(events = etch.events || (etch.events = {}));
-})(etch || (etch = {}));
-
-var CollectionChangedEventArgs = etch.events.CollectionChangedEventArgs;
-var etch;
-(function (etch) {
-    var events;
-    (function (events) {
-        events.INotifyCollectionChanged_ = new nullstone.Interface("INotifyCollectionChanged");
-        // todo: remove?
-        events.INotifyCollectionChanged_.is = function (o) {
-            return o && o.CollectionChanged instanceof nullstone.Event;
-        };
-    })(events = etch.events || (etch.events = {}));
-})(etch || (etch = {}));
-
-var etch;
-(function (etch) {
-    var events;
-    (function (events) {
-        var PropertyChangedEventArgs = (function () {
-            function PropertyChangedEventArgs(propertyName) {
-                Object.defineProperty(this, "PropertyName", { value: propertyName, writable: false });
-            }
-            return PropertyChangedEventArgs;
-        }());
-        events.PropertyChangedEventArgs = PropertyChangedEventArgs;
-        events.INotifyPropertyChanged_ = new nullstone.Interface("INotifyPropertyChanged");
-        // todo: remove?
-        events.INotifyPropertyChanged_.is = function (o) {
-            return o && o.PropertyChanged instanceof nullstone.Event;
-        };
-    })(events = etch.events || (etch.events = {}));
-})(etch || (etch = {}));
-
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var RoutedEventArgs = etch.events.RoutedEventArgs;
-var etch;
-(function (etch) {
-    var events;
-    (function (events) {
-        var RoutedEvent = (function (_super) {
-            __extends(RoutedEvent, _super);
-            function RoutedEvent() {
-                _super.apply(this, arguments);
-            }
-            return RoutedEvent;
-        }(nullstone.Event));
-        events.RoutedEvent = RoutedEvent;
-    })(events = etch.events || (etch.events = {}));
-})(etch || (etch = {}));
-
-var etch;
-(function (etch) {
-    var events;
-    (function (events) {
-        var RoutedEventArgs = (function () {
-            function RoutedEventArgs() {
-                this.Handled = false;
-                this.Source = null;
-                this.OriginalSource = null;
-            }
-            return RoutedEventArgs;
-        }());
-        events.RoutedEventArgs = RoutedEventArgs;
-    })(events = etch.events || (etch.events = {}));
 })(etch || (etch = {}));
 
 var __extends = (this && this.__extends) || function (d, b) {

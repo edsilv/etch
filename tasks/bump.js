@@ -9,8 +9,6 @@ gulp.task('bump', function(){
     return gulp.src(['./bower.json', './package.json'])
         .pipe(bump({type: bumpType}))
         .pipe(gulp.dest('./'));
-    //.pipe(filter('package.json'))
-    //.pipe(tag());
 });
 
 // requires global gulp-cli

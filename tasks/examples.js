@@ -7,12 +7,12 @@ var utils = require('gulp-utils');
 
 gulp.task('examples', function() {
     connect.server({
-        root: config.examplesDir,
-        middleware: function(connect, opt) {
-            return [
+        root: config.directories.examples//,
+        //middleware: function(connect, opt) {
+            //return [
                 // serve contents of the dist folder
-                utils.mount(connect, './')
-            ]
-        }
+                //utils.mount(connect, './')
+            //]
+        //}
     });
 });

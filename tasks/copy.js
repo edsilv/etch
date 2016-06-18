@@ -5,9 +5,9 @@ var utils = require('gulp-utils');
 var path = require('path');
 
 gulp.task('copy:bundle', function() {
-    return gulp.src(path.join(config.dist, config.jsBundleOut)).pipe(gulp.dest(config.examplesDepsDir));
+    return gulp.src(path.join(config.directories.dist, config.fileNames.jsBundleOut)).pipe(gulp.dest(config.directories.examplesJs));
 });
 
 gulp.task('copy:typings', function() {
-    return gulp.src(config.typings).pipe(gulp.dest(config.typingsDir));
+    return gulp.src(config.dependencies.typings).pipe(gulp.dest(config.directories.typings));
 });
