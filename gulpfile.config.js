@@ -39,7 +39,6 @@ var GulpConfig = (function () {
             src: [
                 './src/*.ts',
                 './src/**/*.ts',
-                '!./lib/**/*.ts',
                 './typings/*.ts'
             ],
             config: {

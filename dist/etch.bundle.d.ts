@@ -4059,66 +4059,6 @@ declare module etch.collections {
     var INotifyPropertyChanged_: nullstone.Interface<INotifyPropertyChanged>;
 }
 
-declare module etch.events {
-    enum CollectionChangedAction {
-        Add = 1,
-        Remove = 2,
-        Replace = 3,
-        Reset = 4,
-    }
-    class CollectionChangedEventArgs implements nullstone.IEventArgs {
-        Action: CollectionChangedAction;
-        OldStartingIndex: number;
-        NewStartingIndex: number;
-        OldItems: any[];
-        NewItems: any[];
-        static Reset(allValues: any[]): CollectionChangedEventArgs;
-        static Replace(newValue: any, oldValue: any, index: number): CollectionChangedEventArgs;
-        static Add(newValue: any, index: number): CollectionChangedEventArgs;
-        static AddRange(newValues: any[], index: number): CollectionChangedEventArgs;
-        static Remove(oldValue: any, index: number): CollectionChangedEventArgs;
-    }
-}
-
-import CollectionChangedEventArgs = etch.events.CollectionChangedEventArgs;
-declare module etch.events {
-    interface INotifyCollectionChanged {
-        CollectionChanged: nullstone.Event<CollectionChangedEventArgs>;
-    }
-    var INotifyCollectionChanged_: nullstone.Interface<INotifyCollectionChanged>;
-}
-
-declare module etch.events {
-    class PropertyChangedEventArgs implements nullstone.IEventArgs {
-        PropertyName: string;
-        constructor(propertyName: string);
-    }
-    interface INotifyPropertyChanged {
-        PropertyChanged: nullstone.Event<PropertyChangedEventArgs>;
-    }
-    var INotifyPropertyChanged_: nullstone.Interface<INotifyPropertyChanged>;
-}
-
-import RoutedEventArgs = etch.events.RoutedEventArgs;
-declare module etch.events {
-    class RoutedEvent<T extends RoutedEventArgs> extends nullstone.Event<T> {
-    }
-}
-
-declare module etch.events {
-    class RoutedEventArgs implements nullstone.IEventArgs {
-        Handled: boolean;
-        Source: any;
-        OriginalSource: any;
-    }
-}
-
-declare module etch.engine {
-    interface ITimerListener {
-        onTicked(lastTime: number, nowTime: number): any;
-    }
-}
-
 import Size = minerva.Size;
 declare module etch.drawing {
     class Canvas implements IDisplayContext {
@@ -4244,6 +4184,66 @@ declare module etch.drawing {
         drawDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
         resizeDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
         resize(): void;
+    }
+}
+
+declare module etch.engine {
+    interface ITimerListener {
+        onTicked(lastTime: number, nowTime: number): any;
+    }
+}
+
+declare module etch.events {
+    enum CollectionChangedAction {
+        Add = 1,
+        Remove = 2,
+        Replace = 3,
+        Reset = 4,
+    }
+    class CollectionChangedEventArgs implements nullstone.IEventArgs {
+        Action: CollectionChangedAction;
+        OldStartingIndex: number;
+        NewStartingIndex: number;
+        OldItems: any[];
+        NewItems: any[];
+        static Reset(allValues: any[]): CollectionChangedEventArgs;
+        static Replace(newValue: any, oldValue: any, index: number): CollectionChangedEventArgs;
+        static Add(newValue: any, index: number): CollectionChangedEventArgs;
+        static AddRange(newValues: any[], index: number): CollectionChangedEventArgs;
+        static Remove(oldValue: any, index: number): CollectionChangedEventArgs;
+    }
+}
+
+import CollectionChangedEventArgs = etch.events.CollectionChangedEventArgs;
+declare module etch.events {
+    interface INotifyCollectionChanged {
+        CollectionChanged: nullstone.Event<CollectionChangedEventArgs>;
+    }
+    var INotifyCollectionChanged_: nullstone.Interface<INotifyCollectionChanged>;
+}
+
+declare module etch.events {
+    class PropertyChangedEventArgs implements nullstone.IEventArgs {
+        PropertyName: string;
+        constructor(propertyName: string);
+    }
+    interface INotifyPropertyChanged {
+        PropertyChanged: nullstone.Event<PropertyChangedEventArgs>;
+    }
+    var INotifyPropertyChanged_: nullstone.Interface<INotifyPropertyChanged>;
+}
+
+import RoutedEventArgs = etch.events.RoutedEventArgs;
+declare module etch.events {
+    class RoutedEvent<T extends RoutedEventArgs> extends nullstone.Event<T> {
+    }
+}
+
+declare module etch.events {
+    class RoutedEventArgs implements nullstone.IEventArgs {
+        Handled: boolean;
+        Source: any;
+        OriginalSource: any;
     }
 }
 
