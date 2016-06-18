@@ -9,11 +9,11 @@ var sourcemaps = require('gulp-sourcemaps');
 gulp.task('build:examples', function() {
 
     var result = gulp.src(config.typescript.examples.src)
-        //.pipe(sourcemaps.init())
+        .pipe(sourcemaps.init())
         .pipe(ts(config.typescript.examples.config));
 
     return result.js
-        //.pipe(sourcemaps.write())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(config.directories.examples));
 });
 

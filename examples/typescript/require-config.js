@@ -1,18 +1,10 @@
-require.config({
-    baseUrl: "./",
-    paths: {
-        "example": "Example"
-    },
-    shim: {
-
-    }
-});
-
 require([
-    "example"
-], function (example) {
+    "Example"
+], function (
+    example
+    ) {
     var example = new example.default();
-    example.setup();
+    example.init();
 
     // uncomment for stats
 

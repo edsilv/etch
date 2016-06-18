@@ -1,26 +1,28 @@
-import Sketch = require("../../../src/sketch");
-import PVector = require("../../../src/pvector");
+import Canvas = etch.drawing.Canvas;
+import Stage = etch.drawing.Stage;
+import Point = etch.primitives.Point;
+import Vector = etch.primitives.Vector;
 
-class VectorSubtraction extends Sketch{
+export default class VectorSubtraction extends Stage{
 
-    setup(): void{
+    setup(): void {
 
     }
 
-    draw(){
-		background(255);
+    draw(): void {
 
-		var mouse: PVector  = new PVector(mouseX, mouseY);
-		var center: PVector = new PVector(width/2, height/2);
+		var mouse: Point = this.mousePos.clone();
+		var center: Vector = new Vector(this.canvasWidth / 2, this.canvasHeight / 2);
 
-		mouse.sub(center);
+		//mouse = Point.subVector(mouse, center);
 
 		// translate context to center of canvas
-		translate(width / 2, height / 2);
-
-		line(0, 0, mouse.x, mouse.y);
+		//this.ctx.translate(center.x, center.y);
+		this.ctx.beginPath();
+		this.ctx.moveTo(center.x, center.y);
+		this.ctx.lineTo(mouse.x, mouse.y);
+		this.ctx.stroke();
+		//this.ctx.translate(0, 0);
     }
 
 }
-
-export = VectorSubtraction;

@@ -1,19 +1,21 @@
 import Canvas = etch.drawing.Canvas;
 import Stage = etch.drawing.Stage;
+import Point = etch.primitives.Point;
 import Vector = etch.primitives.Vector;
 
-export class BouncingBall extends Stage{
+export default class BouncingBall extends Stage{
 
-	public position: Vector;
 	public velocity: Vector;
-    
-    setup(): void{
-    	this.position = new Vector(100, 100);
+	private _ballRadius: number = 20;
+	private _color: string = '#000';
+
+    setup(): void {
+		this.position = new Point(100, 100);
   		this.velocity = new Vector(2.5, 5);
     }
 
     update(): void {
-        this.position.add(this.velocity);
+        this.position = Point.addVector(this.position, this.velocity);
 
 		if ((this.position.x > this.canvasWidth) || (this.position.x < 0)) {
 			this.velocity.x = this.velocity.x * -1;
@@ -24,9 +26,11 @@ export class BouncingBall extends Stage{
 		}
     }
 
-    draw(): void{
-		this.ctx.fill(0);
-		this.ctx.ellipse(this.position.x, this.position.y, 20);
+    draw(): void {
+		this.ctx.beginPath();
+		this.ctx.arc(this.position.x, this.position.y, this._ballRadius, 0, Math.TAU, false);
+		this.ctx.fillStyle = this._color;
+		this.ctx.fill();
     }
 
 }

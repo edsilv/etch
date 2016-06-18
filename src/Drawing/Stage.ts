@@ -1,4 +1,5 @@
 import ClockTimer = etch.engine.ClockTimer;
+import Canvas = etch.drawing.Canvas;
 import DisplayObject = etch.drawing.DisplayObject;
 import IDisplayObject = etch.drawing.IDisplayObject;
 
@@ -8,6 +9,7 @@ module etch.drawing{
         private _maxDelta: number;
         public deltaTime: number = new Date(0).getTime();
         public lastVisualTick: number = new Date(0).getTime();
+        public mousePos: etch.primitives.Point = new etch.primitives.Point(0, 0);
         public timer: ClockTimer;
         
         updated = new nullstone.Event<number>();
@@ -23,6 +25,19 @@ module etch.drawing{
 
             this.timer = new ClockTimer();
             this.timer.registerTimer(this);
+
+            (<Canvas>this.drawTo).htmlElement.addEventListener('mousemove', (e) => {
+                this.mousePos = this._getMousePos((<Canvas>this.drawTo).htmlElement, e);
+                console.log('mouseX: ', this.mousePos.x, ' mouseY: ', this.mousePos.y);
+            }, false);
+        }
+
+        private _getMousePos(canvas: HTMLCanvasElement, e: MouseEvent) {
+            var rect = canvas.getBoundingClientRect();
+            var pos: etch.primitives.Point = new etch.primitives.Point();
+            pos.x = e.clientX - rect.left;
+            pos.y = e.clientY - rect.top;
+            return pos;
         }
 
         onTicked(lastTime: number, nowTime: number) {
@@ -33,11 +48,17 @@ module etch.drawing{
             // todo: make this configurable
             this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 
+            this.update();
             this.updateDisplayList(this.displayList);
             this.updated.raise(this, this.lastVisualTick);
 
+            this.draw();
             this.drawDisplayList(this.displayList);
             this.drawn.raise(this, this.lastVisualTick);
+        }
+
+        update() : void {
+            super.update();
         }
 
         updateDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void {
@@ -51,6 +72,10 @@ module etch.drawing{
                 }
                 this.updateDisplayList(displayObject.displayList);
             }
+        }
+
+        draw(): void {
+            super.draw();
         }
 
         drawDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void {

@@ -60,7 +60,6 @@ var etch;
 (function (etch) {
     var primitives;
     (function (primitives) {
-        // todo: use utils.Maths.Vector
         var Vector = (function () {
             function Vector(x, y) {
                 this.x = x;
@@ -650,6 +649,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var ClockTimer = etch.engine.ClockTimer;
+var Canvas = etch.drawing.Canvas;
 var DisplayObject = etch.drawing.DisplayObject;
 var etch;
 (function (etch) {
@@ -661,24 +661,42 @@ var etch;
                 _super.call(this);
                 this.deltaTime = new Date(0).getTime();
                 this.lastVisualTick = new Date(0).getTime();
+                this.mousePos = new etch.primitives.Point(0, 0);
                 this.updated = new nullstone.Event();
                 this.drawn = new nullstone.Event();
                 this._maxDelta = maxDelta || 1000 / 60; // 60 fps
             }
             Stage.prototype.init = function (drawTo) {
+                var _this = this;
                 _super.prototype.init.call(this, drawTo);
                 this.timer = new ClockTimer();
                 this.timer.registerTimer(this);
+                this.drawTo.htmlElement.addEventListener('mousemove', function (e) {
+                    _this.mousePos = _this._getMousePos(_this.drawTo.htmlElement, e);
+                    console.log('mouseX: ', _this.mousePos.x, ' mouseY: ', _this.mousePos.y);
+                }, false);
+            };
+            Stage.prototype._getMousePos = function (canvas, e) {
+                var rect = canvas.getBoundingClientRect();
+                var pos = new etch.primitives.Point();
+                pos.x = e.clientX - rect.left;
+                pos.y = e.clientY - rect.top;
+                return pos;
             };
             Stage.prototype.onTicked = function (lastTime, nowTime) {
                 this.deltaTime = Math.min(nowTime - this.lastVisualTick, this._maxDelta);
                 this.lastVisualTick = nowTime;
                 // todo: make this configurable
                 this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+                this.update();
                 this.updateDisplayList(this.displayList);
                 this.updated.raise(this, this.lastVisualTick);
+                this.draw();
                 this.drawDisplayList(this.displayList);
                 this.drawn.raise(this, this.lastVisualTick);
+            };
+            Stage.prototype.update = function () {
+                _super.prototype.update.call(this);
             };
             Stage.prototype.updateDisplayList = function (displayList) {
                 for (var i = 0; i < displayList.Count; i++) {
@@ -691,6 +709,9 @@ var etch;
                     }
                     this.updateDisplayList(displayObject.displayList);
                 }
+            };
+            Stage.prototype.draw = function () {
+                _super.prototype.draw.call(this);
             };
             Stage.prototype.drawDisplayList = function (displayList) {
                 for (var i = 0; i < displayList.Count; i++) {
@@ -873,6 +894,12 @@ var etch;
             };
             Point.prototype.toVector = function () {
                 return new primitives.Vector(this.x, this.y);
+            };
+            Point.addVector = function (p, v) {
+                return new Point(p.x + v.x, p.y + v.y);
+            };
+            Point.subVector = function (p, v) {
+                return new Point(p.x - v.x, p.y - v.y);
             };
             return Point;
         }(minerva.Point));

@@ -6,7 +6,7 @@ export default class Example{
     public canvas: Canvas;
     public mainScene: MainScene;
 
-    public setup(): void {
+    public init(): void {
         this.canvas = new Canvas();
         this.canvas.style.backgroundColor = '#FFF';
         this.canvas.width = 1024;

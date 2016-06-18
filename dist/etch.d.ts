@@ -235,6 +235,7 @@ declare module etch.drawing {
 }
 
 import ClockTimer = etch.engine.ClockTimer;
+import Canvas = etch.drawing.Canvas;
 import DisplayObject = etch.drawing.DisplayObject;
 import IDisplayObject = etch.drawing.IDisplayObject;
 declare module etch.drawing {
@@ -242,13 +243,17 @@ declare module etch.drawing {
         private _maxDelta;
         deltaTime: number;
         lastVisualTick: number;
+        mousePos: etch.primitives.Point;
         timer: ClockTimer;
         updated: nullstone.Event<number>;
         drawn: nullstone.Event<number>;
         constructor(maxDelta?: number);
         init(drawTo: IDisplayContext): void;
+        private _getMousePos(canvas, e);
         onTicked(lastTime: number, nowTime: number): void;
+        update(): void;
         updateDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
+        draw(): void;
         drawDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
         resizeDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
         resize(): void;
@@ -319,5 +324,7 @@ declare module etch.primitives {
     class Point extends minerva.Point {
         clone(): Point;
         toVector(): Vector;
+        static addVector(p: Point, v: Vector): Point;
+        static subVector(p: Point, v: Vector): Point;
     }
 }
