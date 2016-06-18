@@ -673,7 +673,7 @@ var etch;
                 this.timer.registerTimer(this);
                 this.drawTo.htmlElement.addEventListener('mousemove', function (e) {
                     _this.mousePos = _this._getMousePos(_this.drawTo.htmlElement, e);
-                    console.log('mouseX: ', _this.mousePos.x, ' mouseY: ', _this.mousePos.y);
+                    //console.log('mouseX: ', this.mousePos.x, ' mouseY: ', this.mousePos.y);
                 }, false);
             };
             Stage.prototype._getMousePos = function (canvas, e) {
@@ -686,7 +686,8 @@ var etch;
             Stage.prototype.onTicked = function (lastTime, nowTime) {
                 this.deltaTime = Math.min(nowTime - this.lastVisualTick, this._maxDelta);
                 this.lastVisualTick = nowTime;
-                // todo: make this configurable
+                // reset transform.
+                this.ctx.setTransform(1, 0, 0, 1, 0, 0);
                 this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
                 this.update();
                 this.updateDisplayList(this.displayList);

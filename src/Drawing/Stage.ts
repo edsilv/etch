@@ -28,7 +28,7 @@ module etch.drawing{
 
             (<Canvas>this.drawTo).htmlElement.addEventListener('mousemove', (e) => {
                 this.mousePos = this._getMousePos((<Canvas>this.drawTo).htmlElement, e);
-                console.log('mouseX: ', this.mousePos.x, ' mouseY: ', this.mousePos.y);
+                //console.log('mouseX: ', this.mousePos.x, ' mouseY: ', this.mousePos.y);
             }, false);
         }
 
@@ -45,7 +45,8 @@ module etch.drawing{
             this.deltaTime = Math.min(nowTime - this.lastVisualTick, this._maxDelta);
             this.lastVisualTick = nowTime;
 
-            // todo: make this configurable
+            // reset transform.
+		    this.ctx.setTransform(1, 0, 0, 1, 0, 0);
             this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 
             this.update();
