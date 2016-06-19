@@ -1,11 +1,10 @@
 import DisplayObjectCollection = etch.drawing.DisplayObjectCollection;
 import IDisplayContext = etch.drawing.IDisplayContext;
 import Point = etch.primitives.Point;
+import Stage = etch.drawing.Stage;
 
 module etch.drawing{
     export interface IDisplayObject extends IDisplayContext{
-        canvasHeight: number;
-        canvasWidth: number;
         deltaTime: number;
         displayList: DisplayObjectCollection<IDisplayObject>;
         draw(): void;

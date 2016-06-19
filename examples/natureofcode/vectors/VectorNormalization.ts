@@ -12,7 +12,7 @@ export default class VectorNormalization extends Stage {
     draw(): void {
 
         var mouse: Point = this.mousePos.clone();
-        var center: Point = new Point(this.canvasWidth * .5, this.canvasHeight * .5);
+        var center: Point = new Point(this.width * .5, this.height * .5);
         mouse = mouse.toVector().sub(center.toVector()).normalize().mult(50).toPoint();
 
         // translate context to center of canvas

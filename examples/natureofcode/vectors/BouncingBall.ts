@@ -17,11 +17,11 @@ export default class BouncingBall extends Stage{
 		update(): void {
 				this.position = Vector.add(this.position.toVector(), this.velocity).toPoint();
 
-				if ((this.position.x > this.canvasWidth) || (this.position.x < 0)) {
+				if ((this.position.x > this.width) || (this.position.x < 0)) {
 						this.velocity.x = this.velocity.x * -1;
 				}
 
-				if ((this.position.y > this.canvasHeight) || (this.position.y < 0)) {
+				if ((this.position.y > this.height) || (this.position.y < 0)) {
 						this.velocity.y = this.velocity.y * -1;
 				}
 		}

@@ -3931,6 +3931,9 @@ declare module nullstone {
     }
 }
 
+interface Window {
+    stage: etch.drawing.Stage;
+}
 import ITimerListener = etch.engine.ITimerListener;
 declare var requestAnimFrame: any;
 declare module etch.engine {
@@ -4093,8 +4096,8 @@ declare module etch.drawing {
         zIndex: number;
         init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void;
         ctx: CanvasRenderingContext2D;
-        canvasWidth: number;
-        canvasHeight: number;
+        ctxWidth: number;
+        ctxHeight: number;
         displayList: DisplayObjectCollection<IDisplayObject>;
         setup(): void;
         update(): void;
@@ -4137,10 +4140,9 @@ declare module etch.drawing {
 import DisplayObjectCollection = etch.drawing.DisplayObjectCollection;
 import IDisplayContext = etch.drawing.IDisplayContext;
 import Point = etch.primitives.Point;
+import Stage = etch.drawing.Stage;
 declare module etch.drawing {
     interface IDisplayObject extends IDisplayContext {
-        canvasHeight: number;
-        canvasWidth: number;
         deltaTime: number;
         displayList: DisplayObjectCollection<IDisplayObject>;
         draw(): void;
@@ -4170,6 +4172,7 @@ import ClockTimer = etch.engine.ClockTimer;
 import Canvas = etch.drawing.Canvas;
 import DisplayObject = etch.drawing.DisplayObject;
 import IDisplayObject = etch.drawing.IDisplayObject;
+declare var stage: etch.drawing.Stage;
 declare module etch.drawing {
     class Stage extends DisplayObject implements ITimerListener {
         private _maxDelta;
@@ -4181,6 +4184,9 @@ declare module etch.drawing {
         drawn: nullstone.Event<number>;
         constructor(maxDelta?: number);
         init(drawTo: IDisplayContext): void;
+        canvas: Canvas;
+        width: number;
+        height: number;
         private _getMousePos(canvas, e);
         onTicked(lastTime: number, nowTime: number): void;
         update(): void;

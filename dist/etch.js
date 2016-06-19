@@ -497,14 +497,14 @@ var etch;
                 enumerable: true,
                 configurable: true
             });
-            Object.defineProperty(DisplayObject.prototype, "canvasWidth", {
+            Object.defineProperty(DisplayObject.prototype, "ctxWidth", {
                 get: function () {
                     return this.ctx.canvas.width;
                 },
                 enumerable: true,
                 configurable: true
             });
-            Object.defineProperty(DisplayObject.prototype, "canvasHeight", {
+            Object.defineProperty(DisplayObject.prototype, "ctxHeight", {
                 get: function () {
                     return this.ctx.canvas.height;
                 },
@@ -648,6 +648,7 @@ var etch;
 
 var DisplayObjectCollection = etch.drawing.DisplayObjectCollection;
 var Point = etch.primitives.Point;
+var Stage = etch.drawing.Stage;
 
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -670,6 +671,7 @@ var etch;
                 this.mousePos = new etch.primitives.Point(0, 0);
                 this.updated = new nullstone.Event();
                 this.drawn = new nullstone.Event();
+                window.stage = this; // todo: this limits the browser window to a single etch instance. displayobjects will have to walk up tree of parents to root.
                 this._maxDelta = maxDelta || 1000 / 60; // 60 fps
             }
             Stage.prototype.init = function (drawTo) {
@@ -677,11 +679,32 @@ var etch;
                 _super.prototype.init.call(this, drawTo);
                 this.timer = new ClockTimer();
                 this.timer.registerTimer(this);
-                this.drawTo.htmlElement.addEventListener('mousemove', function (e) {
-                    _this.mousePos = _this._getMousePos(_this.drawTo.htmlElement, e);
+                this.canvas.htmlElement.addEventListener('mousemove', function (e) {
+                    _this.mousePos = _this._getMousePos(_this.canvas.htmlElement, e);
                     //console.log('mouseX: ', this.mousePos.x, ' mouseY: ', this.mousePos.y);
                 }, false);
             };
+            Object.defineProperty(Stage.prototype, "canvas", {
+                get: function () {
+                    return this.drawTo;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(Stage.prototype, "width", {
+                get: function () {
+                    return this.canvas.width;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(Stage.prototype, "height", {
+                get: function () {
+                    return this.canvas.height;
+                },
+                enumerable: true,
+                configurable: true
+            });
             Stage.prototype._getMousePos = function (canvas, e) {
                 var rect = canvas.getBoundingClientRect();
                 var pos = new etch.primitives.Point();
@@ -694,7 +717,7 @@ var etch;
                 this.lastVisualTick = nowTime;
                 // reset transform.
                 this.ctx.setTransform(1, 0, 0, 1, 0, 0);
-                this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+                this.ctx.clearRect(0, 0, this.width, this.height);
                 this.update();
                 this.updateDisplayList(this.displayList);
                 this.updated.raise(this, this.lastVisualTick);

@@ -48,30 +48,25 @@
                 this.width = 30;
                 this.height = 30;
 
-                this.position = new Vector(Math.randomBetween(this.canvasWidth - this.width), Math.randomBetween(this.canvasHeight - this.height)).toPoint();
+                this.position = new Vector(Math.randomBetween(this.ctxWidth - this.width), Math.randomBetween(this.ctxHeight - this.height)).toPoint();
                 this.velocity = new Vector(Math.randomBetween(-0.25, 0.25), Math.randomBetween(-0.25, 0.25));
             }
             
             Mover.prototype.update = function() {
                 _super.prototype.update.call(this);
 
-                var p = this.position.toVector();
-
                 var deltaVelocity = new Vector(this.velocity.x * this.deltaTime, this.velocity.y * this.deltaTime);
-                
-                p.add(deltaVelocity);
+                this.position = this.position.toVector().add(deltaVelocity).toPoint();
 
-                if (p.x > this.canvasWidth) {
-                    p.x = 0;
-                } else if (p.x < 0) {
-                    p.x = this.canvasWidth;
-                } if (p.y > this.canvasHeight) {
-                    p.y = 0;
-                } else if (p.y < 0) {
-                    p.y = this.canvasHeight;
+                if (this.position.x > this.ctxWidth) {
+                    this.position.x = 0;
+                } else if (this.position.x < 0) {
+                    this.position.x = this.ctxWidth;
+                } if (this.position.y > this.ctxHeight) {
+                    this.position.y = 0;
+                } else if (this.position.y < 0) {
+                    this.position.y = this.ctxHeight;
                 }
-
-                this.position = p.toPoint();
             }
 
             Mover.prototype.draw = function() {

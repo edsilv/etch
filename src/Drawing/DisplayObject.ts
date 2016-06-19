@@ -30,11 +30,11 @@ module etch.drawing {
             return this.drawTo.ctx;
         }
 
-        get canvasWidth(): number {
+        get ctxWidth(): number {
             return this.ctx.canvas.width;
         }
 
-        get canvasHeight(): number {
+        get ctxHeight(): number {
             return this.ctx.canvas.height;
         }
 

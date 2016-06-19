@@ -6,7 +6,7 @@ import Vector = etch.primitives.Vector;
 export class Mover extends DisplayObject {
 
 	public velocity: Vector;
-    private _color: string = '#000';
+    public color: string = '#000';
 
 	init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void {
         super.init(drawTo, drawFrom);
@@ -16,26 +16,24 @@ export class Mover extends DisplayObject {
         this.width = 30;
         this.height = 30;
 
-        this.position = new Point(Math.randomBetween(this.canvasWidth), Math.randomBetween(this.canvasHeight));
+        this.position = new Point(Math.randomBetween(this.ctxWidth), Math.randomBetween(this.ctxHeight));
         this.velocity = new Vector(Math.randomBetween(-10, 10), Math.randomBetween(-10, 10));
     }
 
     update(): void {
-        var p: Point = Vector.add(this.position.toVector(), this.velocity).toPoint();
+        this.position = this.position.toVector().add(this.velocity).toPoint();
 
-        if (p.x > this.canvasWidth) {
-            p.x = 0;
-        } else if (p.x < 0) {
-            p.x = this.canvasWidth;
+        if (this.position.x > this.ctxWidth) {
+            this.position.x = 0;
+        } else if (this.position.x < 0) {
+            this.position.x = this.ctxWidth;
         }
 
-        if (p.y > this.canvasHeight) {
-            p.y = 0;
-        } else if (p.y < 0) {
-            p.y = this.canvasHeight;
+        if (this.position.y > this.ctxHeight) {
+            this.position.y = 0;
+        } else if (this.position.y < 0) {
+            this.position.y = this.ctxHeight;
         }
-
-        this.position = p;
     }
 
     draw(): void {
@@ -43,7 +41,7 @@ export class Mover extends DisplayObject {
         this.ctx.translate(this.position.x, this.position.y);
         this.ctx.beginPath();
         this.ctx.arc(0, 0, this.width * .5, 0, Math.TAU, false);
-        this.ctx.fillStyle = this._color;
+        this.ctx.fillStyle = this.color;
         this.ctx.fill();
     }
 }

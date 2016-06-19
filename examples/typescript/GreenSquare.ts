@@ -19,7 +19,7 @@ export class GreenSquare extends DisplayObject {
         super.draw();
 
         this.ctx.fillStyle = "#00FF00";
-        this.ctx.fillRect(125, 125, 50, 50);
+        this.ctx.fillRect(0, 0, 50, 50);
         //console.log("draw green");
     }
 }

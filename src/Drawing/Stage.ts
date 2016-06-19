@@ -2,6 +2,7 @@ import ClockTimer = etch.engine.ClockTimer;
 import Canvas = etch.drawing.Canvas;
 import DisplayObject = etch.drawing.DisplayObject;
 import IDisplayObject = etch.drawing.IDisplayObject;
+declare var stage: etch.drawing.Stage;
 
 module etch.drawing{
     export class Stage extends DisplayObject implements ITimerListener {
@@ -17,6 +18,7 @@ module etch.drawing{
         
         constructor(maxDelta?: number) {
             super();
+            window.stage = this; // todo: this limits the browser window to a single etch instance. displayobjects will have to walk up tree of parents to root.
             this._maxDelta = maxDelta || 1000 / 60; // 60 fps
         }
         
@@ -26,10 +28,22 @@ module etch.drawing{
             this.timer = new ClockTimer();
             this.timer.registerTimer(this);
 
-            (<Canvas>this.drawTo).htmlElement.addEventListener('mousemove', (e) => {
-                this.mousePos = this._getMousePos((<Canvas>this.drawTo).htmlElement, e);
+            this.canvas.htmlElement.addEventListener('mousemove', (e) => {
+                this.mousePos = this._getMousePos(this.canvas.htmlElement, e);
                 //console.log('mouseX: ', this.mousePos.x, ' mouseY: ', this.mousePos.y);
             }, false);
+        }
+
+        get canvas(): Canvas {
+            return this.drawTo as Canvas;
+        }
+
+        get width(): number {
+            return this.canvas.width;
+        }
+
+        get height(): number {
+            return this.canvas.height;
         }
 
         private _getMousePos(canvas: HTMLCanvasElement, e: MouseEvent) {
@@ -47,7 +61,7 @@ module etch.drawing{
 
             // reset transform.
 		    this.ctx.setTransform(1, 0, 0, 1, 0, 0);
-            this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+            this.ctx.clearRect(0, 0, this.width, this.height);
 
             this.update();
             this.updateDisplayList(this.displayList);
