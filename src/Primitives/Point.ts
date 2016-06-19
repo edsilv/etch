@@ -7,13 +7,5 @@ module etch.primitives {
         toVector(): Vector {
             return new Vector(this.x, this.y);
         }
-
-        static addVector(p: Point, v: Vector): Point {
-            return new Point(p.x + v.x, p.y + v.y);
-        }
-
-        static subVector(p: Point, v: Vector): Point {
-            return new Point(p.x - v.x, p.y - v.y);
-        }
     }
 }

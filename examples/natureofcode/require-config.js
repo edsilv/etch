@@ -2,10 +2,10 @@
 require([
     'Example',
     './vectors/BouncingBall',
-    './vectors/VectorSubtraction'
-    // './vectors/vectorMultiplication',
-    // './vectors/vectorNormalization',
-    // './vectors/motionVelocity',
+    './vectors/VectorSubtraction',
+    './vectors/vectorMultiplication',
+    './vectors/vectorNormalization',
+    './vectors/motionVelocity'
     // './vectors/constantAcceleration',
     // './vectors/randomAcceleration',
     // './vectors/accelerateTowardsMouse',
@@ -29,10 +29,10 @@ require([
 ], (
     example,
     bouncingBall,
-    vectorSubtraction
-    // vectorMultiplication,
-    // vectorNormalization,
-    // motionVelocity,
+    vectorSubtraction,
+    vectorMultiplication,
+    vectorNormalization,
+    motionVelocity
     // constantAcceleration,
     // randomAcceleration,
     // accelerateTowardsMouse,

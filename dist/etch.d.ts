@@ -19,22 +19,22 @@ declare module etch.primitives {
         constructor(x: number, y: number);
         get(): Vector;
         set(x: number, y: number): void;
-        add(v: Vector): void;
+        add(v: Vector): Vector;
         static add(v1: Vector, v2: Vector): Vector;
         clone(): Vector;
         static LERP(start: Vector, end: Vector, p: number): Vector;
-        sub(v: Vector): void;
+        sub(v: Vector): Vector;
         static sub(v1: Vector, v2: Vector): Vector;
-        mult(n: number): void;
+        mult(n: number): Vector;
         static mult(v1: Vector, v2: Vector): Vector;
         static multN(v1: Vector, n: number): Vector;
-        div(n: number): void;
+        div(n: number): Vector;
         static div(v1: Vector, v2: Vector): Vector;
         static divN(v1: Vector, n: number): Vector;
         mag(): number;
         magSq(): number;
-        normalize(): void;
-        limit(max: number): void;
+        normalize(): Vector;
+        limit(max: number): Vector;
         heading(): number;
         static random2D(): Vector;
         static fromAngle(angle: number): Vector;
@@ -324,7 +324,5 @@ declare module etch.primitives {
     class Point extends minerva.Point {
         clone(): Point;
         toVector(): Vector;
-        static addVector(p: Point, v: Vector): Point;
-        static subVector(p: Point, v: Vector): Point;
     }
 }

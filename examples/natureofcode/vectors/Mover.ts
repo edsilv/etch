@@ -1,10 +1,12 @@
 import Canvas = etch.drawing.Canvas;
 import DisplayObject = etch.drawing.DisplayObject;
+import Point = etch.primitives.Point;
 import Vector = etch.primitives.Vector;
 
 export class Mover extends DisplayObject {
 
 	public velocity: Vector;
+    private _color: string = '#000';
 
 	init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void {
         super.init(drawTo, drawFrom);
@@ -19,7 +21,7 @@ export class Mover extends DisplayObject {
     }
 
     update(): void {
-        var p: Point = Point.addVector(this.position, this.velocity);
+        var p: Point = Vector.add(this.position.toVector(), this.velocity).toPoint();
 
         if (p.x > this.canvasWidth) {
             p.x = 0;
@@ -37,8 +39,11 @@ export class Mover extends DisplayObject {
     }
 
     draw(): void {
-    	this.ctx.beginPath();
-		this.ctx.ellipse(this.position.x, this.position.y, this.width, this.height, 0, 0, 0);
-		this.ctx.stroke();
+        // optionally set origin to position
+        this.ctx.translate(this.position.x, this.position.y);
+        this.ctx.beginPath();
+        this.ctx.arc(0, 0, this.width * .5, 0, Math.TAU, false);
+        this.ctx.fillStyle = this._color;
+        this.ctx.fill();
     }
 }

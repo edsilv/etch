@@ -75,6 +75,7 @@ var etch;
             Vector.prototype.add = function (v) {
                 this.x += v.x;
                 this.y += v.y;
+                return this;
             };
             Vector.add = function (v1, v2) {
                 return new Vector(v1.x + v2.x, v1.y + v2.y);
@@ -90,6 +91,7 @@ var etch;
             Vector.prototype.sub = function (v) {
                 this.x -= v.x;
                 this.y -= v.y;
+                return this;
             };
             Vector.sub = function (v1, v2) {
                 return new Vector(v1.x - v2.x, v1.y - v2.y);
@@ -97,6 +99,7 @@ var etch;
             Vector.prototype.mult = function (n) {
                 this.x = this.x * n;
                 this.y = this.y * n;
+                return this;
             };
             Vector.mult = function (v1, v2) {
                 return new Vector(v1.x * v2.x, v1.y * v2.y);
@@ -107,6 +110,7 @@ var etch;
             Vector.prototype.div = function (n) {
                 this.x = this.x / n;
                 this.y = this.y / n;
+                return this;
             };
             Vector.div = function (v1, v2) {
                 return new Vector(v1.x / v2.x, v1.y / v2.y);
@@ -125,12 +129,14 @@ var etch;
                 if (m != 0 && m != 1) {
                     this.div(m);
                 }
+                return this;
             };
             Vector.prototype.limit = function (max) {
                 if (this.magSq() > max * max) {
                     this.normalize();
                     this.mult(max);
                 }
+                return this;
             };
             Vector.prototype.heading = function () {
                 var angle = Math.atan2(-this.y, this.x);
@@ -895,12 +901,6 @@ var etch;
             };
             Point.prototype.toVector = function () {
                 return new primitives.Vector(this.x, this.y);
-            };
-            Point.addVector = function (p, v) {
-                return new Point(p.x + v.x, p.y + v.y);
-            };
-            Point.subVector = function (p, v) {
-                return new Point(p.x - v.x, p.y - v.y);
             };
             return Point;
         }(minerva.Point));

@@ -12,9 +12,8 @@ export default class VectorSubtraction extends Stage{
     draw(): void {
 
 		var mouse: Point = this.mousePos.clone();
-		var center: Vector = new Vector(this.canvasWidth / 2, this.canvasHeight / 2);
-
-		mouse = Point.subVector(mouse, center);
+		var center: Point = new Point(this.canvasWidth * .5, this.canvasHeight * .5);
+		mouse = mouse.toVector().sub(center.toVector()).toPoint();
 
 		// translate context to center of canvas
 		this.ctx.translate(center.x, center.y);
