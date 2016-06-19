@@ -132,6 +132,7 @@ declare module etch.drawing {
     class Canvas implements IDisplayContext {
         htmlElement: HTMLCanvasElement;
         isCached: boolean;
+        stage: etch.drawing.Stage;
         constructor(parentElement?: HTMLElement);
         ctx: CanvasRenderingContext2D;
         width: number;
@@ -161,8 +162,9 @@ declare module etch.drawing {
         zIndex: number;
         init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void;
         ctx: CanvasRenderingContext2D;
-        ctxWidth: number;
-        ctxHeight: number;
+        canvasWidth: number;
+        canvasHeight: number;
+        stage: etch.drawing.Stage;
         displayList: DisplayObjectCollection<IDisplayObject>;
         setup(): void;
         update(): void;
@@ -208,6 +210,8 @@ import Point = etch.primitives.Point;
 import Stage = etch.drawing.Stage;
 declare module etch.drawing {
     interface IDisplayObject extends IDisplayContext {
+        canvasWidth: number;
+        canvasHeight: number;
         deltaTime: number;
         displayList: DisplayObjectCollection<IDisplayObject>;
         draw(): void;
@@ -237,7 +241,6 @@ import ClockTimer = etch.engine.ClockTimer;
 import Canvas = etch.drawing.Canvas;
 import DisplayObject = etch.drawing.DisplayObject;
 import IDisplayObject = etch.drawing.IDisplayObject;
-declare var stage: etch.drawing.Stage;
 declare module etch.drawing {
     class Stage extends DisplayObject implements ITimerListener {
         private _maxDelta;

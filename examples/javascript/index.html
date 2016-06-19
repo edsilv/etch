@@ -48,7 +48,7 @@
                 this.width = 30;
                 this.height = 30;
 
-                this.position = new Vector(Math.randomBetween(this.ctxWidth - this.width), Math.randomBetween(this.ctxHeight - this.height)).toPoint();
+                this.position = new Vector(Math.randomBetween(this.canvasWidth - this.width), Math.randomBetween(this.canvasHeight - this.height)).toPoint();
                 this.velocity = new Vector(Math.randomBetween(-0.25, 0.25), Math.randomBetween(-0.25, 0.25));
             }
             
@@ -58,14 +58,14 @@
                 var deltaVelocity = new Vector(this.velocity.x * this.deltaTime, this.velocity.y * this.deltaTime);
                 this.position = this.position.toVector().add(deltaVelocity).toPoint();
 
-                if (this.position.x > this.ctxWidth) {
+                if (this.position.x > this.canvasWidth) {
                     this.position.x = 0;
                 } else if (this.position.x < 0) {
-                    this.position.x = this.ctxWidth;
-                } if (this.position.y > this.ctxHeight) {
+                    this.position.x = this.canvasWidth;
+                } if (this.position.y > this.canvasHeight) {
                     this.position.y = 0;
                 } else if (this.position.y < 0) {
-                    this.position.y = this.ctxHeight;
+                    this.position.y = this.canvasHeight;
                 }
             }
 

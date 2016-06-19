@@ -16,11 +16,11 @@ export default class FluidResistance extends Stage {
 		this.movers = [];
 
 		for (var i = 0; i < 10; i++) {
-    		var mover: Mover3 = new Mover3(Math.randomBetween(1, 4), this.ctxWidth / 10 * i, 0);
+    		var mover: Mover3 = new Mover3(Math.randomBetween(1, 4), this.canvasWidth / 10 * i, 0);
 			this.movers.push(mover);
 		}
 
-		this.liquid = new Liquid(0, this.ctxHeight * .5, this.ctxWidth, this.ctxHeight * .5, 0.1);
+		this.liquid = new Liquid(0, this.canvasHeight * .5, this.canvasWidth, this.canvasHeight * .5, 0.1);
 		this.liquid.init(this);
 		this.displayList.add(this.liquid);
 	}

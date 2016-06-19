@@ -18,13 +18,13 @@ export class Mover4 extends DisplayObject{
 		this.width = 30;
         this.height = 30;
 
-		this.position = new Point(Math.randomBetween(this.ctxWidth), Math.randomBetween(this.ctxHeight));
+		this.position = new Point(Math.randomBetween(this.stage.width), Math.randomBetween(this.stage.height));
     	this.velocity = new Vector(1, 0);
     	this.topspeed = 10;
 	}
 
     update(): void{
-    	var mouse: Point = stage.mousePos.clone();
+    	var mouse: Point = this.stage.mousePos.clone();
 		this.acceleration = mouse.toVector().sub(this.position.toVector()).normalize().mult(0.5);
 
     	this.velocity.add(this.acceleration);
@@ -32,16 +32,16 @@ export class Mover4 extends DisplayObject{
 
 	    this.position = this.position.toVector().add(this.velocity).toPoint();
 
-		if (this.position.x > this.ctxWidth) {
+		if (this.position.x > this.stage.width) {
 			this.position.x = 0;
 		} else if (this.position.x < 0) {
-			this.position.x = this.ctxWidth;
+			this.position.x = this.stage.width;
 		}
 
-		if (this.position.y > this.ctxHeight) {
+		if (this.position.y > this.stage.height) {
 			this.position.y = 0;
 		} else if (this.position.y < 0) {
-			this.position.y = this.ctxHeight;
+			this.position.y = this.stage.height;
 		}
     }
 

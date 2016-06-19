@@ -2,7 +2,6 @@ import ClockTimer = etch.engine.ClockTimer;
 import Canvas = etch.drawing.Canvas;
 import DisplayObject = etch.drawing.DisplayObject;
 import IDisplayObject = etch.drawing.IDisplayObject;
-declare var stage: etch.drawing.Stage;
 
 module etch.drawing{
     export class Stage extends DisplayObject implements ITimerListener {
@@ -18,11 +17,12 @@ module etch.drawing{
         
         constructor(maxDelta?: number) {
             super();
-            window.stage = this; // todo: this limits the browser window to a single etch instance. displayobjects will have to walk up tree of parents to root.
             this._maxDelta = maxDelta || 1000 / 60; // 60 fps
         }
         
         init(drawTo: IDisplayContext): void {
+            (<any>drawTo.ctx).stage = this;
+            
             super.init(drawTo);
 
             this.timer = new ClockTimer();

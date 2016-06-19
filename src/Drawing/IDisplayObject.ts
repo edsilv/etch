@@ -5,6 +5,8 @@ import Stage = etch.drawing.Stage;
 
 module etch.drawing{
     export interface IDisplayObject extends IDisplayContext{
+        canvasWidth: number;
+        canvasHeight: number;
         deltaTime: number;
         displayList: DisplayObjectCollection<IDisplayObject>;
         draw(): void;

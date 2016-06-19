@@ -14,7 +14,7 @@ export class Mover extends DisplayObject {
         this.width = 30;
         this.height = 30;
 
-        this.position = new Vector(Math.randomBetween(this.ctxWidth), Math.randomBetween(this.ctxHeight)).toPoint();
+        this.position = new Vector(Math.randomBetween(this.canvasWidth), Math.randomBetween(this.canvasHeight)).toPoint();
         this.velocity = new Vector(Math.randomBetween(-10, 10), Math.randomBetween(-10, 10));
     }
 
@@ -24,16 +24,16 @@ export class Mover extends DisplayObject {
         var p: Vector = this.position.toVector();
         p.add(this.velocity);
 
-        if (p.x > this.ctxWidth) {
+        if (p.x > this.canvasWidth) {
             p.x = 0;
         } else if (p.x < 0) {
-            p.x = this.ctxWidth;
+            p.x = this.canvasWidth;
         }
 
-        if (p.y > this.ctxHeight) {
+        if (p.y > this.canvasHeight) {
             p.y = 0;
         } else if (p.y < 0) {
-            p.y = this.ctxHeight;
+            p.y = this.canvasHeight;
         }
 
         this.position = p.toPoint();

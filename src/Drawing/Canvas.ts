@@ -5,6 +5,7 @@ module etch.drawing{
 
         public htmlElement: HTMLCanvasElement;
         public isCached: boolean = false;
+        public stage: etch.drawing.Stage;
 
         constructor(parentElement?: HTMLElement) {
             this.htmlElement = document.createElement("canvas");

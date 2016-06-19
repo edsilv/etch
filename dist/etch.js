@@ -497,16 +497,23 @@ var etch;
                 enumerable: true,
                 configurable: true
             });
-            Object.defineProperty(DisplayObject.prototype, "ctxWidth", {
+            Object.defineProperty(DisplayObject.prototype, "canvasWidth", {
                 get: function () {
                     return this.ctx.canvas.width;
                 },
                 enumerable: true,
                 configurable: true
             });
-            Object.defineProperty(DisplayObject.prototype, "ctxHeight", {
+            Object.defineProperty(DisplayObject.prototype, "canvasHeight", {
                 get: function () {
                     return this.ctx.canvas.height;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(DisplayObject.prototype, "stage", {
+                get: function () {
+                    return this.drawTo.ctx.stage;
                 },
                 enumerable: true,
                 configurable: true
@@ -671,11 +678,11 @@ var etch;
                 this.mousePos = new etch.primitives.Point(0, 0);
                 this.updated = new nullstone.Event();
                 this.drawn = new nullstone.Event();
-                window.stage = this; // todo: this limits the browser window to a single etch instance. displayobjects will have to walk up tree of parents to root.
                 this._maxDelta = maxDelta || 1000 / 60; // 60 fps
             }
             Stage.prototype.init = function (drawTo) {
                 var _this = this;
+                drawTo.ctx.stage = this;
                 _super.prototype.init.call(this, drawTo);
                 this.timer = new ClockTimer();
                 this.timer.registerTimer(this);

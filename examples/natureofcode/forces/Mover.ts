@@ -35,17 +35,17 @@ export class Mover extends DisplayObject {
 	    this.position = this.position.toVector().add(this.velocity).toPoint();
 	    this.acceleration.mult(0);
 
-		if (this.position.x > this.ctxWidth) {
-			this.position.x = this.ctxHeight;
+		if (this.position.x > this.canvasWidth) {
+			this.position.x = this.canvasHeight;
       		this.velocity.x *= -1;
 		} else if (this.position.x < 0) {
 			this.velocity.x *= -1;
       		this.position.x = 0;
 		}
 
-		if (this.position.y > this.ctxHeight) {
+		if (this.position.y > this.canvasHeight) {
 			this.velocity.y *= -1;
-      		this.position.y = this.ctxHeight;
+      		this.position.y = this.canvasHeight;
 		}
     }
 

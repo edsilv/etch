@@ -14,7 +14,7 @@ export class DeltaMover extends DisplayObject {
         this.width = 30;
         this.height = 30;
 
-        this.position = new Vector(Math.randomBetween(this.ctxWidth - this.width), Math.randomBetween(this.ctxHeight - this.height)).toPoint();
+        this.position = new Vector(Math.randomBetween(this.canvasWidth - this.width), Math.randomBetween(this.canvasHeight - this.height)).toPoint();
         this.velocity = new Vector(Math.randomBetween(-0.25, 0.25), Math.randomBetween(-0.25, 0.25));
     }
 
@@ -27,16 +27,16 @@ export class DeltaMover extends DisplayObject {
 
         p.add(deltaVelocity);
 
-        if (p.x > this.ctxWidth) {
+        if (p.x > this.canvasWidth) {
             p.x = 0;
         } else if (p.x < 0) {
-            p.x = this.ctxWidth;
+            p.x = this.canvasWidth;
         }
 
-        if (p.y > this.ctxHeight) {
+        if (p.y > this.canvasHeight) {
             p.y = 0;
         } else if (p.y < 0) {
-            p.y = this.ctxHeight;
+            p.y = this.canvasHeight;
         }
 
         this.position = p.toPoint();

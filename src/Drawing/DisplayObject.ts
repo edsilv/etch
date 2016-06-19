@@ -30,12 +30,16 @@ module etch.drawing {
             return this.drawTo.ctx;
         }
 
-        get ctxWidth(): number {
+        get canvasWidth(): number {
             return this.ctx.canvas.width;
         }
 
-        get ctxHeight(): number {
+        get canvasHeight(): number {
             return this.ctx.canvas.height;
+        }
+
+        get stage(): etch.drawing.Stage {
+            return (<any>this.drawTo.ctx).stage;
         }
 
         get displayList(): DisplayObjectCollection<IDisplayObject> {
