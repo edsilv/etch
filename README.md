@@ -14,7 +14,7 @@ Uses elements from [Fayde](https://github.com/wsick/Fayde), and has dependencies
 
 Etch is the graphics library used by [BlokDust](https://github.com/BlokDust/)
 
-http://edsilv.github.io/etch/examples
+http://edsilv.github.io/etch/examples/
 
 ## Installation
 
