@@ -13,9 +13,6 @@ export default class Example{
         this.canvas.height = 768;
         this.mainScene = new MainScene();
         this.mainScene.init(this.canvas);
-        this.mainScene.drawn.on((s: any, time: number) => {
-            //console.log(time);
-        }, this);
     }
 
     // necessary for stats

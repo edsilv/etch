@@ -11,6 +11,7 @@ export default class Liquid extends DisplayObject {
 	}
 
 	draw(): void {
+		this.ctx.beginPath();
 		this.ctx.rect(this.position.x, this.position.y, this.width, this.height);
 		this.ctx.fillStyle = this.color;
 		this.ctx.fill();

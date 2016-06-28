@@ -18,11 +18,11 @@ export default class Example{
             this.resize();
         });
 
-        // this.mainScene.ticked.on((lastTime: number, nowTime: number) => {
-        //     if(this.mainScene.isFirstFrame()){
-                this.resize();
-        //     }
-        // }, this);
+        this.mainScene.ticked.on((lastTime: number, nowTime: number) => {
+            // example of listening to stage ticked event
+        }, this);
+
+        this.resize();
     }
 
     public resize(): void {
