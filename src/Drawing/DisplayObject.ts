@@ -22,8 +22,6 @@ module etch.drawing {
             this.drawTo = drawTo;
             if (drawFrom) this.drawFrom = drawFrom;
             this.isInitialised = true;
-            this.setup();
-            this.resize();
         }
 
         get ctx(): CanvasRenderingContext2D {

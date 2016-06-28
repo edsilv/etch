@@ -4154,6 +4154,7 @@ declare module etch.drawing {
         height: number;
         hide(): void;
         init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void;
+        isFirstFrame(): boolean;
         isInitialised: boolean;
         isPaused: boolean;
         isVisible: boolean;
@@ -4181,8 +4182,7 @@ declare module etch.drawing {
         lastVisualTick: number;
         mousePos: etch.primitives.Point;
         timer: ClockTimer;
-        updated: nullstone.Event<number>;
-        drawn: nullstone.Event<number>;
+        ticked: nullstone.Event<number>;
         constructor(maxDelta?: number);
         init(drawTo: IDisplayContext): void;
         canvas: Canvas;
@@ -4190,6 +4190,8 @@ declare module etch.drawing {
         height: number;
         private _getMousePos(canvas, e);
         onTicked(lastTime: number, nowTime: number): void;
+        setup(): void;
+        setupDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
         update(): void;
         updateDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
         draw(): void;

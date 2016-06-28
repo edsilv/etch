@@ -12,8 +12,8 @@ require([
     './vectors/MultipleAccelerateTowardsMouse',
     './forces/Forces',
     './forces/GravityScaledByMass',
-    './forces/IncludingFriction'
-    // './forces/fluidResistance',
+    './forces/IncludingFriction',
+    './forces/FluidResistance'
     // './forces/attraction',
     // './forces/attractionManyMovers',
     // './forces/mutualAttraction',
@@ -39,8 +39,8 @@ require([
     multipleAccelerateTowardsMouse,
     forces,
     gravityScaledByMass,
-    includingFriction
-    // fluidResistance,
+    includingFriction,
+    fluidResistance
     // attraction,
     // attractionManyMovers,
     // mutualAttraction,

@@ -1,11 +1,12 @@
 import Canvas = etch.drawing.Canvas;
 import IDisplayObject = etch.drawing.IDisplayObject;
+import Stage = etch.drawing.Stage;
 
 export default class Example{
 
     private _canvas: Canvas;
     private _parentElement: HTMLElement;
-    public mainScene: IDisplayObject;
+    public mainScene: Stage;
 
     public init(): void {
         this._parentElement = document.getElementById('main');
@@ -17,7 +18,11 @@ export default class Example{
             this.resize();
         });
 
-        this.resize();
+        // this.mainScene.ticked.on((lastTime: number, nowTime: number) => {
+        //     if(this.mainScene.isFirstFrame()){
+                this.resize();
+        //     }
+        // }, this);
     }
 
     public resize(): void {

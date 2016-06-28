@@ -1,13 +1,18 @@
 import DisplayObject = etch.drawing.DisplayObject;
+import Point = etch.primitives.Point;
 
-export class Liquid extends DisplayObject {
+export default class Liquid extends DisplayObject {
 
-	constructor (public x: number, public y: number, public w: number, public h: number, public c: number) {
+	public color: string = 'blue';
+
+	constructor (public c: number) {
 		super();
+		this.position = new Point(0, 0);
 	}
 
 	draw(): void {
-		//fill(175);
-		//rect(this.x, this.y, this.w, this.h);
+		this.ctx.rect(this.position.x, this.position.y, this.width, this.height);
+		this.ctx.fillStyle = this.color;
+		this.ctx.fill();
 	}
 }

@@ -1,44 +1,34 @@
 import Canvas = etch.drawing.Canvas;
 import Stage = etch.drawing.Stage;
 import Vector = etch.primitives.Vector;
-import {Liquid} from './Liquid';
-import {Mover3} from './Mover3';
+import {default as Liquid} from './Liquid';
+import {Mover4} from './Mover4';
 
 export default class FluidResistance extends Stage {
 
-	public movers: Mover3[];
-	public friction: number;
-	public wind: Vector;
+	public movers: Mover4[];
 	public gravity: Vector;
 	public liquid: Liquid;
 
 	setup(): void{
 		this.movers = [];
 
-		for (var i = 0; i < 10; i++) {
-    		var mover: Mover3 = new Mover3(Math.randomBetween(1, 4), this.canvasWidth / 10 * i, 0);
-			this.movers.push(mover);
-		}
-
-		this.liquid = new Liquid(0, this.canvasHeight * .5, this.canvasWidth, this.canvasHeight * .5, 0.1);
+		this.liquid = new Liquid(0.1);
 		this.liquid.init(this);
 		this.displayList.add(this.liquid);
-	}
 
-	update(): void{
-
-        for (var i = 0; i < this.movers.length; i++) {
-
-			// var mover: Mover3 = this.movers[i];
-
-			// if(mover.isInside(this.liquid)){
-			// 	mover.drag(this.liquid)
-			// }
-
-			// var m = 0.1 * mover.mass;
-			// var gravity = new PVector(0, m);
-    		// mover.applyForce(gravity);
+		for (var i = 0; i < 10; i++) {
+    		var mover: Mover4 = new Mover4(Math.randomBetween(1, 4), this.canvasWidth / 10 * i, 0);
+			this.movers.push(mover);
+			mover.init(this);
+			this.displayList.add(mover);
 		}
 	}
 
+	update(): void {
+		this.liquid.position.x = 0;
+		this.liquid.position.y = this.canvasHeight * .5;
+		this.liquid.width = this.canvasWidth;
+		this.liquid.height = this.canvasHeight * .5;
+	}
 }

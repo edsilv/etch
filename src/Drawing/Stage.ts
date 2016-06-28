@@ -12,8 +12,7 @@ module etch.drawing{
         public mousePos: etch.primitives.Point = new etch.primitives.Point(0, 0);
         public timer: ClockTimer;
         
-        updated = new nullstone.Event<number>();
-        drawn = new nullstone.Event<number>();
+        ticked = new nullstone.Event<number>();
         
         constructor(maxDelta?: number) {
             super();
@@ -56,20 +55,39 @@ module etch.drawing{
 
         onTicked(lastTime: number, nowTime: number) {
 
+            this.frameCount++;
+
             this.deltaTime = Math.min(nowTime - this.lastVisualTick, this._maxDelta);
             this.lastVisualTick = nowTime;
+
+            this.ticked.raise(this, this.lastVisualTick);
 
             // reset transform.
 		    this.ctx.setTransform(1, 0, 0, 1, 0, 0);
             this.ctx.clearRect(0, 0, this.width, this.height);
 
+            if (this.isFirstFrame()){
+                this.setup();
+                this.setupDisplayList(this.displayList);
+            }
+
             this.update();
             this.updateDisplayList(this.displayList);
-            this.updated.raise(this, this.lastVisualTick);
 
             this.draw();
             this.drawDisplayList(this.displayList);
-            this.drawn.raise(this, this.lastVisualTick);
+        }
+
+        setup(): void {
+            super.setup();
+        }
+
+        setupDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void {
+            for (var i = 0; i < displayList.Count; i++){
+                var displayObject: IDisplayObject = displayList.GetValueAt(i);
+                displayObject.setup();
+                this.setupDisplayList(displayObject.displayList);
+            }
         }
 
         update() : void {

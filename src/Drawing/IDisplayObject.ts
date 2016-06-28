@@ -16,6 +16,7 @@ module etch.drawing{
         height: number;
         hide(): void;
         init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void;
+        isFirstFrame(): boolean;
         isInitialised: boolean;
         isPaused: boolean;
         isVisible: boolean;

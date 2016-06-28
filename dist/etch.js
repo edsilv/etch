@@ -487,8 +487,6 @@ var etch;
                 if (drawFrom)
                     this.drawFrom = drawFrom;
                 this.isInitialised = true;
-                this.setup();
-                this.resize();
             };
             Object.defineProperty(DisplayObject.prototype, "ctx", {
                 get: function () {
@@ -676,8 +674,7 @@ var etch;
                 this.deltaTime = new Date(0).getTime();
                 this.lastVisualTick = new Date(0).getTime();
                 this.mousePos = new etch.primitives.Point(0, 0);
-                this.updated = new nullstone.Event();
-                this.drawn = new nullstone.Event();
+                this.ticked = new nullstone.Event();
                 this._maxDelta = maxDelta || 1000 / 60; // 60 fps
             }
             Stage.prototype.init = function (drawTo) {
@@ -720,17 +717,31 @@ var etch;
                 return pos;
             };
             Stage.prototype.onTicked = function (lastTime, nowTime) {
+                this.frameCount++;
                 this.deltaTime = Math.min(nowTime - this.lastVisualTick, this._maxDelta);
                 this.lastVisualTick = nowTime;
+                this.ticked.raise(this, this.lastVisualTick);
                 // reset transform.
                 this.ctx.setTransform(1, 0, 0, 1, 0, 0);
                 this.ctx.clearRect(0, 0, this.width, this.height);
+                if (this.isFirstFrame()) {
+                    this.setup();
+                    this.setupDisplayList(this.displayList);
+                }
                 this.update();
                 this.updateDisplayList(this.displayList);
-                this.updated.raise(this, this.lastVisualTick);
                 this.draw();
                 this.drawDisplayList(this.displayList);
-                this.drawn.raise(this, this.lastVisualTick);
+            };
+            Stage.prototype.setup = function () {
+                _super.prototype.setup.call(this);
+            };
+            Stage.prototype.setupDisplayList = function (displayList) {
+                for (var i = 0; i < displayList.Count; i++) {
+                    var displayObject = displayList.GetValueAt(i);
+                    displayObject.setup();
+                    this.setupDisplayList(displayObject.displayList);
+                }
             };
             Stage.prototype.update = function () {
                 _super.prototype.update.call(this);
