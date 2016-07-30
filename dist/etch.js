@@ -1,4 +1,4 @@
-// etch v0.1.1 https://github.com/edsilv/etch#readme
+// etch v1.0.0 https://github.com/edsilv/etch#readme
 var requestAnimFrame = (function () {
     return window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
@@ -398,6 +398,8 @@ var etch;
     })(collections = etch.collections || (etch.collections = {}));
 })(etch || (etch = {}));
 
+
+
 var Size = minerva.Size;
 var etch;
 (function (etch) {
@@ -786,8 +788,6 @@ var etch;
         drawing.Stage = Stage;
     })(drawing = etch.drawing || (etch.drawing = {}));
 })(etch || (etch = {}));
-
-
 
 var etch;
 (function (etch) {
