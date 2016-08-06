@@ -14,7 +14,7 @@ require([
     './forces/GravityScaledByMass',
     './forces/IncludingFriction',
     './forces/FluidResistance',
-    './forces/attraction'
+    './forces/Attraction'
     // './forces/attractionManyMovers',
     // './forces/mutualAttraction',
     // './oscillation/angularMotionUsingRotate',
