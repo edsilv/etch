@@ -10,12 +10,13 @@ export class Mover5 extends DisplayObject {
 	public mass: number;
 	public color: string = '#000';
 
-	constructor(mass: number, x: number, y: number){
+	constructor(mass: number, x: number, y: number, color?: string){
 		super();
 		this.mass = mass;
 		this.position = new Point(x, y);
     	this.velocity = new Vector(0, 0);
     	this.acceleration = new Vector(0, 0);
+		if (color) this.color = color;
 	}
 
 	init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void {
