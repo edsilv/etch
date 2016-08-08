@@ -7,7 +7,7 @@ import {Mover5 as Mover} from './Mover5';
 export default class MultipleAttractors extends Stage {
 
     attractorArrangement: AttractorArrangement = AttractorArrangement.horizontalLine;
-    totalAttractors: number = 25;
+    totalAttractors: number = 20;
     attractors: Attractor[] = [];
     movers: Mover[] = [];
 
