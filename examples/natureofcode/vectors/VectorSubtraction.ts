@@ -5,7 +5,7 @@ import Vector = etch.primitives.Vector;
 
 export default class VectorSubtraction extends Stage{
 
-	private _color: string = '#E2E2E2';
+	private _color: string = '#eff2f6';
 
     setup(): void {
 

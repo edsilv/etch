@@ -7,7 +7,7 @@ import {Mover5 as Mover} from './Mover5';
 export class Attractor extends DisplayObject {
 
 	public mass: number;
-	public color: string = '#E2E2E2';
+	public color: string = '#eff2f6';
     public G: number;
     public friction: number;
     public movers: Mover[];

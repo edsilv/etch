@@ -3,7 +3,7 @@ import Point = etch.primitives.Point;
 
 export default class Liquid extends DisplayObject {
 
-	public color: string = 'blue';
+	public color: string = '#3a7bae';
 
 	constructor (public c: number) {
 		super();
