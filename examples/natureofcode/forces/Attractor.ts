@@ -52,9 +52,11 @@ export class Attractor extends DisplayObject {
         var distance: number = delta.mag();
         
         if (distance < this.stickinessRadius){
-            var force: Vector = m.velocity.clone();
-            force.mult(-1);
-            m.applyForce(force);
+            //var force: Vector = m.velocity.clone();
+            //force.mult(-1);
+            //m.applyForce(force);
+            m.velocity = new Vector(0, 0);
+            m.acceleration = new Vector(0, 0);
             m.position.x = this.position.x;
             m.position.y = this.position.y;
         }
