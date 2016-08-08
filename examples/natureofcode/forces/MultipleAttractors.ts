@@ -21,7 +21,7 @@ export default class MultipleAttractors extends Stage {
             mover.position.y = Math.randomBetween(0, this.canvasHeight);
 		    this.displayList.add(mover);
             
-            var attractor: Attractor = new Attractor(200, 1, 0.2, true, this.canvasWidth / 2, this.canvasHeight / 2, [mover]);
+            var attractor: Attractor = new Attractor(400, 1, 0.2, true, this.canvasWidth / 2, this.canvasHeight / 2, [mover]);
             this.attractors.push(attractor);
             attractor.init(this);
 		    this.displayList.add(attractor);

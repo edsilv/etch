@@ -24,7 +24,7 @@ export class Attractor extends DisplayObject {
         this.movers = movers;
         this.sticky = sticky;
         this.radius = Math.min(this.mass, 30);
-        this.stickinessRadius = this.radius;
+        this.stickinessRadius = this.radius / 2;
 	}
 
 	init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void {
@@ -52,11 +52,7 @@ export class Attractor extends DisplayObject {
         var distance: number = delta.mag();
         
         if (distance < this.stickinessRadius){
-            //var force: Vector = m.velocity.clone();
-            //force.mult(-1);
-            //m.applyForce(force);
-            m.velocity = new Vector(0, 0);
-            m.acceleration = new Vector(0, 0);
+            m.killVelocity();
             m.position.x = this.position.x;
             m.position.y = this.position.y;
         }

@@ -27,6 +27,11 @@ export class Mover5 extends DisplayObject {
     	this.acceleration.add(Vector.divN(force, this.mass));
 	}
 
+	killVelocity(): void {
+		this.velocity = new Vector(0, 0);
+        this.acceleration = new Vector(0, 0);
+	}
+
     update(): void{		
 		this.velocity.add(this.acceleration);
 	    this.position = this.position.toVector().add(this.velocity).toPoint();
