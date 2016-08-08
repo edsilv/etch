@@ -47,11 +47,11 @@ export class Attractor extends DisplayObject {
         m.applyForce(force);
     }
 
-    applyStickiness(m: Mover): void {
-        if (m.position.x > (this.position.x - this.stickinessRadius) &&
-            m.position.x < (this.position.x + this.stickinessRadius) &&
-            m.position.y > (this.position.y - this.stickinessRadius) &&
-            m.position.y < (this.position.y + this.stickinessRadius)){
+    applyStickiness(m: Mover): void {        
+        var delta: Vector = Vector.sub(this.position.toVector(), m.position.toVector());
+        var distance: number = delta.mag();
+        
+        if (distance < this.stickinessRadius){
             var force: Vector = m.velocity.clone();
             force.mult(-1);
             m.applyForce(force);
