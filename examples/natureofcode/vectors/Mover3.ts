@@ -8,7 +8,7 @@ export class Mover3 extends DisplayObject {
 	public velocity: Vector;
 	public acceleration: Vector;
 	public topspeed: number;
-	public color: string = '#000';
+	public color: string = '#E2E2E2';
 
 	init(drawTo: IDisplayContext, drawFrom?: IDisplayContext): void {
         super.init(drawTo, drawFrom);

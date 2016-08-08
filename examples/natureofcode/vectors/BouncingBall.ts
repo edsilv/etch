@@ -7,7 +7,7 @@ export default class BouncingBall extends Stage{
 
 		public velocity: Vector;
 		private _ballRadius: number = 20;
-		private _color: string = '#000';
+		private _color: string = '#E2E2E2';
 
 		setup(): void {
 				this.position = new Point(100, 100);

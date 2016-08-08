@@ -8,7 +8,7 @@ export class Mover5 extends DisplayObject {
 	public velocity: Vector;
 	public acceleration: Vector;
 	public mass: number;
-	public color: string = '#000';
+	public color: string = '#E2E2E2';
 
 	constructor(mass: number, x: number, y: number, color?: string){
 		super();

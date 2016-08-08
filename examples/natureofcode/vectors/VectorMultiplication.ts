@@ -5,6 +5,8 @@ import Vector = etch.primitives.Vector;
 
 export default class VectorMultiplication extends Stage {
 
+    private _color: string = '#E2E2E2';
+
     setup(): void{
 
     }
@@ -20,6 +22,7 @@ export default class VectorMultiplication extends Stage {
         this.ctx.beginPath();
         this.ctx.moveTo(0, 0);
         this.ctx.lineTo(mouse.x, mouse.y);
+        this.ctx.strokeStyle = this._color;
         this.ctx.stroke();
     }
 
