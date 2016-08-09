@@ -57,9 +57,12 @@ require([
     // springConnection
     ) => {
 
+        var e;
+
         function setExample(scene) {
             $('#main').empty();
-            var e = new example.default();
+            if (e) e.mainScene.dispose();
+            e = new example.default();
             e.mainScene = scene;
             e.init();
         }

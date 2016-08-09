@@ -214,6 +214,7 @@ declare module etch.drawing {
         canvasHeight: number;
         deltaTime: number;
         displayList: DisplayObjectCollection<IDisplayObject>;
+        dispose(): void;
         draw(): void;
         drawFrom: IDisplayContext;
         drawTo: IDisplayContext;
@@ -264,6 +265,8 @@ declare module etch.drawing {
         draw(): void;
         drawDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
         resizeDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
+        dispose(): void;
+        disposeDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void;
         resize(): void;
     }
 }

@@ -777,6 +777,19 @@ var etch;
                     this.resizeDisplayList(displayObject.displayList);
                 }
             };
+            Stage.prototype.dispose = function () {
+                // loop through all displayobjects calling their dispose methods.
+                this.disposeDisplayList(this.displayList);
+                // unregister from clocktimer
+                this.timer.unregisterTimer(this);
+            };
+            Stage.prototype.disposeDisplayList = function (displayList) {
+                for (var i = 0; i < displayList.Count; i++) {
+                    var displayObject = displayList.GetValueAt(i);
+                    displayObject.dispose();
+                    this.disposeDisplayList(displayObject.displayList);
+                }
+            };
             Stage.prototype.resize = function () {
                 _super.prototype.resize.call(this);
                 this.resizeDisplayList(this.displayList);

@@ -9,6 +9,7 @@ module etch.drawing{
         canvasHeight: number;
         deltaTime: number;
         displayList: DisplayObjectCollection<IDisplayObject>;
+        dispose(): void;
         draw(): void;
         drawFrom: IDisplayContext;
         drawTo: IDisplayContext;

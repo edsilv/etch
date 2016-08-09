@@ -129,6 +129,22 @@ module etch.drawing{
             }
         }
 
+        dispose(): void {
+            // loop through all displayobjects calling their dispose methods.
+            this.disposeDisplayList(this.displayList);
+
+            // unregister from clocktimer
+            this.timer.unregisterTimer(this);
+        }
+
+        disposeDisplayList(displayList: DisplayObjectCollection<IDisplayObject>): void {
+            for (var i = 0; i < displayList.Count; i++){
+                var displayObject: IDisplayObject = displayList.GetValueAt(i);
+                displayObject.dispose();
+                this.disposeDisplayList(displayObject.displayList);
+            }
+        }
+
         resize(): void {
             super.resize();
             this.resizeDisplayList(this.displayList);
