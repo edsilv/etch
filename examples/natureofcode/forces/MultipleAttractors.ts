@@ -1,6 +1,7 @@
 import Canvas = etch.drawing.Canvas;
 import Stage = etch.drawing.Stage;
 import Vector = etch.primitives.Vector;
+import Point = etch.primitives.Point;
 import {Attractor} from './Attractor';
 import {Mover5 as Mover} from './Mover5';
 
@@ -25,6 +26,8 @@ export default class MultipleAttractors extends Stage {
             this.attractors.push(attractor);
             attractor.init(this);
 		    this.displayList.add(attractor);
+            this.displayList.toBack(attractor);
+            attractor.color = '#000';
             attractor.hide();
         }
 
@@ -33,11 +36,12 @@ export default class MultipleAttractors extends Stage {
         var that = this;
 
         this.canvas.htmlElement.addEventListener('click', (e) => {
-            if (that.attractorArrangement === AttractorArrangement.horizontalLine){
-                that.setAttractorArrangement(AttractorArrangement.verticalLine);
-            } else {
-                that.setAttractorArrangement(AttractorArrangement.horizontalLine);
+            that.attractorArrangement += 1;
+            if (that.attractorArrangement === 3){
+                that.attractorArrangement = 0;
             }
+            
+            that.setAttractorArrangement(that.attractorArrangement);
         }, false);
 	}
 
@@ -56,17 +60,24 @@ export default class MultipleAttractors extends Stage {
                     gap = this.canvasWidth / this.totalAttractors;
                     x = gap * i;
                     y = this.canvasHeight / 2;
-                    attractor.position.x = x;
-                    attractor.position.y = y;
                     break;
                 case AttractorArrangement.verticalLine :
                     gap = this.canvasHeight / this.totalAttractors;
                     x = this.canvasWidth / 2;
                     y = gap * i;
-                    attractor.position.x = x;
-                    attractor.position.y = y;
+                    break;
+                case AttractorArrangement.circle :
+                    gap = Math.TAU / this.totalAttractors;
+                    var theta: number = gap * i;
+                    var radius: number = 200;
+                    var center: Point = new Point(this.width * .5, this.height * .5);
+                    x = (radius * Math.cos(theta)) + center.x;
+		            y = (radius * Math.sin(theta)) + center.y;
                     break;
             }
+
+            attractor.position.x = x;
+            attractor.position.y = y;
         }
     }
 
@@ -76,5 +87,5 @@ export default class MultipleAttractors extends Stage {
 }
 
 enum AttractorArrangement {
-    horizontalLine, verticalLine
+    horizontalLine, verticalLine, circle
 }
