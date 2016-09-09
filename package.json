@@ -18,7 +18,6 @@
     "gulp-typescript": "^2.9.2",
     "gulp-utils": "git://github.com/edsilv/gulp-utils",
     "merge2": "^0.3.6",
-    "minerva": "git://github.com/wsick/minerva.git",
     "nullstone": "git://github.com/wsick/nullstone.git",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.4",
