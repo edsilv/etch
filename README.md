@@ -12,9 +12,8 @@ With thanks to [Brad Sickles](https://github.com/BSick7) ([Fayde](https://github
 
 ## Examples
 
-Etch is the graphics library used by [BlokDust](https://github.com/BlokDust/)
-
-http://edsilv.github.io/etch/examples/
+- [BlokDust](https://github.com/BlokDust/)
+- http://edsilv.github.io/etch/examples/
 
 ## Installation
 
