@@ -924,6 +924,12 @@ declare module etch.drawing {
     }
 }
 
+declare module etch.engine {
+    interface ITimerListener {
+        onTicked(lastTime: number, nowTime: number): any;
+    }
+}
+
 declare module etch.events {
     enum CollectionChangedAction {
         Add = 1,
@@ -975,12 +981,6 @@ declare module etch.events {
         Handled: boolean;
         Source: any;
         OriginalSource: any;
-    }
-}
-
-declare module etch.engine {
-    interface ITimerListener {
-        onTicked(lastTime: number, nowTime: number): any;
     }
 }
 

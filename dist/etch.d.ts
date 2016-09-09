@@ -1,4 +1,4 @@
-// etch v1.0.0 https://github.com/edsilv/etch#readme
+// etch v1.0.1 https://github.com/edsilv/etch#readme
 import ITimerListener = etch.engine.ITimerListener;
 declare var requestAnimFrame: any;
 declare module etch.engine {
@@ -275,6 +275,12 @@ declare module etch.drawing {
     }
 }
 
+declare module etch.engine {
+    interface ITimerListener {
+        onTicked(lastTime: number, nowTime: number): any;
+    }
+}
+
 declare module etch.events {
     enum CollectionChangedAction {
         Add = 1,
@@ -326,12 +332,6 @@ declare module etch.events {
         Handled: boolean;
         Source: any;
         OriginalSource: any;
-    }
-}
-
-declare module etch.engine {
-    interface ITimerListener {
-        onTicked(lastTime: number, nowTime: number): any;
     }
 }
 

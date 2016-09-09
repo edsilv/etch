@@ -1,4 +1,4 @@
-// etch v1.0.0 https://github.com/edsilv/etch#readme
+// etch v1.0.1 https://github.com/edsilv/etch#readme
 var requestAnimFrame = (function () {
     return window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
@@ -800,6 +800,8 @@ var etch;
     })(drawing = etch.drawing || (etch.drawing = {}));
 })(etch || (etch = {}));
 
+
+
 var etch;
 (function (etch) {
     var events;
@@ -933,8 +935,6 @@ var etch;
         events.RoutedEventArgs = RoutedEventArgs;
     })(events = etch.events || (etch.events = {}));
 })(etch || (etch = {}));
-
-
 
 var etch;
 (function (etch) {
