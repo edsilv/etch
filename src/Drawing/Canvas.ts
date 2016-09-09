@@ -1,4 +1,4 @@
-import Size = minerva.Size;
+import Size = etch.primitives.Size;
 
 module etch.drawing{
     export class Canvas implements IDisplayContext {

@@ -8,7 +8,6 @@ var GulpConfig = (function () {
             // libs that MUST be included in a consuming app for this component to work
             libs: [         
                 'node_modules/extensions/dist/extensions.js',
-                'node_modules/minerva/dist/minerva.min.js',
                 'node_modules/nullstone/dist/nullstone.min.js'
             ],
             // libs that MAY be included in a consuming app but are used here for example purposes
@@ -18,7 +17,6 @@ var GulpConfig = (function () {
             // ts definitions to copy to the typings dir
             typings: [      
                 'node_modules/extensions/dist/extensions.d.ts',
-                'node_modules/minerva/dist/minerva.d.ts',
                 'node_modules/nullstone/dist/nullstone.d.ts'
             ]
         };

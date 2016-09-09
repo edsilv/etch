@@ -398,7 +398,7 @@ var etch;
     })(collections = etch.collections || (etch.collections = {}));
 })(etch || (etch = {}));
 
-var Size = minerva.Size;
+var Size = etch.primitives.Size;
 var etch;
 (function (etch) {
     var drawing;
@@ -800,8 +800,6 @@ var etch;
     })(drawing = etch.drawing || (etch.drawing = {}));
 })(etch || (etch = {}));
 
-
-
 var etch;
 (function (etch) {
     var events;
@@ -936,20 +934,25 @@ var etch;
     })(events = etch.events || (etch.events = {}));
 })(etch || (etch = {}));
 
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+
+
 var etch;
 (function (etch) {
     var primitives;
     (function (primitives) {
-        var Point = (function (_super) {
-            __extends(Point, _super);
-            function Point() {
-                _super.apply(this, arguments);
+        var Point = (function () {
+            function Point(x, y) {
+                this.x = x == null ? 0 : x;
+                this.y = y == null ? 0 : y;
             }
+            Point.isEqual = function (p1, p2) {
+                return p1.x === p2.x
+                    && p1.y === p2.y;
+            };
+            Point.copyTo = function (src, dest) {
+                dest.x = src.x;
+                dest.y = src.y;
+            };
             Point.prototype.clone = function () {
                 return new Point(this.x, this.y);
             };
@@ -957,7 +960,45 @@ var etch;
                 return new primitives.Vector(this.x, this.y);
             };
             return Point;
-        }(minerva.Point));
+        }());
         primitives.Point = Point;
+    })(primitives = etch.primitives || (etch.primitives = {}));
+})(etch || (etch = {}));
+
+var etch;
+(function (etch) {
+    var primitives;
+    (function (primitives) {
+        var Size = (function () {
+            function Size(width, height) {
+                this.width = width == null ? 0 : width;
+                this.height = height == null ? 0 : height;
+            }
+            Size.copyTo = function (src, dest) {
+                dest.width = src.width;
+                dest.height = src.height;
+            };
+            Size.isEqual = function (size1, size2) {
+                return size1.width === size2.width
+                    && size1.height === size2.height;
+            };
+            Size.isEmpty = function (size) {
+                return size.width === 0
+                    || size.height === 0;
+            };
+            Size.min = function (dest, size2) {
+                dest.width = Math.min(dest.width, size2.width);
+                dest.height = Math.min(dest.height, size2.height);
+            };
+            Size.isUndef = function (size) {
+                return isNaN(size.width) && isNaN(size.height);
+            };
+            Size.undef = function (size) {
+                size.width = NaN;
+                size.height = NaN;
+            };
+            return Size;
+        }());
+        primitives.Size = Size;
     })(primitives = etch.primitives || (etch.primitives = {}));
 })(etch || (etch = {}));
